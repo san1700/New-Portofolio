@@ -69,31 +69,42 @@ const projectsData = [
     },
     {
         id: "p6",
-        title: "Real Estate Property Portal",
-        category: "Web Application",
+        title: "Brand Identity Redesign",
+        category: "Branding",
         image: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&q=80&w=800",
         tags: ["Vue.js", "Python", "PostgreSQL"]
     }
 ];
 
 const statsData = [
+    { label: "Projects Done", value: "250+" },
+    { label: "Happy Clients", value: "120+" },
+    { label: "Satisfaction", value: "98%" }
+];
+
+const testimonialsData = [
     {
-        label: "Years of Experience",
-        value: "5+"
+        id: "t1",
+        quote: "Novacraft completely transformed our digital presence. Their attention to detail and modern design approach is unmatched.",
+        name: "Sarah Jenkins",
+        role: "CEO at TechFlow",
+        avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=150&q=80"
     },
     {
-        label: "Projects Completed",
-        value: "120+"
+        id: "t2",
+        quote: "Working with them was a breeze. They understood our vision perfectly and delivered a product beyond our expectations.",
+        name: "Michael Chen",
+        role: "Founder of StartupX",
+        avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=150&q=80"
     },
     {
-        label: "Happy Clients",
-        value: "85+"
-    },
-    {
-        label: "Awards Won",
-        value: "12"
+        id: "t3",
+        quote: "The branding and website they created for us helped increase our conversion rate by 40% in just two months.",
+        name: "Emily Rodriguez",
+        role: "Marketing Director",
+        avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&w=150&q=80"
     }
 ];
 
 // Ekspor data untuk digunakan di file main.js atau index.js nantinya
-export { servicesData, projectsData, statsData };
+export { servicesData, projectsData, statsData, testimonialsData };
