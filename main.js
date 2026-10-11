@@ -230,7 +230,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // =========================================
 
     // Pasang class reveal ke elemen statis di HTML
-    document.querySelectorAll('.trusted-by, .cta-box').forEach(el => {
+    document.querySelectorAll('.cta-box').forEach(el => {
         el.classList.add('reveal');
     });
 
