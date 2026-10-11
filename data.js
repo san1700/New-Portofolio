@@ -34,57 +34,43 @@ const servicesData = [
 const projectsData = [
     {
         id: "p1",
-        title: "Fintech Dashboard Analytics",
-        category: "Web Application",
-        description: "Platform analitik keuangan real-time yang menampilkan data kompleks secara visual dan intuitif. Dibangun dengan React dan Chart.js untuk performa tinggi dan interaktivitas penuh.",
-        image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=800",
-        tags: ["React", "Tailwind CSS", "Chart.js"],
-        liveUrl: "https://github.com/san1700"
+        title: "Cinematic Travel & Outdoor Short",
+        category: "Videography",
+        tag: "COMMERCIAL / DRONE",
+        description: "Pengambilan gambar udara dan editing sinematik untuk konten perjalanan.",
+        image: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&q=80&w=1000",
+        tags: ["Videography", "Drone", "Color Grading"],
+        liveUrl: "https://www.instagram.com/san_mhmd17/"
     },
     {
         id: "p2",
-        title: "E-Commerce Mobile App",
-        category: "Mobile App",
-        description: "Aplikasi e-commerce mobile lintas platform dengan pengalaman belanja yang mulus, sistem cart cerdas, dan integrasi pembayaran real-time menggunakan Flutter dan Firebase.",
-        image: "https://images.unsplash.com/photo-1512921571408-9df8bc70716c?auto=format&fit=crop&q=80&w=800",
-        tags: ["Flutter", "Firebase", "UI/UX"],
-        liveUrl: "https://github.com/san1700"
+        title: "Social Media Reels & Short Form Video",
+        category: "Video Editing",
+        tag: "SHORT FORM CONTENT",
+        description: "Editing video ritmis cepat dengan motion grafik dan sound design menarik.",
+        image: "https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?auto=format&fit=crop&q=80&w=1000",
+        tags: ["CapCut", "Reels", "Sound Design"],
+        liveUrl: "https://www.instagram.com/san_mhmd17/"
     },
     {
         id: "p3",
-        title: "Modern SaaS Landing Page",
-        category: "Web Design",
-        description: "Landing page SaaS berkelas tinggi dengan animasi scroll yang mulus, desain glassmorphism, dan konversi-focused layout yang meningkatkan sign-up rate secara signifikan.",
-        image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=800",
-        tags: ["HTML5", "CSS3", "JavaScript"],
-        liveUrl: "https://github.com/san1700"
+        title: "Brand Identity & Visual Social Assets",
+        category: "Graphic Design",
+        tag: "BRANDING",
+        description: "Desain identitas brand, layout poster, dan aset grafis media sosial.",
+        image: "https://images.unsplash.com/photo-1626785774573-4b799315345d?auto=format&fit=crop&q=80&w=1000",
+        tags: ["Photoshop", "Canva", "CorelDraw"],
+        liveUrl: "https://www.instagram.com/san_mhmd17/"
     },
     {
         id: "p4",
-        title: "Health & Fitness Tracker",
-        category: "Mobile App",
-        description: "Aplikasi tracker kesehatan personal dengan fitur pemantauan aktivitas, kalori, dan jadwal olahraga. Diintegrasikan dengan sensor perangkat untuk data akurat secara real-time.",
-        image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&q=80&w=800",
-        tags: ["React Native", "Node.js"],
-        liveUrl: "https://github.com/san1700"
-    },
-    {
-        id: "p5",
-        title: "Creative Agency Portfolio",
-        category: "Web Development",
-        description: "Portfolio digital agensi kreatif dengan animasi GSAP yang imersif, grid dinamis, dan pengalaman scroll storytelling yang memukau untuk menonjolkan karya terbaik.",
-        image: "https://images.unsplash.com/photo-1522542550221-31fd19575a2d?auto=format&fit=crop&q=80&w=800",
-        tags: ["Vanilla JS", "GSAP", "CSS Variables"],
-        liveUrl: "https://github.com/san1700"
-    },
-    {
-        id: "p6",
-        title: "Brand Identity Redesign",
-        category: "Branding",
-        description: "Proyek rebrand lengkap mencakup logo system, color palette, tipografi, dan brand guidelines yang kohesif untuk memperkuat identitas visual brand di era digital.",
-        image: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&q=80&w=800",
-        tags: ["Vue.js", "Python", "PostgreSQL"],
-        liveUrl: "https://github.com/san1700"
+        title: "Landscape & Outdoor Photography",
+        category: "Photography",
+        tag: "COLLECTION",
+        description: "Dokumentasi fotografi lanskap alam dan elemen visual bernuansa estetis.",
+        image: "https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&q=80&w=1000",
+        tags: ["Photography", "Lightroom", "Outdoor"],
+        liveUrl: "https://www.instagram.com/san_mhmd17/"
     }
 ];
 

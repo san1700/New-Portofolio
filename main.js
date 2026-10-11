@@ -77,9 +77,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 <h2 class="section-title">Projects We're <span class="text-accent">Proud Of</span></h2>
                 <div class="project-filters flex gap-sm flex-wrap justify-center mt-md">
                     <button class="filter-btn active" data-filter="All">All</button>
-                    <button class="filter-btn" data-filter="Web Design">Web Design</button>
-                    <button class="filter-btn" data-filter="Development">Development</button>
-                    <button class="filter-btn" data-filter="Branding">Branding</button>
+                    <button class="filter-btn" data-filter="Video Editing">Video Editing</button>
+                    <button class="filter-btn" data-filter="Videography">Videography</button>
+                    <button class="filter-btn" data-filter="Graphic Design">Graphic Design</button>
+                    <button class="filter-btn" data-filter="Photography">Photography</button>
                 </div>
             </div>
             <div class="grid grid-cols-2 gap-lg projects-grid" id="projects-container" style="transition: opacity 0.3s ease;"></div>
@@ -96,25 +97,21 @@ document.addEventListener('DOMContentLoaded', () => {
                 let filteredData = projectsData;
 
                 if (filterCategory !== 'All') {
-                    filteredData = projectsData.filter(p => {
-                        // Gabungkan Web Application & Web Development ke Development
-                        if (filterCategory === 'Development') {
-                            return p.category.includes('Development') || p.category.includes('Application');
-                        }
-                        return p.category.includes(filterCategory);
-                    });
+                    filteredData = projectsData.filter(p => p.category === filterCategory);
                 }
 
                 projectsContainer.innerHTML = filteredData.map((project, i) => `
                     <div class="project-card reveal reveal-delay-${(i % 4) + 1} rounded-card" data-id="${project.id}" style="cursor: pointer;">
                         <div class="project-image-wrapper">
-                            <img src="${project.image}" alt="${project.title}" class="project-image" loading="lazy">
+                            <img src="${project.image}" alt="${project.title}" class="project-image" loading="lazy" onerror="this.style.opacity='0';">
+                            <span class="project-badge-tag">${project.tag || project.category}</span>
                         </div>
                         <div class="project-content">
                             <span class="project-category text-accent">${project.category}</span>
                             <h3 class="project-title">${project.title}</h3>
+                            <p class="project-short-desc text-muted mt-xs">${project.description}</p>
                             <div class="project-tags flex gap-sm flex-wrap mt-sm">
-                                ${project.tags.map(tag => `<span class="project-tag">${tag}</span>`).join('')}
+                                ${(project.tags || []).map(tag => `<span class="project-tag">${tag}</span>`).join('')}
                             </div>
                         </div>
                     </div>
