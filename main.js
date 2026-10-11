@@ -281,8 +281,9 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Event Delegation: Ketika .project-card diklik
-    if (projectsContainer && projectModal) {
-        projectsContainer.addEventListener('click', (e) => {
+    const workElem = document.getElementById('work');
+    if (workElem && projectModal) {
+        workElem.addEventListener('click', (e) => {
             const card = e.target.closest('.project-card');
             if (!card) return;
 
@@ -323,12 +324,13 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Trigger tombol "Let's Talk" di navbar atau CTA banner
-    document.querySelectorAll('a[href="#contact"]').forEach(btn => {
-        btn.addEventListener('click', (e) => {
+    // Trigger tombol "Let's Talk" di navbar, CTA banner, atau tombol lainnya
+    document.addEventListener('click', (e) => {
+        const contactTrigger = e.target.closest('a[href="#contact"]');
+        if (contactTrigger) {
             e.preventDefault();
             openModal(contactModal);
-        });
+        }
     });
 
     // Pengiriman form kontak ke email iechantwiranata@gmail.com
