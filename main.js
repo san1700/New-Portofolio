@@ -331,22 +331,68 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Simulasi pengiriman form kontak
+    // Pengiriman form kontak ke email iechantwiranata@gmail.com
     if (contactForm && contactSubmitBtn) {
-        contactForm.addEventListener('submit', (e) => {
+        contactForm.addEventListener('submit', async (e) => {
             e.preventDefault();
+
+            const nameInput = document.getElementById('contact-name');
+            const emailInput = document.getElementById('contact-email');
+            const messageInput = document.getElementById('contact-message');
+
+            const name = nameInput.value.trim();
+            const email = emailInput.value.trim();
+            const message = messageInput.value.trim();
+
+            if (!name || !email || !message) return;
 
             // Ubah state tombol ke proses pengiriman
             const originalText = contactSubmitBtn.innerHTML;
             contactSubmitBtn.disabled = true;
             contactSubmitBtn.innerHTML = '<span>Sending Message...</span>';
 
-            setTimeout(() => {
-                // Notifikasi sukses
-                contactSubmitBtn.classList.add('success-state');
-                contactSubmitBtn.innerHTML = '<span>✓ Message Sent Successfully!</span>';
+            try {
+                // Kirim langsung ke email via FormSubmit API (tanpa perlu backend)
+                const response = await fetch('https://formsubmit.co/ajax/iechantwiranata@gmail.com', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        name: name,
+                        email: email,
+                        message: message,
+                        _subject: `New Portfolio Message from ${name}`,
+                        _template: 'table'
+                    })
+                });
 
-                // Reset form & tutup modal setelah delay singkat
+                const data = await response.json();
+
+                if (response.ok || data.success === 'true' || data.success === true) {
+                    contactSubmitBtn.classList.add('success-state');
+                    contactSubmitBtn.innerHTML = '<span>✓ Message Sent Successfully!</span>';
+
+                    setTimeout(() => {
+                        closeModal(contactModal);
+                        contactForm.reset();
+                        contactSubmitBtn.classList.remove('success-state');
+                        contactSubmitBtn.innerHTML = originalText;
+                        contactSubmitBtn.disabled = false;
+                    }, 2000);
+                } else {
+                    throw new Error('Service response not ok');
+                }
+            } catch (err) {
+                // Fallback: Jika offline atau diblokir adblocker, buka mailto client langsung
+                console.warn('FormSubmit API fallback triggered:', err);
+                contactSubmitBtn.classList.add('success-state');
+                contactSubmitBtn.innerHTML = '<span>Opening Mail Client...</span>';
+
+                const mailtoUrl = `mailto:iechantwiranata@gmail.com?subject=${encodeURIComponent('Portfolio Inquiry from ' + name)}&body=${encodeURIComponent('Nama: ' + name + '\nEmail: ' + email + '\n\nPesan:\n' + message)}`;
+                window.location.href = mailtoUrl;
+
                 setTimeout(() => {
                     closeModal(contactModal);
                     contactForm.reset();
@@ -354,7 +400,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     contactSubmitBtn.innerHTML = originalText;
                     contactSubmitBtn.disabled = false;
                 }, 1800);
-            }, 1000);
+            }
         });
     }
 
