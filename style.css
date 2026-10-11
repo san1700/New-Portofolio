@@ -558,42 +558,56 @@ ol {
    ABOUT SECTION
    ========================================= */
 .about-section {
-  padding-block: 80px 60px;
+  padding-block: 90px 70px;
 }
 
+.about-grid {
+  display: grid;
+  grid-template-columns: 1.05fr 1.15fr;
+  gap: clamp(40px, 5vw, 64px);
+  align-items: center;
+}
+
+/* Glassmorphism Profile Card */
 .about-card {
-  padding: 40px;
-  background-color: var(--bg-card);
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  border-radius: var(--radius-card);
+  padding: 34px 30px;
+  background-color: #161618;
+  background-image: radial-gradient(circle at 100% 0%, rgba(255, 84, 0, 0.08) 0%, transparent 60%);
+  border: 1px solid #2A2A2E;
+  border-radius: 20px;
   position: relative;
   overflow: hidden;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.5), 0 0 25px rgba(255, 84, 0, 0.04);
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
 }
 
 .about-card:hover {
-  transform: translateY(-4px);
-  border-color: rgba(255, 84, 0, 0.3);
-  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5), 0 0 30px rgba(255, 84, 0, 0.08);
+  transform: translateY(-5px);
+  border-color: rgba(255, 84, 0, 0.4);
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.6), 0 0 35px rgba(255, 84, 0, 0.12);
 }
 
+/* Status Badge */
 .about-badge {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  font-size: 0.85rem;
+  font-size: 0.82rem;
   font-weight: 600;
-  background: rgba(255, 84, 0, 0.1);
+  color: #FF5400;
+  background: rgba(255, 84, 0, 0.08);
   padding: 6px 14px;
-  border-radius: var(--radius-pill);
+  border-radius: 99px;
   border: 1px solid rgba(255, 84, 0, 0.25);
   width: fit-content;
+  letter-spacing: 0.2px;
 }
 
 .badge-dot {
-  width: 8px;
-  height: 8px;
+  width: 7px;
+  height: 7px;
   background-color: #10B981;
   border-radius: 50%;
   box-shadow: 0 0 10px #10B981;
@@ -603,23 +617,26 @@ ol {
 
 @keyframes pulse-dot {
   0% { transform: scale(0.95); opacity: 0.8; }
-  50% { transform: scale(1.2); opacity: 1; }
+  50% { transform: scale(1.25); opacity: 1; }
   100% { transform: scale(0.95); opacity: 0.8; }
 }
 
 .about-name {
-  font-size: 1.6rem;
+  font-size: 1.65rem;
   font-weight: 700;
   color: var(--text-main);
+  letter-spacing: -0.3px;
 }
 
 .about-role {
-  color: var(--text-muted);
+  color: #A1A1AA;
+  line-height: 1.5;
+  font-size: 0.92rem;
 }
 
 .about-stats-row {
   background: rgba(255, 255, 255, 0.02);
-  border: 1px solid rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.05);
   border-radius: 14px;
   padding: 16px 20px;
 }
@@ -630,14 +647,28 @@ ol {
 }
 
 .stat-num {
-  font-size: 1.8rem;
+  font-size: 1.85rem;
   font-weight: 700;
   line-height: 1.1;
+  color: var(--color-accent);
 }
 
 .stat-desc {
-  font-size: 0.8rem;
-  margin-top: 2px;
+  font-size: 0.82rem;
+  margin-top: 3px;
+  color: #71717A;
+}
+
+.skills-group {
+  margin-top: 22px;
+}
+
+.skills-title {
+  display: block;
+  font-size: 0.85rem;
+  color: #A1A1AA;
+  margin-bottom: 10px;
+  letter-spacing: 0.2px;
 }
 
 .skills-tags {
@@ -647,14 +678,15 @@ ol {
 }
 
 .skill-tag {
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  color: #E0E0E0;
-  padding: 5px 12px;
-  border-radius: var(--radius-pill);
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  color: #D4D4D8;
+  padding: 6px 14px;
+  border-radius: 99px;
   font-size: 0.82rem;
   font-weight: 500;
-  transition: all 0.25s ease;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  letter-spacing: 0.2px;
 }
 
 .skill-tag:hover {
@@ -662,12 +694,13 @@ ol {
   border-color: var(--color-accent);
   color: #FFFFFF;
   transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(255, 84, 0, 0.2);
 }
 
 .about-desc {
   font-size: 1.05rem;
   line-height: 1.8;
-  color: var(--text-muted);
+  color: #A1A1AA;
 }
 
 /* =========================================
