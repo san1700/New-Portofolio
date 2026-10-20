@@ -55,25 +55,41 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     // =========================================
-    // 2. RENDER SERVICES SECTION
+    // 2. RENDER SERVICES SECTION (Ohio Agency Style)
     // =========================================
     const servicesSection = document.getElementById('services');
     if (servicesSection) {
         let servicesHTML = `
-            <div class="section-header reveal flex-col items-center text-center gap-sm">
-                <h2 class="section-title">Our <span class="title-serif text-accent">Services</span></h2>
-                <p class="text-muted max-w-md">Layanan kreatif profesional — dari videografi sinematik hingga desain visual yang memukau, membantu brand Anda tampil beda.</p>
+            <div class="section-header-split reveal">
+                <div class="section-header-left">
+                    <div class="section-eyebrow">
+                        <span class="eyebrow-num">03 //</span>
+                        <span class="eyebrow-text">EXPERTISE &amp; CAPABILITIES</span>
+                    </div>
+                    <h2 class="section-title">Creative <span class="title-serif text-accent">Services</span></h2>
+                </div>
+                <div class="section-header-right">
+                    <p class="section-lead-desc text-muted">
+                        Layanan produksi visual terpadu — dari editing reels dinamis, pengambilan gambar drone sinematik, hingga identitas desain grafis berdaya saing global.
+                    </p>
+                </div>
             </div>
             <div class="grid grid-cols-2 gap-md services-grid mt-lg">
         `;
 
         servicesData.forEach((service, i) => {
+            const indexStr = String(i + 1).padStart(2, '0');
             servicesHTML += `
                 <div class="service-card reveal reveal-delay-${(i % 4) + 1} bg-card rounded-card">
-                    <div class="service-icon">${service.icon || '✦'}</div>
+                    <div class="service-top-bar flex items-center justify-between">
+                        <div class="service-icon">${service.icon || '✦'}</div>
+                        <span class="service-index">// ${indexStr}</span>
+                    </div>
                     <h3 class="service-title">${service.title}</h3>
                     <p class="service-desc text-muted">${service.description}</p>
-                    <a href="${service.link}" target="_blank" rel="noopener" class="service-link text-accent">Lihat Portofolio →</a>
+                    <a href="${service.link}" target="_blank" rel="noopener" class="service-link text-accent">
+                        Lihat Portofolio <span class="link-arrow">↗</span>
+                    </a>
                 </div>
             `;
         });
@@ -83,7 +99,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // =========================================
-    // 3. RENDER PROJECTS (WORK) SECTION WITH FILTERS
+    // 3. RENDER PROJECTS (WORK) SECTION WITH FILTERS (Ohio Agency Style)
     // =========================================
     const workSection = document.getElementById('work');
     if (workSection) {
@@ -94,16 +110,26 @@ document.addEventListener('DOMContentLoaded', () => {
         const countPhoto = projectsData.filter(p => p.category === 'Photography').length;
 
         workSection.innerHTML = `
-            <div class="section-header reveal flex-col items-center text-center mt-xl mb-lg gap-sm">
-                <h2 class="section-title">Featured <span class="title-serif text-accent">Works</span></h2>
-                <p class="text-muted max-w-md">Koleksi karya terpilih — dari video editing ritmis dan videografi drone hingga identitas visual modern.</p>
-                <div class="project-filters flex gap-sm flex-wrap justify-center mt-md">
-                    <button class="filter-btn active" data-filter="All">All <span class="filter-count">${countAll}</span></button>
-                    <button class="filter-btn" data-filter="Video Editing">Video Editing <span class="filter-count">${countVideoEditing}</span></button>
-                    <button class="filter-btn" data-filter="Videography">Videography <span class="filter-count">${countVideography}</span></button>
-                    <button class="filter-btn" data-filter="Graphic Design">Graphic Design <span class="filter-count">${countDesign}</span></button>
-                    <button class="filter-btn" data-filter="Photography">Photography <span class="filter-count">${countPhoto}</span></button>
+            <div class="section-header-split reveal mt-xl mb-lg">
+                <div class="section-header-left">
+                    <div class="section-eyebrow">
+                        <span class="eyebrow-num">04 //</span>
+                        <span class="eyebrow-text">CURATED PORTFOLIO</span>
+                    </div>
+                    <h2 class="section-title">Selected <span class="title-serif text-accent">Works</span></h2>
                 </div>
+                <div class="section-header-right">
+                    <p class="section-lead-desc text-muted">
+                        Koleksi karya visual pilihan berfokus pada storytelling ritmis, estetika sinematik, dan dampak engagement nyata bagi brand.
+                    </p>
+                </div>
+            </div>
+            <div class="project-filters flex gap-sm flex-wrap justify-start mb-lg">
+                <button class="filter-btn active" data-filter="All">All <span class="filter-count">${countAll}</span></button>
+                <button class="filter-btn" data-filter="Video Editing">Video Editing <span class="filter-count">${countVideoEditing}</span></button>
+                <button class="filter-btn" data-filter="Videography">Videography <span class="filter-count">${countVideography}</span></button>
+                <button class="filter-btn" data-filter="Graphic Design">Graphic Design <span class="filter-count">${countDesign}</span></button>
+                <button class="filter-btn" data-filter="Photography">Photography <span class="filter-count">${countPhoto}</span></button>
             </div>
             <div class="grid grid-cols-2 gap-lg projects-grid" id="projects-container" style="transition: opacity 0.3s ease;"></div>
         `;
@@ -127,10 +153,21 @@ document.addEventListener('DOMContentLoaded', () => {
                         <div class="project-image-wrapper">
                             <img src="${project.image}" alt="${project.title}" class="project-image" loading="lazy" onerror="this.style.opacity='0';">
                             <span class="project-badge-tag">${project.tag || project.category}</span>
+                            <div class="project-overlay-trigger">
+                                <span class="trigger-circle">
+                                    <span class="trigger-arrow">↗</span>
+                                </span>
+                            </div>
                         </div>
                         <div class="project-content">
-                            <span class="project-category text-accent">${project.category}</span>
-                            <h3 class="project-title">${project.title}</h3>
+                            <div class="project-meta-row flex items-center justify-between">
+                                <span class="project-category text-accent">${project.category}</span>
+                                <span class="project-year">// 2026</span>
+                            </div>
+                            <h3 class="project-title flex items-center justify-between">
+                                <span>${project.title}</span>
+                                <span class="project-title-arrow">↗</span>
+                            </h3>
                             <p class="project-short-desc text-muted mt-xs">${project.description}</p>
                             <div class="project-tags flex gap-sm flex-wrap mt-sm">
                                 ${(project.tags || []).map(tag => `<span class="project-tag">${tag}</span>`).join('')}
@@ -154,18 +191,35 @@ document.addEventListener('DOMContentLoaded', () => {
         filterBtns.forEach(btn => {
             btn.addEventListener('click', (e) => {
                 filterBtns.forEach(b => b.classList.remove('active'));
-                e.target.classList.add('active');
-                renderProjects(e.target.dataset.filter);
+                const targetBtn = e.target.closest('.filter-btn');
+                if (targetBtn) {
+                    targetBtn.classList.add('active');
+                    renderProjects(targetBtn.dataset.filter);
+                }
             });
         });
     }
 
     // =========================================
-    // 4. RENDER IMPACT SECTION
+    // 4. RENDER IMPACT SECTION (Ohio Agency Style)
     // =========================================
     const impactSection = document.getElementById('impact');
     if (impactSection) {
         let impactHTML = `
+            <div class="section-header-split reveal mb-lg">
+                <div class="section-header-left">
+                    <div class="section-eyebrow">
+                        <span class="eyebrow-num">05 //</span>
+                        <span class="eyebrow-text">MEASURABLE VALUE</span>
+                    </div>
+                    <h2 class="section-title">Proven <span class="title-serif text-accent">Impact</span></h2>
+                </div>
+                <div class="section-header-right">
+                    <p class="section-lead-desc text-muted">
+                        Konsistensi kualitas, ketepatan tenggat waktu, dan kepuasan klien yang terbukti dalam setiap karya visual yang kami rilis.
+                    </p>
+                </div>
+            </div>
             <div class="impact-grid border-t border-b">
         `;
 
@@ -182,19 +236,19 @@ document.addEventListener('DOMContentLoaded', () => {
         impactSection.innerHTML = impactHTML;
 
         const gridEl = impactSection.querySelector('.impact-grid');
-        gridEl.style.borderTop = "1px solid rgba(255,255,255,0.05)";
-        gridEl.style.borderBottom = "1px solid rgba(255,255,255,0.05)";
+        gridEl.style.borderTop = "1px solid rgba(255,255,255,0.08)";
+        gridEl.style.borderBottom = "1px solid rgba(255,255,255,0.08)";
         gridEl.style.paddingBlock = "60px";
     }
 
     // =========================================
-    // 5. RENDER TESTIMONIALS SECTION
+    // 5. RENDER TESTIMONIALS SECTION (Ohio Agency Style)
     // =========================================
     const testimonialsSection = document.getElementById('testimonials');
     if (testimonialsSection) {
         let trackHTML = testimonialsData.map(testi => `
             <div class="testimonial-card">
-                <div class="quote-icon">"</div>
+                <div class="quote-icon">“</div>
                 <p class="testimonial-quote">${testi.quote}</p>
                 <div class="testimonial-author">
                     <img src="${testi.avatar}" alt="${testi.name}" class="author-avatar" loading="lazy">
@@ -207,8 +261,19 @@ document.addEventListener('DOMContentLoaded', () => {
         `).join('');
 
         testimonialsSection.innerHTML = `
-            <div class="section-header reveal flex-col items-center text-center mb-lg gap-sm">
-                <h2 class="section-title">Client <span class="title-serif text-accent">Feedback</span></h2>
+            <div class="section-header-split reveal mb-lg">
+                <div class="section-header-left">
+                    <div class="section-eyebrow">
+                        <span class="eyebrow-num">06 //</span>
+                        <span class="eyebrow-text">CLIENT TESTIMONIALS</span>
+                    </div>
+                    <h2 class="section-title">Client <span class="title-serif text-accent">Feedback</span></h2>
+                </div>
+                <div class="section-header-right">
+                    <p class="section-lead-desc text-muted">
+                        Apa kata para brand owner, kreator konten, dan tim komersial tentang kolaborasi kreatif bersama Mohammad Ikhsan.
+                    </p>
+                </div>
             </div>
             <div class="testimonial-slider reveal reveal-delay-2">
                 <div class="testimonial-track" id="testimonial-track">

@@ -1,27 +1,32 @@
-@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,600;1,700&family=Instrument+Serif:ital@0;1&display=swap');
 
 /* =========================================
-   DESIGN SYSTEM / CSS VARIABLES (AURA SYSTEM)
+   DESIGN SYSTEM / CSS VARIABLES (OHIO AGENCY + FIGTREE)
    ========================================= */
 :root {
-  /* Colors - Directly adopted from Aura AI Behance System */
-  --bg-main: #0D0F14;
-  --bg-surface: #141720;
-  --bg-card: rgba(20, 23, 32, 0.75);
-  --bg-card-hover: rgba(26, 30, 42, 0.9);
+  /* Colors - Luxury Dark Palette with Glowing Sapphire & Electric Accents */
+  --bg-main: #0B0D13;
+  --bg-surface: #121520;
+  --bg-card: rgba(18, 22, 33, 0.72);
+  --bg-card-hover: rgba(24, 30, 46, 0.88);
   --color-accent: #327EFF;
-  --color-accent-hover: #4B91FF;
-  --color-accent-glow: rgba(50, 126, 255, 0.35);
+  --color-accent-hover: #4F93FF;
+  --color-accent-glow: rgba(50, 126, 255, 0.38);
+  --color-accent-cyan: #06B6D4;
+  --color-accent-indigo: #6366F1;
+  --color-accent-purple: #8B5CF6;
   --text-main: #FFFFFF;
   --text-soft: #F1F5F9;
   --text-muted: #94A3B8;
+  --text-dim: #64748B;
   --border-subtle: rgba(255, 255, 255, 0.08);
   --border-card: rgba(255, 255, 255, 0.09);
   --border-focus: rgba(50, 126, 255, 0.55);
 
-  /* Typography */
-  --font-primary: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  /* Typography Hierarchy - Figtree */
+  --font-primary: 'Figtree', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   --font-serif: 'Instrument Serif', Georgia, serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
 
   /* Border Radius */
   --radius-card: 20px;
@@ -48,11 +53,11 @@
 }
 
 ::-webkit-scrollbar-track {
-  background: #0D0F14;
+  background: #0B0D13;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #1C2230;
+  background: #1C2333;
   border-radius: 4px;
 }
 
@@ -77,7 +82,7 @@ html {
 }
 
 body {
-  background-color: var(--bg-main, #0D0F14);
+  background-color: var(--bg-main, #0B0D13);
   color: var(--text-main, #FFFFFF);
   font-family: var(--font-primary);
   line-height: 1.6;
@@ -90,11 +95,11 @@ body {
 
 header, main, footer {
   position: relative;
-  z-index: 1;
+  z-index: 2;
 }
 
 /* =========================================
-   ATMOSPHERIC AURA & ARCHITECTURAL GUIDES
+   ATMOSPHERIC BLURRY GRADIENT & NOISE OVERLAY
    ========================================= */
 .bg-aura-glow {
   position: fixed;
@@ -102,10 +107,42 @@ header, main, footer {
   pointer-events: none;
   z-index: 0;
   background:
-    radial-gradient(ellipse 75% 55% at 85% 8%, rgba(50, 126, 255, 0.22) 0%, transparent 65%),
-    radial-gradient(ellipse 60% 45% at 10% 42%, rgba(50, 126, 255, 0.14) 0%, transparent 60%),
-    radial-gradient(ellipse 70% 50% at 85% 75%, rgba(50, 126, 255, 0.16) 0%, transparent 65%);
+    radial-gradient(circle 800px at 85% 10%, rgba(50, 126, 255, 0.22) 0%, transparent 68%),
+    radial-gradient(circle 750px at 10% 45%, rgba(99, 102, 241, 0.17) 0%, transparent 65%),
+    radial-gradient(circle 750px at 85% 80%, rgba(6, 182, 212, 0.14) 0%, transparent 68%),
+    radial-gradient(circle 650px at 35% 90%, rgba(139, 92, 246, 0.12) 0%, transparent 65%);
   opacity: 0.95;
+  filter: blur(25px);
+  animation: auraFloating 18s ease-in-out infinite alternate;
+}
+
+@keyframes auraFloating {
+  0% {
+    transform: scale(1) translateY(0);
+    filter: blur(25px);
+  }
+  50% {
+    transform: scale(1.04) translateY(-18px);
+    filter: blur(35px);
+  }
+  100% {
+    transform: scale(0.98) translateY(14px);
+    filter: blur(28px);
+  }
+}
+
+/* Genuine Film Grain / Tactile Noise Texture */
+.bg-noise {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.048;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  mix-blend-mode: overlay;
 }
 
 .bg-guidelines {
@@ -118,13 +155,13 @@ header, main, footer {
   pointer-events: none;
   z-index: 0;
   padding-inline: 24px;
-  opacity: 0.35;
+  opacity: 0.28;
 }
 
 .guide-line {
   width: 1px;
   height: 100%;
-  border-left: 1px dashed rgba(255, 255, 255, 0.12);
+  border-left: 1px dashed rgba(255, 255, 255, 0.1);
 }
 
 @media (max-width: 768px) {
@@ -134,13 +171,40 @@ header, main, footer {
 }
 
 /* =========================================
-   TYPOGRAPHY UTILITIES (AURA SYSTEM)
+   TYPOGRAPHY HIERARCHY (FIGTREE SYSTEM)
    ========================================= */
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-primary);
-  font-weight: 700;
+  font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
   color: var(--text-main, #FFFFFF);
+  margin: 0;
+}
+
+h1 {
+  font-size: clamp(2.85rem, 5.5vw, 4.85rem);
+  font-weight: 850;
+  letter-spacing: -0.04em;
+  line-height: 1.05;
+}
+
+h2 {
+  font-size: clamp(2.2rem, 3.8vw, 3.35rem);
+  font-weight: 800;
   letter-spacing: -0.035em;
+  line-height: 1.14;
+}
+
+h3 {
+  font-size: clamp(1.25rem, 2vw, 1.5rem);
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  line-height: 1.3;
+}
+
+h4 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  letter-spacing: -0.015em;
 }
 
 .title-serif,
@@ -150,6 +214,64 @@ em {
   font-style: italic;
   font-weight: 400;
   letter-spacing: -0.01em;
+}
+
+/* Ohio Agency Section Eyebrow / Subtitle Index */
+.section-eyebrow,
+.hero-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-primary);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+  margin-bottom: 12px;
+}
+
+.eyebrow-num {
+  font-weight: 850;
+  color: var(--color-accent);
+}
+
+.eyebrow-text {
+  color: #CBD5E1;
+}
+
+/* Ohio Split Section Header Layout */
+.section-header-split {
+  display: grid;
+  grid-template-columns: 1.15fr 1fr;
+  gap: clamp(24px, 4vw, 56px);
+  align-items: flex-end;
+  margin-bottom: clamp(36px, 5vw, 56px);
+  padding-bottom: 24px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.section-title {
+  font-size: clamp(2.2rem, 3.8vw, 3.35rem);
+  font-weight: 800;
+  line-height: 1.14;
+  letter-spacing: -0.035em;
+  margin: 0;
+  color: #FFFFFF;
+}
+
+.section-lead-desc {
+  font-size: clamp(0.98rem, 1.1vw, 1.08rem);
+  line-height: 1.75;
+  color: var(--text-muted);
+  margin: 0;
+}
+
+@media (max-width: 900px) {
+  .section-header-split {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
 }
 
 .section-badge {
@@ -387,38 +509,50 @@ ol {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 14px 28px;
+  padding: 13px 26px;
   font-weight: 600;
-  transition: all 0.3s ease;
+  font-size: 0.94rem;
+  letter-spacing: -0.01em;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.btn-arrow {
+  display: inline-block;
+  margin-left: 6px;
+  font-size: 1.05rem;
+  line-height: 1;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.btn:hover .btn-arrow {
+  transform: translate(3px, -3px);
 }
 
 .btn-primary {
   background-color: var(--color-accent, #327EFF);
   color: #FFFFFF;
-  border: 1px solid rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.18);
   box-shadow: 0 8px 24px rgba(50, 126, 255, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.3);
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .btn-primary:hover {
-  background-color: var(--color-accent-hover, #4B91FF);
+  background-color: var(--color-accent-hover, #4F93FF);
   transform: translateY(-2px);
-  box-shadow: 0 12px 30px rgba(50, 126, 255, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.4);
+  box-shadow: 0 12px 32px rgba(50, 126, 255, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.4);
 }
 
 .btn-secondary {
-  background-color: rgba(20, 23, 32, 0.75);
+  background-color: rgba(18, 22, 33, 0.75);
   color: var(--text-main, #FFFFFF);
   border: 1px solid rgba(255, 255, 255, 0.12);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
 }
 
 .btn-secondary:hover {
   border-color: rgba(50, 126, 255, 0.5);
   background-color: rgba(50, 126, 255, 0.12);
-  color: var(--color-accent, #327EFF);
+  color: #FFFFFF;
   transform: translateY(-2px);
 }
 
@@ -428,10 +562,10 @@ ol {
 
 /* Navbar */
 .navbar {
-  padding-block: 18px;
+  padding-block: 16px;
   position: sticky;
   top: 0;
-  background-color: rgba(13, 15, 20, 0.85);
+  background-color: rgba(11, 13, 19, 0.85);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   z-index: 100;
@@ -439,16 +573,38 @@ ol {
 }
 
 .logo {
-  font-size: 1.5rem;
-  font-weight: 700;
-  letter-spacing: 1px;
+  display: inline-flex;
+  align-items: center;
+  font-size: 1.45rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  color: #FFFFFF;
+}
+
+.logo-dot {
+  width: 6px;
+  height: 6px;
+  background: var(--color-accent);
+  border-radius: 50%;
+  margin-left: 3px;
+  box-shadow: 0 0 10px var(--color-accent);
 }
 
 .nav-link {
-  font-size: 0.95rem;
+  font-size: 0.92rem;
   font-weight: 500;
   color: var(--text-muted);
-  transition: color 0.3s ease;
+  transition: color 0.25s ease;
+  display: inline-flex;
+  align-items: center;
+}
+
+.nav-idx {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--color-accent);
+  margin-right: 5px;
+  opacity: 0.85;
 }
 
 .nav-link:hover {
@@ -469,18 +625,18 @@ ol {
 }
 
 /* =========================================
-   HERO 3-COLUMN SECTION (BALANCED & CLEAN)
+   HERO 3-COLUMN SECTION (OHIO AGENCY STYLE)
    ========================================= */
 .hero {
   position: relative;
-  padding-block: clamp(55px, 8vh, 85px);
+  padding-block: clamp(60px, 9vh, 95px);
   overflow: hidden;
   background: radial-gradient(circle at 50% 30%, rgba(50, 126, 255, 0.08) 0%, transparent 60%);
 }
 
 .hero-grid-3col {
   display: grid;
-  grid-template-columns: 1.15fr 1fr 1fr;
+  grid-template-columns: 1.2fr 1fr 1fr;
   align-items: center;
   gap: clamp(2rem, 3.5vw, 3.75rem);
   min-height: calc(100vh - 120px);
@@ -491,25 +647,24 @@ ol {
   z-index: 2;
 }
 
-/* KOLOM KIRI: HEADLINE & TOMBOL */
+/* KOLOM KIRI: HEADLINE & ACTIONS */
 .hero-left {
   align-self: center;
 }
 
-.hero-accent-bar {
-  width: 52px;
-  height: 3px;
-  background: var(--color-accent, #327EFF);
-  border-radius: 99px;
-  margin-bottom: var(--spacing-md);
-  box-shadow: 0 0 16px rgba(50, 126, 255, 0.6);
+.hero-title {
+  font-size: clamp(2.85rem, 5.5vw, 4.85rem);
+  line-height: 1.04;
+  font-weight: 850;
+  letter-spacing: -0.04em;
+  margin-bottom: var(--spacing-sm);
 }
 
-.hero-title {
-  font-size: clamp(2.4rem, 4vw, 4.2rem);
-  line-height: 1.12;
-  font-weight: 800;
-  letter-spacing: -0.035em;
+.hero-sublead {
+  font-size: clamp(1rem, 1.15vw, 1.12rem);
+  line-height: 1.7;
+  color: var(--text-muted);
+  max-width: 480px;
   margin-bottom: var(--spacing-md);
 }
 
@@ -521,10 +676,11 @@ ol {
 }
 
 .icon-play {
-  font-size: 0.8rem;
+  font-size: 0.75rem;
+  color: var(--color-accent);
 }
 
-/* KOLOM TENGAH: FOTO PROFIL DENGAN FRAME AKSEN BIRU */
+/* KOLOM TENGAH: FOTO PROFIL DENGAN FRAME CORNER MARKERS */
 .hero-center {
   display: flex;
   justify-content: center;
@@ -539,9 +695,9 @@ ol {
   max-width: 360px;
   aspect-ratio: 4 / 5;
   border-radius: 28px;
-  background: radial-gradient(circle at 50% 30%, rgba(50, 126, 255, 0.2) 0%, rgba(14, 18, 26, 0.95) 75%);
-  border: 2px solid rgba(50, 126, 255, 0.45);
-  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.75), 0 0 35px rgba(50, 126, 255, 0.25);
+  background: radial-gradient(circle at 50% 30%, rgba(50, 126, 255, 0.22) 0%, rgba(13, 16, 24, 0.95) 75%);
+  border: 1px solid rgba(50, 126, 255, 0.4);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.75), 0 0 35px rgba(50, 126, 255, 0.22);
   display: flex;
   justify-content: center;
   align-items: flex-end;
@@ -553,6 +709,67 @@ ol {
   transform: translateY(-6px);
   border-color: rgba(50, 126, 255, 0.85);
   box-shadow: 0 30px 75px rgba(0, 0, 0, 0.85), 0 0 45px rgba(50, 126, 255, 0.4);
+}
+
+/* Ohio Agency Frame Crosshairs */
+.frame-corner {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  border-color: rgba(50, 126, 255, 0.7);
+  z-index: 5;
+  pointer-events: none;
+}
+
+.corner-tl {
+  top: 14px;
+  left: 14px;
+  border-top: 2px solid;
+  border-left: 2px solid;
+}
+
+.corner-tr {
+  top: 14px;
+  right: 14px;
+  border-top: 2px solid;
+  border-right: 2px solid;
+}
+
+.corner-bl {
+  bottom: 14px;
+  left: 14px;
+  border-bottom: 2px solid;
+  border-left: 2px solid;
+}
+
+.corner-br {
+  bottom: 14px;
+  right: 14px;
+  border-bottom: 2px solid;
+  border-right: 2px solid;
+}
+
+.portrait-floating-badge {
+  position: absolute;
+  bottom: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 6;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px;
+  border-radius: var(--radius-pill);
+  background: rgba(11, 13, 19, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(12px);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #FFFFFF;
+  white-space: nowrap;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
 }
 
 .hero-frame-glow {
@@ -591,7 +808,7 @@ ol {
   transform: scale(1.025);
 }
 
-/* KOLOM KANAN: PARAGRAF BIO / DESKRIPSI */
+/* KOLOM KANAN: AGENCY BIO & HIGHLIGHT METRICS */
 .hero-right {
   align-self: center;
 }
@@ -599,7 +816,7 @@ ol {
 .hero-bio-card {
   position: relative;
   padding: clamp(1.4rem, 2.2vw, 2rem);
-  background: var(--bg-card, rgba(20, 23, 32, 0.75));
+  background: var(--bg-card, rgba(18, 22, 33, 0.72));
   border: 1px solid var(--border-card, rgba(255, 255, 255, 0.09));
   border-left: 3px solid var(--color-accent, #327EFF);
   border-radius: 18px;
@@ -616,17 +833,66 @@ ol {
   transform: translateY(-2px);
 }
 
+.bio-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  font-family: var(--font-primary);
+}
+
+.bio-label {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  color: var(--color-accent);
+  text-transform: uppercase;
+}
+
+.bio-location {
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  color: #64748B;
+}
+
 .hero-bio-text {
-  font-size: clamp(1.02rem, 1.15vw, 1.15rem);
-  line-height: 1.85;
+  font-size: clamp(0.96rem, 1.1vw, 1.05rem);
+  line-height: 1.8;
   color: var(--text-muted, #94A3B8);
-  margin: 0;
+  margin-top: 12px;
   letter-spacing: -0.01em;
 }
 
-.hero-bio-text strong {
-  color: var(--text-main, #FFFFFF);
-  font-weight: 600;
+.hero-meta-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  padding-top: 14px;
+  margin-top: 16px;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.meta-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.meta-num {
+  font-size: 1.75rem;
+  font-weight: 850;
+  color: #FFFFFF;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+}
+
+.meta-label {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  margin-top: 3px;
 }
 
 /* Trusted By Section */
@@ -789,77 +1055,127 @@ ol {
   margin-bottom: var(--spacing-lg);
 }
 
-/* Services Section */
+/* Services Section (Ohio Agency Style) */
 #services {
-  padding-block: 80px;
+  padding-block: 90px 70px;
 }
 
 .services-grid {
-  margin-top: 50px;
+  margin-top: 40px;
 }
 
 .service-card {
-  padding: 32px;
-  background: var(--bg-card, rgba(20, 23, 32, 0.75));
+  padding: clamp(28px, 3vw, 40px);
+  background: var(--bg-card, rgba(18, 22, 33, 0.72));
   border: 1px solid var(--border-card, rgba(255, 255, 255, 0.09));
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   box-shadow: 0 16px 36px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.07);
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+}
+
+.service-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, var(--color-accent) 0%, transparent 80%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
 }
 
 .service-card:hover {
   transform: translateY(-6px);
-  border-color: rgba(50, 126, 255, 0.4);
-  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.6), 0 0 28px rgba(50, 126, 255, 0.16), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+  border-color: rgba(50, 126, 255, 0.45);
+  box-shadow: 0 24px 52px rgba(0, 0, 0, 0.6), 0 0 35px rgba(50, 126, 255, 0.18), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+}
+
+.service-card:hover::before {
+  opacity: 1;
+}
+
+.service-top-bar {
+  margin-bottom: 24px;
 }
 
 .service-icon {
-  width: 58px;
-  height: 58px;
+  width: 54px;
+  height: 54px;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 24px;
   background: rgba(50, 126, 255, 0.08);
-  border: 1px solid rgba(50, 126, 255, 0.2);
+  border: 1px solid rgba(50, 126, 255, 0.22);
   border-radius: 14px;
   color: var(--color-accent);
-  transition: background 0.3s ease, box-shadow 0.3s ease;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .service-card:hover .service-icon {
-  background: rgba(50, 126, 255, 0.16);
-  box-shadow: 0 0 20px rgba(50, 126, 255, 0.22);
+  background: rgba(50, 126, 255, 0.18);
+  border-color: var(--color-accent);
+  box-shadow: 0 0 24px rgba(50, 126, 255, 0.3);
+  transform: scale(1.05);
 }
 
+.service-index {
+  font-family: var(--font-primary);
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: #64748B;
+  transition: color 0.3s ease;
+}
+
+.service-card:hover .service-index {
+  color: var(--color-accent);
+}
 
 .service-title {
-  font-size: 1.25rem;
+  font-size: clamp(1.28rem, 1.6vw, 1.48rem);
   margin-bottom: 12px;
-  font-weight: 700;
-  letter-spacing: -0.02em;
+  font-weight: 750;
+  letter-spacing: -0.025em;
+  color: #FFFFFF;
 }
 
 .service-desc {
   margin-bottom: 24px;
   font-size: 0.95rem;
   line-height: 1.7;
+  color: var(--text-muted);
+  flex-grow: 1;
 }
 
 .service-link {
-  font-size: 0.9rem;
-  font-weight: 600;
-  transition: opacity 0.3s ease;
+  font-size: 0.88rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  color: var(--color-accent);
+  transition: all 0.25s ease;
 }
 
-.service-link:hover {
-  opacity: 0.8;
+.link-arrow {
+  display: inline-block;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* Projects (Work) Section */
+.service-card:hover .link-arrow {
+  transform: translate(3px, -3px);
+}
+
+/* Projects (Work) Section (Ohio Agency Style) */
 #work {
-  padding-block: 80px;
+  padding-block: 90px 70px;
 }
 
 .filter-btn {
@@ -869,10 +1185,10 @@ ol {
   padding: 8px 18px;
   border-radius: var(--radius-pill);
   border: 1px solid rgba(255, 255, 255, 0.1);
-  background: rgba(20, 23, 32, 0.65);
+  background: rgba(18, 22, 33, 0.65);
   color: var(--text-muted);
   font-size: 0.86rem;
-  font-weight: 500;
+  font-weight: 600;
   cursor: pointer;
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
@@ -880,16 +1196,17 @@ ol {
 }
 
 .filter-btn:hover {
-  border-color: rgba(50, 126, 255, 0.4);
+  border-color: rgba(50, 126, 255, 0.45);
   color: #FFFFFF;
-  background: rgba(26, 30, 42, 0.85);
+  background: rgba(24, 30, 46, 0.85);
+  transform: translateY(-1px);
 }
 
 .filter-btn.active {
   background-color: var(--color-accent, #327EFF);
   color: #FFFFFF;
   border-color: var(--color-accent, #327EFF);
-  box-shadow: 0 6px 20px rgba(50, 126, 255, 0.35);
+  box-shadow: 0 8px 24px rgba(50, 126, 255, 0.4);
 }
 
 .filter-count {
@@ -897,8 +1214,8 @@ ol {
   align-items: center;
   justify-content: center;
   font-size: 0.72rem;
-  font-weight: 700;
-  padding: 2px 7px;
+  font-weight: 750;
+  padding: 2px 8px;
   border-radius: 99px;
   background: rgba(255, 255, 255, 0.08);
   color: #FFFFFF;
@@ -906,19 +1223,21 @@ ol {
 }
 
 .filter-btn.active .filter-count {
-  background: rgba(0, 0, 0, 0.28);
+  background: rgba(0, 0, 0, 0.25);
   color: #FFFFFF;
 }
 
 .project-card {
   overflow: hidden;
-  background-color: var(--bg-card, rgba(20, 23, 32, 0.75));
+  background-color: var(--bg-card, rgba(18, 22, 33, 0.72));
   border: 1px solid var(--border-card, rgba(255, 255, 255, 0.09));
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   box-shadow: 0 16px 36px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.07);
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
   animation: fadeInCard 0.4s ease forwards;
+  display: flex;
+  flex-direction: column;
 }
 
 @keyframes fadeInCard {
@@ -926,7 +1245,6 @@ ol {
     opacity: 0;
     transform: translateY(15px);
   }
-
   to {
     opacity: 1;
     transform: translateY(0);
@@ -935,13 +1253,12 @@ ol {
 
 .project-card:hover {
   transform: translateY(-6px);
-  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.6), 0 0 30px rgba(50, 126, 255, 0.18), inset 0 1px 0 rgba(255, 255, 255, 0.12);
-  border-color: rgba(50, 126, 255, 0.4);
+  box-shadow: 0 24px 55px rgba(0, 0, 0, 0.65), 0 0 32px rgba(50, 126, 255, 0.18), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+  border-color: rgba(50, 126, 255, 0.45);
 }
 
-.project-card:hover .project-image,
-.project-card:hover img {
-  transform: scale(1.04);
+.project-card:hover .project-image {
+  transform: scale(1.05);
 }
 
 .project-image-wrapper {
@@ -949,8 +1266,8 @@ ol {
   position: relative;
   aspect-ratio: 16/9;
   width: 100%;
-  background-color: #141720;
-  background-image: linear-gradient(135deg, #1c1c20 0%, #121214 100%);
+  background-color: #121520;
+  background-image: linear-gradient(135deg, #181c28 0%, #0e111a 100%);
 }
 
 .project-image {
@@ -958,7 +1275,7 @@ ol {
   height: 100%;
   object-fit: cover;
   display: block;
-  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
+  transition: transform 0.65s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
 }
 
 /* Badge Tag on Top of Image */
@@ -966,61 +1283,126 @@ ol {
   position: absolute;
   top: 14px;
   left: 14px;
-  background: rgba(11, 11, 12, 0.75);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+  background: rgba(11, 13, 19, 0.82);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   color: #327EFF;
-  border: 1px solid rgba(50, 126, 255, 0.3);
-  font-size: 0.7rem;
-  font-weight: 700;
-  letter-spacing: 0.8px;
+  border: 1px solid rgba(50, 126, 255, 0.35);
+  font-size: 0.68rem;
+  font-weight: 750;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
   padding: 4px 10px;
   border-radius: 6px;
   z-index: 2;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+/* Ohio Agency Floating Trigger on Image */
+.project-overlay-trigger {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  z-index: 3;
+  opacity: 0;
+  transform: scale(0.85);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.project-card:hover .project-overlay-trigger {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.trigger-circle {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(50, 126, 255, 0.9);
+  color: #FFFFFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 6px 18px rgba(50, 126, 255, 0.5);
+  font-size: 1rem;
+  font-weight: 800;
 }
 
 .project-content {
   padding: 24px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.project-meta-row {
+  margin-bottom: 6px;
 }
 
 .project-category {
-  font-size: 0.76rem;
+  font-size: 0.74rem;
   text-transform: uppercase;
-  letter-spacing: 1px;
-  font-weight: 700;
-  display: block;
-  margin-bottom: 6px;
+  letter-spacing: 0.12em;
+  font-weight: 750;
   color: var(--color-accent);
+}
+
+.project-year {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: #64748B;
+  font-weight: 600;
 }
 
 .project-title {
   font-size: 1.35rem;
-  font-weight: 700;
+  font-weight: 750;
   line-height: 1.3;
   color: var(--text-main);
+  letter-spacing: -0.025em;
+  transition: color 0.25s ease;
+}
+
+.project-title-arrow {
+  font-size: 1.15rem;
+  color: #64748B;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.project-card:hover .project-title {
+  color: #FFFFFF;
+}
+
+.project-card:hover .project-title-arrow {
+  color: var(--color-accent);
+  transform: translate(3px, -3px);
 }
 
 .project-short-desc {
   font-size: 0.92rem;
-  line-height: 1.6;
-  color: #A1A1AA;
+  line-height: 1.65;
+  color: #94A3B8;
+  flex-grow: 1;
+}
+
+.project-tags {
+  margin-top: 14px;
 }
 
 .project-tag {
-  font-size: 0.76rem;
+  font-size: 0.74rem;
   padding: 4px 12px;
-  background-color: rgba(255, 255, 255, 0.05);
+  background-color: rgba(255, 255, 255, 0.04);
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 99px;
-  color: #D4D4D8;
+  color: #CBD5E1;
   font-weight: 500;
   transition: all 0.2s ease;
 }
 
 .project-card:hover .project-tag {
-  border-color: rgba(50, 126, 255, 0.2);
+  border-color: rgba(50, 126, 255, 0.25);
+  color: #FFFFFF;
 }
 
 /* Mobile Menu Active States (Hamburger Animation & Dropdown) */
@@ -1205,63 +1587,100 @@ ol {
 }
 
 /* =========================================
-   IMPACT SECTION
+   IMPACT SECTION (OHIO AGENCY METRICS)
    ========================================= */
 #impact {
-  padding-block: 60px;
+  padding-block: 80px 70px;
 }
 
 .impact-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: var(--spacing-xl);
+  gap: clamp(20px, 3vw, 40px);
   text-align: center;
 }
 
+.stat-item {
+  position: relative;
+  padding: clamp(20px, 2.5vw, 36px) clamp(16px, 2vw, 28px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.stat-item:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 20%;
+  height: 60%;
+  width: 1px;
+  background: rgba(255, 255, 255, 0.08);
+}
+
 .stat-value {
-  font-size: clamp(3rem, 5vw, 4.5rem);
-  font-weight: 700;
-  color: var(--color-accent);
+  font-family: var(--font-primary);
+  font-size: clamp(3.2rem, 5.5vw, 4.8rem);
+  font-weight: 900;
+  color: #FFFFFF;
   line-height: 1;
+  letter-spacing: -0.045em;
   margin-bottom: 12px;
+  text-shadow: 0 0 30px rgba(50, 126, 255, 0.25);
 }
 
 .stat-label {
-  font-size: 1.1rem;
-  font-weight: 500;
+  font-family: var(--font-primary);
+  font-size: 0.88rem;
+  font-weight: 700;
   color: var(--text-muted);
   text-transform: uppercase;
-  letter-spacing: 2px;
+  letter-spacing: 0.16em;
+}
+
+@media (max-width: 768px) {
+  .impact-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  .stat-item:not(:last-child)::after {
+    display: none;
+  }
+  .stat-item {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    padding-block: 24px;
+  }
 }
 
 /* =========================================
-   TESTIMONIALS SECTION
+   TESTIMONIALS SECTION (OHIO AGENCY STYLE)
    ========================================= */
 #testimonials {
-  padding-block: 100px;
+  padding-block: 90px 70px;
 }
 
 .testimonial-slider {
   position: relative;
-  max-width: 900px;
+  max-width: 920px;
   margin-inline: auto;
   overflow: hidden;
 }
 
 .testimonial-track {
   display: flex;
-  transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .testimonial-card {
   min-width: 100%;
-  padding: 50px;
-  background-color: var(--bg-card, rgba(20, 23, 32, 0.75));
+  padding: clamp(36px, 5vw, 60px);
+  background-color: var(--bg-card, rgba(18, 22, 33, 0.72));
   border-radius: var(--radius-card);
   border: 1px solid var(--border-card, rgba(255, 255, 255, 0.09));
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.07);
+  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.07);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -1271,32 +1690,37 @@ ol {
 .quote-icon {
   font-size: 4rem;
   color: var(--color-accent);
-  opacity: 0.35;
-  margin-bottom: 10px;
+  opacity: 0.45;
+  margin-bottom: 12px;
   line-height: 0.8;
   font-family: var(--font-serif);
   font-style: italic;
 }
 
 .testimonial-quote {
-  font-size: clamp(1.25rem, 3vw, 1.75rem);
+  font-family: var(--font-primary);
+  font-size: clamp(1.2rem, 2.2vw, 1.6rem);
   font-weight: 500;
-  line-height: 1.6;
-  margin-bottom: 40px;
+  line-height: 1.65;
+  letter-spacing: -0.015em;
+  color: #FFFFFF;
+  margin-bottom: 36px;
+  max-width: 780px;
 }
 
 .testimonial-author {
   display: flex;
   align-items: center;
-  gap: 15px;
+  gap: 16px;
 }
 
 .author-avatar {
-  width: 60px;
-  height: 60px;
+  width: 58px;
+  height: 58px;
   border-radius: 50%;
   object-fit: cover;
   border: 2px solid var(--color-accent);
+  box-shadow: 0 0 16px rgba(50, 126, 255, 0.3);
 }
 
 .author-info {
@@ -1305,12 +1729,15 @@ ol {
 
 .author-name {
   font-size: 1.1rem;
-  font-weight: 700;
+  font-weight: 750;
+  letter-spacing: -0.01em;
+  color: #FFFFFF;
 }
 
 .author-role {
-  font-size: 0.9rem;
+  font-size: 0.86rem;
   color: var(--text-muted);
+  font-weight: 500;
 }
 
 .slider-nav {
@@ -1321,15 +1748,15 @@ ol {
 }
 
 .slider-btn {
-  width: 50px;
-  height: 50px;
+  width: 48px;
+  height: 48px;
   border-radius: 50%;
   background-color: var(--bg-card);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.12);
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: all 0.3s ease;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   color: var(--text-main);
   cursor: pointer;
 }
@@ -1337,6 +1764,8 @@ ol {
 .slider-btn:hover {
   background-color: var(--color-accent);
   border-color: var(--color-accent);
+  box-shadow: 0 6px 20px rgba(50, 126, 255, 0.4);
+  transform: translateY(-2px);
 }
 
 .slider-btn svg {
@@ -1349,24 +1778,24 @@ ol {
    CTA BANNER SECTION
    ========================================= */
 .cta-banner {
-  padding-block: 60px 100px;
+  padding-block: 70px 110px;
 }
 
 .cta-box {
-  background: linear-gradient(135deg, rgba(20, 23, 32, 0.9) 0%, rgba(13, 15, 20, 0.95) 100%);
+  background: linear-gradient(135deg, rgba(18, 22, 33, 0.92) 0%, rgba(11, 13, 19, 0.96) 100%);
   border: 1px solid rgba(50, 126, 255, 0.35);
-  padding: 80px 40px;
+  padding: clamp(50px, 7vw, 90px) clamp(24px, 4vw, 50px);
   border-radius: 32px;
   position: relative;
   overflow: hidden;
-  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.6), 0 0 50px rgba(50, 126, 255, 0.18);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.65), 0 0 50px rgba(50, 126, 255, 0.18);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   text-align: center;
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
 }
 
 .cta-box::before {
@@ -1374,40 +1803,44 @@ ol {
   position: absolute;
   top: -80px;
   right: -50px;
-  width: 380px;
-  height: 380px;
-  background: radial-gradient(circle, rgba(50, 126, 255, 0.3) 0%, transparent 70%);
+  width: 420px;
+  height: 420px;
+  background: radial-gradient(circle, rgba(50, 126, 255, 0.32) 0%, transparent 70%);
   border-radius: 50%;
-  filter: blur(50px);
+  filter: blur(60px);
   pointer-events: none;
 }
 
 .cta-box h2 {
+  font-family: var(--font-primary);
   font-size: clamp(2.3rem, 4.5vw, 3.8rem);
-  font-weight: 800;
+  font-weight: 850;
   max-width: 800px;
   margin-inline: auto;
   text-align: center;
-  line-height: 1.15;
+  line-height: 1.14;
   letter-spacing: -0.035em;
+  color: #FFFFFF;
 }
 
 .cta-btn {
   background: var(--color-accent, #327EFF);
   color: #FFFFFF;
-  padding: 16px 40px;
-  font-size: 1.05rem;
-  font-weight: 600;
+  padding: 16px 38px;
+  font-size: 1.02rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
   border-radius: var(--radius-pill);
   display: inline-flex;
+  align-items: center;
   box-shadow: 0 8px 24px rgba(50, 126, 255, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.25);
   transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .cta-btn:hover {
-  background: var(--color-accent-hover, #4B91FF);
+  background: var(--color-accent-hover, #4F93FF);
   transform: translateY(-3px);
-  box-shadow: 0 12px 32px rgba(50, 126, 255, 0.55);
+  box-shadow: 0 14px 36px rgba(50, 126, 255, 0.55);
 }
 
 /* =========================================

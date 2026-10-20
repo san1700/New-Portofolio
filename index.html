@@ -35,19 +35,20 @@
     <meta name="twitter:image"
         content="https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?auto=format&fit=crop&q=80&w=1200">
 
-    <!-- Google Fonts: Plus Jakarta Sans & Instrument Serif (Aura Design System) -->
+    <!-- Google Fonts: Figtree (weights 300 to 900) & Instrument Serif -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,600&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,600;1,700&family=Instrument+Serif:ital@0;1&display=swap"
         rel="stylesheet">
 
-    <link rel="stylesheet" href="style.css?v=3.3">
+    <link rel="stylesheet" href="style.css?v=4.0">
 </head>
 
 <body>
-    <!-- Atmospheric Aura Background & Architectural Guidelines -->
+    <!-- Atmospheric Aura Background, Tactile Noise & Architectural Guidelines -->
     <div class="bg-aura-glow" aria-hidden="true"></div>
+    <div class="bg-noise" aria-hidden="true"></div>
     <div class="bg-guidelines" aria-hidden="true">
         <span class="guide-line"></span>
         <span class="guide-line"></span>
@@ -57,15 +58,20 @@
     <!-- Navbar -->
     <header class="navbar">
         <div class="container flex items-center justify-between">
-            <a href="#" class="logo">SANMHMD</a>
+            <a href="#" class="logo">
+                <span class="logo-text">SANMHMD</span>
+                <span class="logo-dot"></span>
+            </a>
             <nav class="nav-links flex items-center gap-lg">
-                <a href="#about" class="nav-link">About</a>
-                <a href="#services" class="nav-link">Services</a>
-                <a href="#work" class="nav-link">Work</a>
-                <a href="#impact" class="nav-link">Impact</a>
-                <a href="#testimonials" class="nav-link">Testimonials</a>
+                <a href="#about" class="nav-link"><span class="nav-idx">01.</span> About</a>
+                <a href="#services" class="nav-link"><span class="nav-idx">02.</span> Services</a>
+                <a href="#work" class="nav-link"><span class="nav-idx">03.</span> Work</a>
+                <a href="#impact" class="nav-link"><span class="nav-idx">04.</span> Impact</a>
+                <a href="#testimonials" class="nav-link"><span class="nav-idx">05.</span> Reviews</a>
             </nav>
-            <a href="#contact" class="btn btn-primary rounded-pill">Let's Talk</a>
+            <a href="#contact" class="btn btn-primary rounded-pill">
+                Let's Talk <span class="btn-arrow">↗</span>
+            </a>
             <!-- Hamburger menu (Mobile) -->
             <button class="mobile-menu-btn" aria-label="Toggle menu">
                 <span></span>
@@ -76,52 +82,90 @@
     </header>
 
     <main>
-        <!-- Hero Section -->
+        <!-- Hero Section (Ohio Agency Aesthetic) -->
         <section class="hero" id="hero">
             <div class="container hero-container hero-grid-3col">
-                <!-- Kolom Kiri: Sapaan & Judul Utama + Tombol Aksi -->
+                <!-- Kolom Kiri: Eyebrow, Display Typography & Action Buttons -->
                 <div class="hero-col hero-left flex-col justify-center">
-                    <div class="hero-accent-bar" aria-hidden="true"></div>
+                    <div class="hero-eyebrow">
+                        <span class="eyebrow-num">01 //</span>
+                        <span class="eyebrow-text">MOHAMMAD IKHSAN · VISUAL CREATOR</span>
+                    </div>
                     <h1 class="hero-title">
-                        I'm <span class="text-white">Ikhsan</span>,<br>
-                        a <span class="title-serif text-accent">Creative Enthusiasts</span>
+                        Stories.<br>
+                        Motion.<br>
+                        <span class="title-serif text-accent">Emotion.</span>
                     </h1>
-                    <div class="hero-actions flex items-center gap-md">
-                        <a href="#work" class="btn btn-primary rounded-pill">Explore My Work</a>
+                    <p class="hero-sublead text-muted">
+                        Video Editor &amp; Visual Storyteller mengolah narasi dinamis, videografi sinematik, dan identitas brand berdaya pikat tinggi.
+                    </p>
+                    <div class="hero-actions flex items-center gap-md mt-sm">
+                        <a href="#work" class="btn btn-primary rounded-pill">
+                            Explore Works <span class="btn-arrow">↗</span>
+                        </a>
                         <a href="#showreel" class="btn btn-secondary rounded-pill flex items-center gap-sm">
                             <span class="icon-play">▶</span> Play Showreel
                         </a>
                     </div>
                 </div>
 
-                <!-- Kolom Tengah: Foto Profil dengan Frame Aksen Biru -->
+                <!-- Kolom Tengah: Foto Profil dengan Frame Aksen Biru & Corner Markers -->
                 <div class="hero-col hero-center flex items-center justify-center">
                     <div class="hero-portrait-frame">
                         <div class="hero-frame-glow" aria-hidden="true"></div>
+                        <div class="frame-corner corner-tl" aria-hidden="true"></div>
+                        <div class="frame-corner corner-tr" aria-hidden="true"></div>
+                        <div class="frame-corner corner-bl" aria-hidden="true"></div>
+                        <div class="frame-corner corner-br" aria-hidden="true"></div>
                         <img src="assets/images/photo-profile-bust.png" alt="Mohammad Ikhsan" class="hero-framed-img"
                             loading="eager">
+                        <div class="portrait-floating-badge">
+                            <span class="badge-dot"></span>
+                            <span>Open for Collaborations</span>
+                        </div>
                     </div>
                 </div>
 
-                <!-- Kolom Kanan: Paragraf Bio / Deskripsi -->
+                <!-- Kolom Kanan: Agency Bio & Fast Highlights -->
                 <div class="hero-col hero-right flex-col justify-center">
                     <div class="hero-bio-card">
-                        <p class="hero-bio-text">
-                            Halo, saya <strong>Mohammad Ikhsan</strong> — Creative Enthusiast yang membantu brand dan
-                            kreator menyampaikan cerita lewat video beritme dinamis, videografi sinematik, dan desain
-                            visual yang memukau.
+                        <div class="bio-card-header">
+                            <span class="bio-label">// AGENCY PHILOSOPHY</span>
+                            <span class="bio-location">JAKARTA · ID</span>
+                        </div>
+                        <p class="hero-bio-text mt-xs">
+                            Membantu brand, creator, dan agency menyampaikan cerita lewat video beritme dinamis, footage berkelas sinematik, serta visual design yang membekas di benak audiens.
                         </p>
+                        <div class="hero-meta-grid mt-md">
+                            <div class="meta-item">
+                                <span class="meta-num">3+</span>
+                                <span class="meta-label">Years of Craft</span>
+                            </div>
+                            <div class="meta-item">
+                                <span class="meta-num">25+</span>
+                                <span class="meta-label">Delivered Projects</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- About Section -->
+        <!-- About Section (Ohio Agency Aesthetic) -->
         <section id="about" class="container about-section">
-            <div class="section-header reveal flex-col items-center text-center mb-xl gap-sm">
-                <h2 class="section-title">About <span class="title-serif text-accent">Me</span></h2>
-                <p class="text-muted max-w-md">Get to know more about my creative journey, experience, and visual
-                    storytelling background.</p>
+            <div class="section-header-split reveal">
+                <div class="section-header-left">
+                    <div class="section-eyebrow">
+                        <span class="eyebrow-num">02 //</span>
+                        <span class="eyebrow-text">ABOUT THE CREATOR</span>
+                    </div>
+                    <h2 class="section-title">Driven by Visual Pacing &amp; <span class="title-serif text-accent">Cinematic Detail</span></h2>
+                </div>
+                <div class="section-header-right">
+                    <p class="section-lead-desc text-muted">
+                        Menyatukan kepekaan audio-visual, ritme potongan presisi, dan arahan seni modern untuk melahirkan konten berdaya resonansi tinggi bagi audiens digital masa kini.
+                    </p>
+                </div>
             </div>
             <div class="about-grid grid grid-cols-2 gap-xl items-center">
                 <!-- Sisi Kiri: Profil Card Glassmorphism -->
@@ -305,13 +349,18 @@
         <section id="impact" class="container"></section>
         <section id="testimonials" class="container"></section>
 
-        <!-- CTA Banner -->
+        <!-- CTA Banner (Ohio Agency Style) -->
         <section class="cta-banner container">
             <div class="cta-box flex flex-col items-center justify-center text-center">
-                <h2>Let's Build Something <span class="title-serif text-accent">Great</span> Together</h2>
-                <p class="text-muted max-w-md mt-sm">Siap mewujudkan ide video dan visual kreatif Anda menjadi karya
-                    yang memikat audiens?</p>
-                <a href="#contact" class="btn cta-btn rounded-pill mt-md">Get in Touch</a>
+                <div class="section-eyebrow mb-sm">
+                    <span class="eyebrow-num">06 //</span>
+                    <span class="eyebrow-text">START A COLLABORATION</span>
+                </div>
+                <h2>Let's Build Something <span class="title-serif text-accent">Extraordinary</span> Together</h2>
+                <p class="text-muted max-w-md mt-sm">Siap mewujudkan ide video dan visual kreatif Anda menjadi karya berdaya jangkau tinggi yang memikat audiens?</p>
+                <a href="#contact" class="btn cta-btn rounded-pill mt-md">
+                    Start a Project <span class="btn-arrow">↗</span>
+                </a>
             </div>
         </section>
     </main>
