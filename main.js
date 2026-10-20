@@ -18,6 +18,21 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // =========================================
+    // 1.5 TOOLS TICKER INTERACTION (Mobile Touch & Pause)
+    // =========================================
+    const tickerWrapper = document.getElementById('ticker-wrapper');
+    const tickerTrack = document.getElementById('ticker-track');
+    if (tickerWrapper && tickerTrack) {
+        tickerWrapper.addEventListener('touchstart', () => {
+            tickerTrack.style.animationPlayState = 'paused';
+        }, { passive: true });
+
+        tickerWrapper.addEventListener('touchend', () => {
+            tickerTrack.style.animationPlayState = 'running';
+        }, { passive: true });
+    }
+
+    // =========================================
     // SCROLL REVEAL — IntersectionObserver
     // (Dideklarasi di sini agar bisa dipakai oleh semua render di bawah)
     // =========================================
@@ -46,8 +61,8 @@ document.addEventListener('DOMContentLoaded', () => {
     if (servicesSection) {
         let servicesHTML = `
             <div class="section-header reveal flex-col items-center text-center gap-sm">
-                <h2 class="section-title">Our <span class="text-accent">Services</span></h2>
-                <p class="text-muted max-w-md">We offer a wide range of digital services to help your business grow and stand out in the digital landscape.</p>
+                <h2 class="section-title">Our <span class="title-serif text-accent">Services</span></h2>
+                <p class="text-muted max-w-md">Layanan kreatif profesional — dari videografi sinematik hingga desain visual yang memukau, membantu brand Anda tampil beda.</p>
             </div>
             <div class="grid grid-cols-2 gap-md services-grid mt-lg">
         `;
@@ -55,10 +70,10 @@ document.addEventListener('DOMContentLoaded', () => {
         servicesData.forEach((service, i) => {
             servicesHTML += `
                 <div class="service-card reveal reveal-delay-${(i % 4) + 1} bg-card rounded-card">
-                    <div class="service-icon text-accent">✦</div>
+                    <div class="service-icon">${service.icon || '✦'}</div>
                     <h3 class="service-title">${service.title}</h3>
                     <p class="service-desc text-muted">${service.description}</p>
-                    <a href="${service.link}" class="service-link text-accent">Learn more →</a>
+                    <a href="${service.link}" target="_blank" rel="noopener" class="service-link text-accent">Lihat Portofolio →</a>
                 </div>
             `;
         });
@@ -72,15 +87,22 @@ document.addEventListener('DOMContentLoaded', () => {
     // =========================================
     const workSection = document.getElementById('work');
     if (workSection) {
+        const countAll = projectsData.length;
+        const countVideoEditing = projectsData.filter(p => p.category === 'Video Editing').length;
+        const countVideography = projectsData.filter(p => p.category === 'Videography').length;
+        const countDesign = projectsData.filter(p => p.category === 'Graphic Design').length;
+        const countPhoto = projectsData.filter(p => p.category === 'Photography').length;
+
         workSection.innerHTML = `
             <div class="section-header reveal flex-col items-center text-center mt-xl mb-lg gap-sm">
-                <h2 class="section-title">Projects We're <span class="text-accent">Proud Of</span></h2>
+                <h2 class="section-title">Featured <span class="title-serif text-accent">Works</span></h2>
+                <p class="text-muted max-w-md">Koleksi karya terpilih — dari video editing ritmis dan videografi drone hingga identitas visual modern.</p>
                 <div class="project-filters flex gap-sm flex-wrap justify-center mt-md">
-                    <button class="filter-btn active" data-filter="All">All</button>
-                    <button class="filter-btn" data-filter="Video Editing">Video Editing</button>
-                    <button class="filter-btn" data-filter="Videography">Videography</button>
-                    <button class="filter-btn" data-filter="Graphic Design">Graphic Design</button>
-                    <button class="filter-btn" data-filter="Photography">Photography</button>
+                    <button class="filter-btn active" data-filter="All">All <span class="filter-count">${countAll}</span></button>
+                    <button class="filter-btn" data-filter="Video Editing">Video Editing <span class="filter-count">${countVideoEditing}</span></button>
+                    <button class="filter-btn" data-filter="Videography">Videography <span class="filter-count">${countVideography}</span></button>
+                    <button class="filter-btn" data-filter="Graphic Design">Graphic Design <span class="filter-count">${countDesign}</span></button>
+                    <button class="filter-btn" data-filter="Photography">Photography <span class="filter-count">${countPhoto}</span></button>
                 </div>
             </div>
             <div class="grid grid-cols-2 gap-lg projects-grid" id="projects-container" style="transition: opacity 0.3s ease;"></div>
@@ -185,8 +207,8 @@ document.addEventListener('DOMContentLoaded', () => {
         `).join('');
 
         testimonialsSection.innerHTML = `
-            <div class="section-header reveal flex-col items-center text-center mb-lg">
-                <h2 class="section-title">Client <span class="text-accent">Testimonials</span></h2>
+            <div class="section-header reveal flex-col items-center text-center mb-lg gap-sm">
+                <h2 class="section-title">Client <span class="title-serif text-accent">Feedback</span></h2>
             </div>
             <div class="testimonial-slider reveal reveal-delay-2">
                 <div class="testimonial-track" id="testimonial-track">
@@ -285,7 +307,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (!card) return;
 
             const projectId = card.dataset.id;
-            const project = projectsData.find(p => p.id === projectId);
+            const project = projectsData.find(p => String(p.id) === String(projectId));
             if (!project) return;
 
             // Isi konten modal
@@ -294,7 +316,43 @@ document.addEventListener('DOMContentLoaded', () => {
             modalProjectCategory.textContent = project.category;
             modalProjectTitle.textContent = project.title;
             modalProjectDesc.textContent = project.description || 'Proyek portofolio unggulan dengan arsitektur modern dan performa tinggi.';
-            modalProjectUrl.href = project.liveUrl || '#';
+
+            // Render dinamis tombol tautan eksternal ("Lihat Postingan Klien")
+            const targetLink = project.link || project.liveUrl || '';
+            if (modalProjectUrl) {
+                if (targetLink && targetLink !== '#') {
+                    modalProjectUrl.style.display = 'inline-flex';
+                    modalProjectUrl.href = targetLink;
+                    modalProjectUrl.target = '_blank';
+                    modalProjectUrl.rel = 'noopener noreferrer';
+
+                    // Label tombol dinamis sesuai platform atau kategori
+                    let btnLabel = 'Lihat Postingan Klien';
+                    if (project.linkLabel) {
+                        btnLabel = project.linkLabel;
+                    } else if (targetLink.includes('instagram.com/reel') || targetLink.includes('tiktok.com')) {
+                        btnLabel = 'Tonton di Instagram Reels';
+                    } else if (targetLink.includes('youtube.com') || targetLink.includes('youtu.be')) {
+                        btnLabel = 'Tonton di YouTube';
+                    } else if (targetLink.includes('instagram.com')) {
+                        btnLabel = 'Lihat di Instagram';
+                    } else {
+                        btnLabel = 'Lihat Postingan Klien';
+                    }
+
+                    modalProjectUrl.innerHTML = `
+                        <span>${btnLabel}</span>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-left: 8px;">
+                            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                            <polyline points="15 3 21 3 21 9"></polyline>
+                            <line x1="10" y1="14" x2="21" y2="3"></line>
+                        </svg>
+                    `;
+                } else {
+                    modalProjectUrl.style.display = 'none';
+                }
+            }
 
             modalProjectTags.innerHTML = (project.tags || [])
                 .map(tag => `<span class="project-tag">${tag}</span>`)
@@ -403,6 +461,68 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // --- 3. Showreel Video Modal ---
+    const showreelModal = document.getElementById('showreel-modal');
+    const closeShowreelModalBtn = document.getElementById('close-showreel-modal');
+    const showreelVideo = document.getElementById('showreel-video');
+
+    const closeShowreel = () => {
+        if (!showreelModal) return;
+        closeModal(showreelModal);
+        if (showreelVideo) {
+            showreelVideo.pause();
+        }
+    };
+
+    if (closeShowreelModalBtn && showreelModal) {
+        closeShowreelModalBtn.addEventListener('click', closeShowreel);
+
+        // Tutup saat area luar modal (backdrop) diklik
+        showreelModal.addEventListener('click', (e) => {
+            if (e.target === showreelModal) {
+                closeShowreel();
+            }
+        });
+    }
+
+    // Trigger tombol "Play Showreel" (a[href="#showreel"] atau [data-showreel-trigger])
+    document.addEventListener('click', (e) => {
+        const showreelTrigger = e.target.closest('a[href="#showreel"], [data-showreel-trigger]');
+        if (showreelTrigger) {
+            e.preventDefault();
+            if (showreelModal) {
+                openModal(showreelModal);
+                if (showreelVideo) {
+                    showreelVideo.currentTime = 0;
+                    showreelVideo.play().catch(() => {
+                        // Browser autoplay policy catch jika diblokir
+                    });
+                }
+            }
+        }
+    });
+
+    // =========================================
+    // 8. BACK TO TOP BUTTON
+    // =========================================
+    const backToTopBtn = document.getElementById('back-to-top');
+    if (backToTopBtn) {
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 350) {
+                backToTopBtn.classList.add('visible');
+            } else {
+                backToTopBtn.classList.remove('visible');
+            }
+        }, { passive: true });
+
+        backToTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    }
+
     // --- Global: Tutup modal ketika tombol 'Escape' ditekan ---
     document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape' || e.key === 'Esc') {
@@ -411,6 +531,9 @@ document.addEventListener('DOMContentLoaded', () => {
             }
             if (contactModal && contactModal.classList.contains('active')) {
                 closeModal(contactModal);
+            }
+            if (showreelModal && showreelModal.classList.contains('active')) {
+                closeShowreel();
             }
         }
     });

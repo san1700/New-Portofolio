@@ -4,11 +4,56 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SANMHMD | Creative Enthusiasts</title>
-    <link rel="stylesheet" href="style.css">
+    <title>SANMHMD | Mohammad Ikhsan - Video Editor & Visual Creator</title>
+    <meta name="description"
+        content="Portofolio resmi Mohammad Ikhsan (SANMHMD) — Creative Enthusiast, Video Editor, Videographer, dan Visual Creator. Spesialis Video Reels, Videografi Sinematik, dan Brand Identity.">
+    <meta name="keywords"
+        content="Mohammad Ikhsan, SANMHMD, Video Editor, Videographer, Graphic Designer, Photographer, Reels Editor, Video Portfolio, Creative Enthusiast">
+    <meta name="author" content="Mohammad Ikhsan (SANMHMD)">
+    <meta name="robots" content="index, follow">
+    <meta name="theme-color" content="#0D0F14">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
+
+    <!-- Open Graph / Facebook / WhatsApp / LinkedIn -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://san1700.github.io/New-Portofolio/">
+    <meta property="og:title" content="SANMHMD | Mohammad Ikhsan - Video Editor & Visual Creator">
+    <meta property="og:description"
+        content="Portofolio resmi Mohammad Ikhsan (SANMHMD) — Creative Enthusiast, Video Editor, Videographer, dan Visual Creator. Spesialis Video Reels, Videografi Sinematik, dan Brand Identity.">
+    <meta property="og:image"
+        content="https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?auto=format&fit=crop&q=80&w=1200">
+    <meta property="og:image:alt" content="SANMHMD Creative Portfolio Preview">
+
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://san1700.github.io/New-Portofolio/">
+    <meta name="twitter:title" content="SANMHMD | Mohammad Ikhsan - Video Editor & Visual Creator">
+    <meta name="twitter:description"
+        content="Portofolio resmi Mohammad Ikhsan (SANMHMD) — Creative Enthusiast, Video Editor, Videographer, dan Visual Creator.">
+    <meta name="twitter:image"
+        content="https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?auto=format&fit=crop&q=80&w=1200">
+
+    <!-- Google Fonts: Plus Jakarta Sans & Instrument Serif (Aura Design System) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,600&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css?v=3.3">
 </head>
 
 <body>
+    <!-- Atmospheric Aura Background & Architectural Guidelines -->
+    <div class="bg-aura-glow" aria-hidden="true"></div>
+    <div class="bg-guidelines" aria-hidden="true">
+        <span class="guide-line"></span>
+        <span class="guide-line"></span>
+        <span class="guide-line"></span>
+        <span class="guide-line"></span>
+    </div>
     <!-- Navbar -->
     <header class="navbar">
         <div class="container flex items-center justify-between">
@@ -32,33 +77,52 @@
 
     <main>
         <!-- Hero Section -->
-        <section class="hero">
-            <div class="container grid grid-hero items-center gap-xl">
-                <!-- Kolom Kiri: Konten -->
-                <div class="hero-content flex-col gap-md">
-                    <h1 class="hero-title">We Build Digital Products That Drive <span class="text-accent">Results</span>
+        <section class="hero" id="hero">
+            <div class="container hero-container hero-grid-3col">
+                <!-- Kolom Kiri: Sapaan & Judul Utama + Tombol Aksi -->
+                <div class="hero-col hero-left flex-col justify-center">
+                    <div class="hero-accent-bar" aria-hidden="true"></div>
+                    <h1 class="hero-title">
+                        I'm <span class="text-white">Ikhsan</span>,<br>
+                        a <span class="title-serif text-accent">Creative Enthusiasts</span>
                     </h1>
-                    <p class="hero-desc text-muted">
-                        We are a digital agency that helps brands grow through innovative web and mobile experiences.
-                        Partner with us to transform your vision into reality.
-                    </p>
                     <div class="hero-actions flex items-center gap-md">
-                        <a href="#work" class="btn btn-primary rounded-pill">Explore Our Work</a>
+                        <a href="#work" class="btn btn-primary rounded-pill">Explore My Work</a>
                         <a href="#showreel" class="btn btn-secondary rounded-pill flex items-center gap-sm">
                             <span class="icon-play">▶</span> Play Showreel
                         </a>
                     </div>
                 </div>
 
-                <!-- Kolom Kanan: Visual Accent -->
-                <div class="hero-visual flex items-center justify-center">
-                    <div class="abstract-ring"></div>
+                <!-- Kolom Tengah: Foto Profil dengan Frame Aksen Biru -->
+                <div class="hero-col hero-center flex items-center justify-center">
+                    <div class="hero-portrait-frame">
+                        <div class="hero-frame-glow" aria-hidden="true"></div>
+                        <img src="assets/images/photo-profile-bust.png" alt="Mohammad Ikhsan" class="hero-framed-img"
+                            loading="eager">
+                    </div>
+                </div>
+
+                <!-- Kolom Kanan: Paragraf Bio / Deskripsi -->
+                <div class="hero-col hero-right flex-col justify-center">
+                    <div class="hero-bio-card">
+                        <p class="hero-bio-text">
+                            Halo, saya <strong>Mohammad Ikhsan</strong> — Creative Enthusiast yang membantu brand dan
+                            kreator menyampaikan cerita lewat video beritme dinamis, videografi sinematik, dan desain
+                            visual yang memukau.
+                        </p>
+                    </div>
                 </div>
             </div>
         </section>
 
         <!-- About Section -->
         <section id="about" class="container about-section">
+            <div class="section-header reveal flex-col items-center text-center mb-xl gap-sm">
+                <h2 class="section-title">About <span class="title-serif text-accent">Me</span></h2>
+                <p class="text-muted max-w-md">Get to know more about my creative journey, experience, and visual
+                    storytelling background.</p>
+            </div>
             <div class="about-grid grid grid-cols-2 gap-xl items-center">
                 <!-- Sisi Kiri: Profil Card Glassmorphism -->
                 <div class="about-visual reveal">
@@ -68,7 +132,7 @@
                         </div>
                         <h3 class="about-name mt-sm">Mohammad Ikhsan</h3>
                         <p class="about-role text-muted font-sm">Creative Enthusiast | Video Editor & Visual Creator</p>
-                        
+
                         <div class="about-stats-row grid grid-cols-2 gap-md mt-md">
                             <div class="stat-mini">
                                 <span class="stat-num text-accent">3+</span>
@@ -80,36 +144,155 @@
                             </div>
                         </div>
 
-                        <div class="skills-group mt-md">
-                            <span class="skills-title text-muted font-sm font-semibold">Software & Creative Tools:</span>
-                            <div class="skills-tags flex flex-wrap gap-xs mt-xs">
-                                <span class="skill-tag">CapCut</span>
-                                <span class="skill-tag">Adobe Photoshop</span>
-                                <span class="skill-tag">Canva</span>
-                                <span class="skill-tag">CorelDraw</span>
-                                <span class="skill-tag">Adobe Lightroom</span>
-                            </div>
-                        </div>
+
                     </div>
                 </div>
 
                 <!-- Sisi Kanan: Headline & Deskripsi Singkat -->
                 <div class="about-content reveal reveal-delay-2">
-                    <span class="section-badge text-accent uppercase font-sm letter-spacing font-semibold">ABOUT ME</span>
-                    <h2 class="section-title mt-xs">Crafting <span class="text-accent">Visual Stories</span>, Cinematic Videos & Modern Brand Identities</h2>
+                    <h3 class="about-headline">Crafting <span class="title-serif text-accent">Visual Stories</span>,
+                        Cinematic
+                        Videos & Modern Brand Identities</h3>
                     <p class="about-desc text-muted mt-md">
-                        Halo! Saya Mohammad Ikhsan, seorang Creative Enthusiast yang berfokus pada penceritaan visual melalui Video Editing, Videografi, Fotografi, dan Desain Grafis. Saya membantu brand dan individu menyampaikan pesan mereka lewat konten yang estetik, sinematik, dan berdampak.
+                        Halo! Saya Mohammad Ikhsan, seorang Creative Enthusiast yang berfokus pada penceritaan visual
+                        melalui Video Editing, Videografi, Fotografi, dan Desain Grafis. Saya membantu brand dan
+                        individu menyampaikan pesan mereka lewat konten yang estetik, sinematik, dan berdampak.
                     </p>
                     <div class="about-actions flex items-center gap-md mt-lg">
                         <a href="#contact" class="btn btn-primary rounded-pill">Hubungi Saya</a>
-                        <a href="https://www.instagram.com/san_mhmd17/" target="_blank" rel="noopener noreferrer" class="btn btn-secondary rounded-pill flex items-center gap-sm">
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <a href="https://www.instagram.com/san_mhmd17/" target="_blank" rel="noopener noreferrer"
+                            class="btn btn-secondary rounded-pill flex items-center gap-sm">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
                                 <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
                                 <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
                                 <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
                             </svg>
                             <span>Portofolio Visual</span>
                         </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tools Ticker Marquee -->
+        <section class="tools-ticker-section">
+            <p class="ticker-label">POWERED BY INDUSTRY-STANDARD CREATIVE TOOLS</p>
+            <div class="ticker-wrapper" id="ticker-wrapper">
+                <div class="ticker-track" id="ticker-track">
+                    <!-- === SET 1 === -->
+                    <div class="ticker-item logo-box" data-tooltip="CapCut" title="CapCut">
+                        <img src="images/logo-capcut.png" alt="CapCut" class="ticker-logo">
+                    </div>
+                    <div class="ticker-item logo-box" data-tooltip="Adobe Photoshop" title="Adobe Photoshop">
+                        <img src="images/logo-photoshop.png" alt="Adobe Photoshop" class="ticker-logo">
+                    </div>
+                    <div class="ticker-item logo-box" data-tooltip="Canva" title="Canva">
+                        <img src="images/logo-canva.png" alt="Canva" class="ticker-logo">
+                    </div>
+                    <div class="ticker-item logo-box" data-tooltip="CorelDraw" title="CorelDraw">
+                        <img src="images/logo-coreldraw.png" alt="CorelDraw" class="ticker-logo">
+                    </div>
+                    <div class="ticker-item logo-box" data-tooltip="Adobe Lightroom" title="Adobe Lightroom">
+                        <img src="images/logo-lightroom.png" alt="Adobe Lightroom" class="ticker-logo">
+                    </div>
+                    <div class="ticker-item logo-box" data-tooltip="Adobe Premiere Pro" title="Adobe Premiere Pro">
+                        <img src="images/logo-premiere.png" alt="Adobe Premiere Pro" class="ticker-logo">
+                    </div>
+                    <!-- === SET 2 === -->
+                    <div class="ticker-item logo-box" data-tooltip="CapCut" title="CapCut">
+                        <img src="images/logo-capcut.png" alt="CapCut" class="ticker-logo">
+                    </div>
+                    <div class="ticker-item logo-box" data-tooltip="Adobe Photoshop" title="Adobe Photoshop">
+                        <img src="images/logo-photoshop.png" alt="Adobe Photoshop" class="ticker-logo">
+                    </div>
+                    <div class="ticker-item logo-box" data-tooltip="Canva" title="Canva">
+                        <img src="images/logo-canva.png" alt="Canva" class="ticker-logo">
+                    </div>
+                    <div class="ticker-item logo-box" data-tooltip="CorelDraw" title="CorelDraw">
+                        <img src="images/logo-coreldraw.png" alt="CorelDraw" class="ticker-logo">
+                    </div>
+                    <div class="ticker-item logo-box" data-tooltip="Adobe Lightroom" title="Adobe Lightroom">
+                        <img src="images/logo-lightroom.png" alt="Adobe Lightroom" class="ticker-logo">
+                    </div>
+                    <div class="ticker-item logo-box" data-tooltip="Adobe Premiere Pro" title="Adobe Premiere Pro">
+                        <img src="images/logo-premiere.png" alt="Adobe Premiere Pro" class="ticker-logo">
+                    </div>
+                    <!-- === SET 3 === -->
+                    <div class="ticker-item logo-box" data-tooltip="CapCut" title="CapCut">
+                        <img src="images/logo-capcut.png" alt="CapCut" class="ticker-logo">
+                    </div>
+                    <div class="ticker-item logo-box" data-tooltip="Adobe Photoshop" title="Adobe Photoshop">
+                        <img src="images/logo-photoshop.png" alt="Adobe Photoshop" class="ticker-logo">
+                    </div>
+                    <div class="ticker-item logo-box" data-tooltip="Canva" title="Canva">
+                        <img src="images/logo-canva.png" alt="Canva" class="ticker-logo">
+                    </div>
+                    <div class="ticker-item logo-box" data-tooltip="CorelDraw" title="CorelDraw">
+                        <img src="images/logo-coreldraw.png" alt="CorelDraw" class="ticker-logo">
+                    </div>
+                    <div class="ticker-item logo-box" data-tooltip="Adobe Lightroom" title="Adobe Lightroom">
+                        <img src="images/logo-lightroom.png" alt="Adobe Lightroom" class="ticker-logo">
+                    </div>
+                    <div class="ticker-item logo-box" data-tooltip="Adobe Premiere Pro" title="Adobe Premiere Pro">
+                        <img src="images/logo-premiere.png" alt="Adobe Premiere Pro" class="ticker-logo">
+                    </div>
+                    <!-- === SET 4 === -->
+                    <div class="ticker-item logo-box" data-tooltip="CapCut" title="CapCut">
+                        <img src="images/logo-capcut.png" alt="CapCut" class="ticker-logo">
+                    </div>
+                    <div class="ticker-item logo-box" data-tooltip="Adobe Photoshop" title="Adobe Photoshop">
+                        <img src="images/logo-photoshop.png" alt="Adobe Photoshop" class="ticker-logo">
+                    </div>
+                    <div class="ticker-item logo-box" data-tooltip="Canva" title="Canva">
+                        <img src="images/logo-canva.png" alt="Canva" class="ticker-logo">
+                    </div>
+                    <div class="ticker-item logo-box" data-tooltip="CorelDraw" title="CorelDraw">
+                        <img src="images/logo-coreldraw.png" alt="CorelDraw" class="ticker-logo">
+                    </div>
+                    <div class="ticker-item logo-box" data-tooltip="Adobe Lightroom" title="Adobe Lightroom">
+                        <img src="images/logo-lightroom.png" alt="Adobe Lightroom" class="ticker-logo">
+                    </div>
+                    <div class="ticker-item logo-box" data-tooltip="Adobe Premiere Pro" title="Adobe Premiere Pro">
+                        <img src="images/logo-premiere.png" alt="Adobe Premiere Pro" class="ticker-logo">
+                    </div>
+                    <!-- === SET 5 === -->
+                    <div class="ticker-item logo-box" data-tooltip="CapCut" title="CapCut">
+                        <img src="images/logo-capcut.png" alt="CapCut" class="ticker-logo">
+                    </div>
+                    <div class="ticker-item logo-box" data-tooltip="Adobe Photoshop" title="Adobe Photoshop">
+                        <img src="images/logo-photoshop.png" alt="Adobe Photoshop" class="ticker-logo">
+                    </div>
+                    <div class="ticker-item logo-box" data-tooltip="Canva" title="Canva">
+                        <img src="images/logo-canva.png" alt="Canva" class="ticker-logo">
+                    </div>
+                    <div class="ticker-item logo-box" data-tooltip="CorelDraw" title="CorelDraw">
+                        <img src="images/logo-coreldraw.png" alt="CorelDraw" class="ticker-logo">
+                    </div>
+                    <div class="ticker-item logo-box" data-tooltip="Adobe Lightroom" title="Adobe Lightroom">
+                        <img src="images/logo-lightroom.png" alt="Adobe Lightroom" class="ticker-logo">
+                    </div>
+                    <div class="ticker-item logo-box" data-tooltip="Adobe Premiere Pro" title="Adobe Premiere Pro">
+                        <img src="images/logo-premiere.png" alt="Adobe Premiere Pro" class="ticker-logo">
+                    </div>
+                    <!-- === SET 6 === -->
+                    <div class="ticker-item logo-box" data-tooltip="CapCut" title="CapCut">
+                        <img src="images/logo-capcut.png" alt="CapCut" class="ticker-logo">
+                    </div>
+                    <div class="ticker-item logo-box" data-tooltip="Adobe Photoshop" title="Adobe Photoshop">
+                        <img src="images/logo-photoshop.png" alt="Adobe Photoshop" class="ticker-logo">
+                    </div>
+                    <div class="ticker-item logo-box" data-tooltip="Canva" title="Canva">
+                        <img src="images/logo-canva.png" alt="Canva" class="ticker-logo">
+                    </div>
+                    <div class="ticker-item logo-box" data-tooltip="CorelDraw" title="CorelDraw">
+                        <img src="images/logo-coreldraw.png" alt="CorelDraw" class="ticker-logo">
+                    </div>
+                    <div class="ticker-item logo-box" data-tooltip="Adobe Lightroom" title="Adobe Lightroom">
+                        <img src="images/logo-lightroom.png" alt="Adobe Lightroom" class="ticker-logo">
+                    </div>
+                    <div class="ticker-item logo-box" data-tooltip="Adobe Premiere Pro" title="Adobe Premiere Pro">
+                        <img src="images/logo-premiere.png" alt="Adobe Premiere Pro" class="ticker-logo">
                     </div>
                 </div>
             </div>
@@ -125,7 +308,9 @@
         <!-- CTA Banner -->
         <section class="cta-banner container">
             <div class="cta-box flex flex-col items-center justify-center text-center">
-                <h2>Let's Build Something Great Together</h2>
+                <h2>Let's Build Something <span class="title-serif text-accent">Great</span> Together</h2>
+                <p class="text-muted max-w-md mt-sm">Siap mewujudkan ide video dan visual kreatif Anda menjadi karya
+                    yang memikat audiens?</p>
                 <a href="#contact" class="btn cta-btn rounded-pill mt-md">Get in Touch</a>
             </div>
         </section>
@@ -139,8 +324,8 @@
             <div class="footer-top">
                 <div class="footer-brand">
                     <a href="#" class="logo footer-logo">SANMHMD</a>
-                    <p class="footer-desc mt-sm">Creative Enthusiasts crafting modern,<br>dynamic & impactful digital
-                        experiences.</p>
+                    <p class="footer-desc mt-sm">Creative Enthusiast crafting cinematic,<br>dynamic & impactful visual
+                        stories.</p>
                     <a href="mailto:iechantwiranata@gmail.com" class="footer-email mt-sm">
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                             stroke-width="2">
@@ -164,9 +349,12 @@
                     <div class="footer-links-group">
                         <h4 class="footer-heading">Connect</h4>
                         <ul class="footer-links">
-                            <li><a href="https://www.linkedin.com/in/mohammad-ikhsan-2474a240b" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
-                            <li><a href="https://www.instagram.com/san_mhmd17/" target="_blank" rel="noopener noreferrer">Instagram</a></li>
-                            <li><a href="https://github.com/san1700" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+                            <li><a href="https://www.linkedin.com/in/mohammad-ikhsan-2474a240b" target="_blank"
+                                    rel="noopener noreferrer">LinkedIn</a></li>
+                            <li><a href="https://www.instagram.com/san_mhmd17/" target="_blank"
+                                    rel="noopener noreferrer">Instagram</a></li>
+                            <li><a href="https://github.com/san1700" target="_blank"
+                                    rel="noopener noreferrer">GitHub</a></li>
                         </ul>
                     </div>
                 </div>
@@ -174,15 +362,16 @@
 
             <!-- Social Icons Row -->
             <div class="footer-socials">
-                <a href="https://www.linkedin.com/in/mohammad-ikhsan-2474a240b" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="LinkedIn">
+                <a href="https://www.linkedin.com/in/mohammad-ikhsan-2474a240b" target="_blank"
+                    rel="noopener noreferrer" class="social-icon" aria-label="LinkedIn">
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
                         <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
                         <rect x="2" y="9" width="4" height="12" />
                         <circle cx="4" cy="4" r="2" />
                     </svg>
                 </a>
-                <a href="https://www.instagram.com/san_mhmd17/" target="_blank" rel="noopener noreferrer" class="social-icon"
-                    aria-label="Instagram">
+                <a href="https://www.instagram.com/san_mhmd17/" target="_blank" rel="noopener noreferrer"
+                    class="social-icon" aria-label="Instagram">
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
                         <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
@@ -217,7 +406,8 @@
     <div id="project-modal" class="modal-overlay" role="dialog" aria-modal="true" aria-hidden="true">
         <div class="modal-container modal-project">
             <button class="modal-close" id="close-project-modal" aria-label="Close modal">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
                     <line x1="18" y1="6" x2="6" y2="18"></line>
                     <line x1="6" y1="6" x2="18" y2="18"></line>
                 </svg>
@@ -231,9 +421,11 @@
                 <div id="modal-project-tags" class="project-tags flex gap-sm flex-wrap mt-sm"></div>
                 <p id="modal-project-desc" class="modal-desc text-muted mt-sm"></p>
                 <div class="modal-actions mt-md">
-                    <a id="modal-project-url" href="#" target="_blank" rel="noopener noreferrer" class="btn btn-primary rounded-pill">
-                        Live Preview
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-left: 6px;">
+                    <a id="modal-project-url" href="#" target="_blank" rel="noopener noreferrer"
+                        class="btn btn-primary rounded-pill">
+                        Lihat Postingan Klien
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-left: 8px;">
                             <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
                             <polyline points="15 3 21 3 21 9"></polyline>
                             <line x1="10" y1="14" x2="21" y2="3"></line>
@@ -250,7 +442,8 @@
     <div id="contact-modal" class="modal-overlay" role="dialog" aria-modal="true" aria-hidden="true">
         <div class="modal-container modal-contact">
             <button class="modal-close" id="close-contact-modal" aria-label="Close modal">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
                     <line x1="18" y1="6" x2="6" y2="18"></line>
                     <line x1="6" y1="6" x2="18" y2="18"></line>
                 </svg>
@@ -258,7 +451,8 @@
             <div class="modal-body">
                 <span class="text-accent uppercase letter-spacing font-sm font-semibold">GET IN TOUCH</span>
                 <h2 class="modal-title mt-xs">Let's <span class="text-accent">Talk</span></h2>
-                <p class="text-muted mt-xs mb-md">Have an exciting project or idea? Leave a message and let's collaborate.</p>
+                <p class="text-muted mt-xs mb-md">Have an exciting project or idea? Leave a message and let's
+                    collaborate.</p>
                 <form id="contact-form" class="modal-form">
                     <div class="form-group">
                         <label for="contact-name">Nama</label>
@@ -270,7 +464,8 @@
                     </div>
                     <div class="form-group">
                         <label for="contact-message">Pesan</label>
-                        <textarea id="contact-message" name="message" rows="4" placeholder="Ceritakan tentang proyek Anda..." required></textarea>
+                        <textarea id="contact-message" name="message" rows="4"
+                            placeholder="Ceritakan tentang proyek Anda..." required></textarea>
                     </div>
                     <button type="submit" id="contact-submit-btn" class="btn btn-primary rounded-pill w-full mt-sm">
                         <span>Send Message via Email</span>
@@ -283,12 +478,12 @@
                     <span class="divider-line"></span>
                 </div>
 
-                <a href="https://wa.me/6281807882493?text=Halo%20Ikhsan,%20saya%20tertarik%20untuk%20mendiskusikan%20proyek%20bersama%20Anda." 
-                   target="_blank" 
-                   rel="noopener noreferrer" 
-                   class="btn btn-whatsapp rounded-pill w-full flex items-center justify-center gap-sm">
+                <a href="https://wa.me/6281807882493?text=Halo%20Ikhsan,%20saya%20tertarik%20untuk%20mendiskusikan%20proyek%20bersama%20Anda."
+                    target="_blank" rel="noopener noreferrer"
+                    class="btn btn-whatsapp rounded-pill w-full flex items-center justify-center gap-sm">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-5.46-4.45-9.92-9.91-9.92zM12.04 20.15c-1.48 0-2.93-.4-4.2-1.15l-.3-.18-3.12.82.83-3.04-.2-.31c-.82-1.31-1.26-2.83-1.26-4.38 0-4.54 3.7-8.24 8.25-8.24 4.54 0 8.24 3.7 8.24 8.24 0 4.54-3.7 8.24-8.24 8.24zm4.52-6.17c-.25-.12-1.47-.72-1.7-.81-.23-.08-.39-.12-.56.12-.17.25-.64.81-.79.97-.14.17-.29.19-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.02-.38.11-.51.11-.11.25-.29.37-.43.12-.15.17-.25.25-.42.08-.17.04-.31-.02-.44-.06-.12-.56-1.35-.77-1.85-.2-.49-.41-.42-.56-.43h-.48c-.17 0-.44.06-.67.31-.23.25-.88.86-.88 2.1 0 1.24.9 2.44 1.03 2.61.12.17 1.78 2.71 4.3 3.8.6.26 1.07.41 1.44.53.61.19 1.16.17 1.6.1.49-.07 1.47-.6 1.68-1.18.21-.58.21-1.07.15-1.18-.06-.12-.22-.19-.47-.32z"/>
+                        <path
+                            d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-5.46-4.45-9.92-9.91-9.92zM12.04 20.15c-1.48 0-2.93-.4-4.2-1.15l-.3-.18-3.12.82.83-3.04-.2-.31c-.82-1.31-1.26-2.83-1.26-4.38 0-4.54 3.7-8.24 8.25-8.24 4.54 0 8.24 3.7 8.24 8.24 0 4.54-3.7 8.24-8.24 8.24zm4.52-6.17c-.25-.12-1.47-.72-1.7-.81-.23-.08-.39-.12-.56.12-.17.25-.64.81-.79.97-.14.17-.29.19-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.02-.38.11-.51.11-.11.25-.29.37-.43.12-.15.17-.25.25-.42.08-.17.04-.31-.02-.44-.06-.12-.56-1.35-.77-1.85-.2-.49-.41-.42-.56-.43h-.48c-.17 0-.44.06-.67.31-.23.25-.88.86-.88 2.1 0 1.24.9 2.44 1.03 2.61.12.17 1.78 2.71 4.3 3.8.6.26 1.07.41 1.44.53.61.19 1.16.17 1.6.1.49-.07 1.47-.6 1.68-1.18.21-.58.21-1.07.15-1.18-.06-.12-.22-.19-.47-.32z" />
                     </svg>
                     <span>Chat Directly on WhatsApp</span>
                 </a>
@@ -296,7 +491,77 @@
         </div>
     </div>
 
-    <script type="module" src="main.js"></script>
+    <!-- =========================================
+         SHOWREEL VIDEO MODAL
+         ========================================= -->
+    <div id="showreel-modal" class="modal-overlay" role="dialog" aria-modal="true" aria-hidden="true">
+        <div class="modal-container modal-showreel">
+            <button class="modal-close" id="close-showreel-modal" aria-label="Close modal">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+            </button>
+            <div class="showreel-video-wrapper">
+                <video id="showreel-video" class="showreel-video" controls playsinline preload="metadata"
+                    poster="https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?auto=format&fit=crop&q=80&w=1200">
+                    <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4"
+                        type="video/mp4">
+                    Browser Anda tidak mendukung pemutar video HTML5.
+                </video>
+            </div>
+            <div class="modal-body">
+                <div class="showreel-info-row flex items-center justify-between flex-wrap gap-md">
+                    <div>
+                        <span class="text-accent uppercase letter-spacing font-sm font-semibold">OFFICIAL
+                            SHOWREEL</span>
+                        <h2 class="modal-title mt-xs">Mohammad Ikhsan — <span class="text-accent">Visual Showreel</span>
+                        </h2>
+                        <p class="text-muted mt-xs">Kompilasi sinematik video editing ritmis, aerial videografi drone,
+                            dan color grading dinamis.</p>
+                    </div>
+                    <a href="https://www.instagram.com/san_mhmd17/" target="_blank" rel="noopener noreferrer"
+                        class="btn btn-secondary rounded-pill flex items-center gap-sm">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                        </svg>
+                        <span>Portofolio Instagram</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- =========================================
+         FLOATING ACTION BUTTONS (WhatsApp & Back to Top)
+         ========================================= -->
+    <div class="floating-actions-container">
+        <!-- Back to Top Button -->
+        <button class="back-to-top" id="back-to-top" aria-label="Kembali ke atas" title="Kembali ke atas">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                stroke-linecap="round" stroke-linejoin="round">
+                <line x1="12" y1="19" x2="12" y2="5"></line>
+                <polyline points="5 12 12 5 19 12"></polyline>
+            </svg>
+        </button>
+
+        <!-- Floating WhatsApp Button -->
+        <a href="https://wa.me/6281807882493?text=Halo%20Ikhsan,%20saya%20tertarik%20untuk%20mendiskusikan%20proyek%20bersama%20Anda."
+            target="_blank" rel="noopener noreferrer" class="floating-whatsapp" aria-label="Chat WhatsApp"
+            title="Chat via WhatsApp">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor">
+                <path
+                    d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-5.46-4.45-9.92-9.91-9.92zM12.04 20.15c-1.48 0-2.93-.4-4.2-1.15l-.3-.18-3.12.82.83-3.04-.2-.31c-.82-1.31-1.26-2.83-1.26-4.38 0-4.54 3.7-8.24 8.25-8.24 4.54 0 8.24 3.7 8.24 8.24 0 4.54-3.7 8.24-8.24 8.24zm4.52-6.17c-.25-.12-1.47-.72-1.7-.81-.23-.08-.39-.12-.56.12-.17.25-.64.81-.79.97-.14.17-.29.19-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.02-.38.11-.51.11-.11.25-.29.37-.43.12-.15.17-.25.25-.42.08-.17.04-.31-.02-.44-.06-.12-.56-1.35-.77-1.85-.2-.49-.41-.42-.56-.43h-.48c-.17 0-.44.06-.67.31-.23.25-.88.86-.88 2.1 0 1.24.9 2.44 1.03 2.61.12.17 1.78 2.71 4.3 3.8.6.26 1.07.41 1.44.53.61.19 1.16.17 1.6.1.49-.07 1.47-.6 1.68-1.18.21-.58.21-1.07.15-1.18-.06-.12-.22-.19-.47-.32z" />
+            </svg>
+            <span class="floating-tooltip">Chat via WhatsApp</span>
+        </a>
+    </div>
+
+    <script type="module" src="main.js?v=2.6"></script>
 </body>
 
 </html>

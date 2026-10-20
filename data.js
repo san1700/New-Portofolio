@@ -3,104 +3,154 @@
 const servicesData = [
     {
         id: "s1",
-        title: "Web Development",
-        description: "Membangun website modern, cepat, dan responsif dengan performa tinggi untuk bisnis Anda.",
-        category: "Development",
-        link: "#"
+        icon: `<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="6" width="14" height="12" rx="2"/>
+            <path d="m22 8-4 4 4 4V8z"/>
+            <line x1="6" y1="10" x2="6" y2="14"/>
+            <line x1="9" y1="10" x2="9" y2="14"/>
+        </svg>`,
+        title: "Video Editing & Motion",
+        description: "Mengolah video mentah menjadi konten visual ritmis yang menarik. Meliputi color grading, sound design, transisi halus, dan animasi motion grafik untuk media sosial maupun video format panjang.",
+        category: "Video Editing",
+        link: "https://www.instagram.com/san_mhmd17/"
     },
     {
         id: "s2",
-        title: "UI/UX Design",
-        description: "Merancang antarmuka yang intuitif dan estetis, memberikan pengalaman pengguna yang tak terlupakan.",
-        category: "Design",
-        link: "#"
+        icon: `<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2a4 4 0 0 1 4 4"/>
+            <path d="M8 6a4 4 0 0 1 4-4"/>
+            <path d="M6.5 10A5.5 5.5 0 0 0 12 15.5 5.5 5.5 0 0 0 17.5 10"/>
+            <path d="M12 15.5V20"/>
+            <path d="M8 20h8"/>
+            <circle cx="12" cy="10" r="2"/>
+        </svg>`,
+        title: "Videography & Drone Filming",
+        description: "Pengambilan gambar video berkualitas tinggi untuk kebutuhan promosi, dokumenter, hingga pengambilan sudut pandang udara sinematik menggunakan drone.",
+        category: "Videography",
+        link: "https://www.instagram.com/san_mhmd17/"
     },
     {
         id: "s3",
-        title: "Mobile App Development",
-        description: "Membuat aplikasi mobile lintas platform yang interaktif untuk iOS dan Android.",
-        category: "Development",
-        link: "#"
+        icon: `<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <path d="m12 19 7-7 3 3-7 7-3-3z"/>
+            <path d="m18 13-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/>
+            <path d="m2 2 7.586 7.586"/>
+            <circle cx="11" cy="11" r="2"/>
+        </svg>`,
+        title: "Graphic Design & Branding",
+        description: "Merancang identitas visual brand yang kuat, aset media sosial, poster promosi, dan materi grafis yang estetis serta konsisten.",
+        category: "Graphic Design",
+        link: "https://www.instagram.com/san_mhmd17/"
     },
     {
         id: "s4",
-        title: "Brand Identity",
-        description: "Membantu menciptakan identitas visual yang kuat agar brand Anda lebih menonjol di pasar digital.",
-        category: "Branding",
-        link: "#"
+        icon: `<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"/>
+            <circle cx="12" cy="13" r="3"/>
+        </svg>`,
+        title: "Photography & Color Retouching",
+        description: "Mengabadikan momen dan produk dengan komposisi yang kuat dan estetis. Dilengkapi dengan retouching profesional menggunakan Lightroom dan Photoshop.",
+        category: "Photography",
+        link: "https://www.instagram.com/san_mhmd17/"
     }
 ];
 
 const projectsData = [
     {
-        id: "p1",
-        title: "Cinematic Travel & Outdoor Short",
-        category: "Videography",
-        tag: "COMMERCIAL / DRONE",
-        description: "Pengambilan gambar udara dan editing sinematik untuk konten perjalanan.",
-        image: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&q=80&w=1000",
-        tags: ["Videography", "Drone", "Color Grading"],
-        liveUrl: "https://www.instagram.com/san_mhmd17/"
-    },
-    {
-        id: "p2",
-        title: "Social Media Reels & Short Form Video",
+        id: 1,
+        title: "Promosi Video & Reels Falisha Laundry",
         category: "Video Editing",
         tag: "SHORT FORM CONTENT",
-        description: "Editing video ritmis cepat dengan motion grafik dan sound design menarik.",
-        image: "https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?auto=format&fit=crop&q=80&w=1000",
-        tags: ["CapCut", "Reels", "Sound Design"],
-        liveUrl: "https://www.instagram.com/san_mhmd17/"
+        image: "images/project-laundry.jpg",
+        description: "Mengedit video pendek ritmis cepat dengan motion grafik dan sound design untuk kampanye media sosial klien.",
+        tags: ["CapCut", "Reels", "Sound Design", "Motion Graphics"],
+        link: "https://www.instagram.com/reel/contoh-link-reels-klien",
+        liveUrl: "https://www.instagram.com/reel/contoh-link-reels-klien"
     },
     {
-        id: "p3",
-        title: "Brand Identity & Visual Social Assets",
+        id: 2,
+        title: "Dokumentasi Sinematik & Drone Kotagede",
+        category: "Videography",
+        tag: "COMMERCIAL / DRONE",
+        image: "images/project-drone.jpg",
+        description: "Pengambilan video udara menggunakan drone dan color grading sinematik untuk proyek video kultural.",
+        tags: ["Drone", "Videography", "Color Grading", "4K Footage"],
+        link: "https://www.youtube.com/watch?v=contoh-link-youtube",
+        liveUrl: "https://www.youtube.com/watch?v=contoh-link-youtube"
+    },
+    {
+        id: 3,
+        title: "Branding Visual & Social Media Kit Kopi Senja",
         category: "Graphic Design",
-        tag: "BRANDING",
-        description: "Desain identitas brand, layout poster, dan aset grafis media sosial.",
-        image: "https://images.unsplash.com/photo-1626785774573-4b799315345d?auto=format&fit=crop&q=80&w=1000",
-        tags: ["Photoshop", "Canva", "CorelDraw"],
-        liveUrl: "https://www.instagram.com/san_mhmd17/"
+        tag: "BRAND IDENTITY",
+        image: "images/project-branding.jpg",
+        description: "Desain identitas brand visual, feed Instagram aesthetic, banner promosi, dan packaging untuk kedai kopi artisan.",
+        tags: ["Photoshop", "CorelDraw", "Brand Identity", "Social Kit"],
+        link: "https://www.instagram.com/p/contoh-link-branding-kopi",
+        liveUrl: "https://www.instagram.com/p/contoh-link-branding-kopi"
     },
     {
-        id: "p4",
-        title: "Landscape & Outdoor Photography",
+        id: 4,
+        title: "Dokumentasi Landscape & Human Interest",
         category: "Photography",
-        tag: "COLLECTION",
-        description: "Dokumentasi fotografi lanskap alam dan elemen visual bernuansa estetis.",
-        image: "https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&q=80&w=1000",
-        tags: ["Photography", "Lightroom", "Outdoor"],
-        liveUrl: "https://www.instagram.com/san_mhmd17/"
+        tag: "PHOTO STORY",
+        image: "images/project-photography.jpg",
+        description: "Sesi foto lanskap pesisir dan potret aktivitas pengrajin lokal dengan color retouching hangat dan berkarakter.",
+        tags: ["Photography", "Lightroom", "Human Interest", "Color Retouch"],
+        link: "https://www.instagram.com/p/contoh-link-photo-story",
+        liveUrl: "https://www.instagram.com/p/contoh-link-photo-story"
+    },
+    {
+        id: 5,
+        title: "Commercial Product Reels - Fashion Streetwear",
+        category: "Video Editing",
+        tag: "COMMERCIAL REELS",
+        image: "images/project-fashion.jpg",
+        description: "Editing video promosi produk streetwear dengan transisi dinamis, beat sync, dan tipografi modern yang engaging.",
+        tags: ["Premiere Pro", "Beat Sync", "Commercial", "Streetwear"],
+        link: "https://www.instagram.com/reel/contoh-link-fashion-reels",
+        liveUrl: "https://www.instagram.com/reel/contoh-link-fashion-reels"
+    },
+    {
+        id: 6,
+        title: "Company Profile & Event Highlight Batik Heritage",
+        category: "Videography",
+        tag: "COMPANY PROFILE",
+        image: "images/project-event.jpg",
+        description: "Liputan video sinematik pameran budaya dan profil workshop batik dengan wawancara serta aerial b-roll.",
+        tags: ["Videography", "Cinematic", "Event Highlight", "B-Roll"],
+        link: "https://www.youtube.com/watch?v=contoh-link-company-profile",
+        liveUrl: "https://www.youtube.com/watch?v=contoh-link-company-profile"
     }
 ];
 
 const statsData = [
-    { label: "Projects Done", value: "250+" },
-    { label: "Happy Clients", value: "120+" },
-    { label: "Satisfaction", value: "98%" }
+    { label: "Projects Completed", value: "25+" },
+    { label: "Years Experience", value: "3+" },
+    { label: "Client Satisfaction", value: "99%" }
 ];
 
 const testimonialsData = [
     {
         id: "t1",
-        quote: "Novacraft completely transformed our digital presence. Their attention to detail and modern design approach is unmatched.",
-        name: "Sarah Jenkins",
-        role: "CEO at TechFlow",
-        avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=150&q=80"
+        quote: "Hasil editing Reels dari Mas Ikhsan luar biasa dinamis! Transisi rapi, ritme audio dan motion grafik pas banget dengan karakter brand kami. Engagement naik signifikan.",
+        name: "Rian Pratama",
+        role: "Brand Owner & Creator",
+        avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=150&q=80"
     },
     {
         id: "t2",
-        quote: "Working with them was a breeze. They understood our vision perfectly and delivered a product beyond our expectations.",
-        name: "Michael Chen",
-        role: "Founder of StartupX",
-        avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=150&q=80"
+        quote: "Kualitas pengambilan video dan aerial drone-nya bener-bener sinematik. Angle-nya berkelas dan proses koordinasi revisi sangat komunikatif dan cepat.",
+        name: "Dimas Setiawan",
+        role: "Event & Commercial Producer",
+        avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=150&q=80"
     },
     {
         id: "t3",
-        quote: "The branding and website they created for us helped increase our conversion rate by 40% in just two months.",
-        name: "Emily Rodriguez",
-        role: "Marketing Director",
-        avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&w=150&q=80"
+        quote: "Sangat puas dengan desain visual dan branding-nya. Komposisi warna dan estetikanya modern, benar-benar mengeksekusi konsep yang kami butuhkan.",
+        name: "Anisa Maharani",
+        role: "Marketing Lead UMKM",
+        avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=150&q=80"
     }
 ];
 
