@@ -35,14 +35,14 @@
     <meta name="twitter:image"
         content="https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?auto=format&fit=crop&q=80&w=1200">
 
-    <!-- Google Fonts: Figtree (weights 300 to 900) & Instrument Serif -->
+    <!-- Google Fonts: Figtree (strictly bold weights 600-900) & Instrument Serif -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,600;1,700&family=Instrument+Serif:ital@0;1&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,600;0,700;0,800;0,900;1,600;1,700;1,800&family=Instrument+Serif:ital@0;1&display=swap"
         rel="stylesheet">
 
-    <link rel="stylesheet" href="style.css?v=4.0">
+    <link rel="stylesheet" href="style.css?v=5.0">
 </head>
 
 <body>
@@ -55,22 +55,24 @@
         <span class="guide-line"></span>
         <span class="guide-line"></span>
     </div>
-    <!-- Navbar -->
+
+    <!-- Floating Capsule Navbar (Ohio Design Pattern) -->
     <header class="navbar">
-        <div class="container flex items-center justify-between">
-            <a href="#" class="logo">
-                <span class="logo-text">SANMHMD</span>
-                <span class="logo-dot"></span>
+        <div class="nav-capsule">
+            <a href="#" class="nav-capsule-brand">
+                <span class="brand-text">SANMHMD</span>
             </a>
-            <nav class="nav-links flex items-center gap-lg">
-                <a href="#about" class="nav-link"><span class="nav-idx">01.</span> About</a>
-                <a href="#services" class="nav-link"><span class="nav-idx">02.</span> Services</a>
-                <a href="#work" class="nav-link"><span class="nav-idx">03.</span> Work</a>
-                <a href="#impact" class="nav-link"><span class="nav-idx">04.</span> Impact</a>
-                <a href="#testimonials" class="nav-link"><span class="nav-idx">05.</span> Reviews</a>
+            <span class="nav-capsule-sep" aria-hidden="true"></span>
+            <nav class="nav-links">
+                <a href="#about" class="nav-link">About</a>
+                <a href="#services" class="nav-link">Services</a>
+                <a href="#work" class="nav-link">Work</a>
+                <a href="#impact" class="nav-link">Impact</a>
+                <a href="#testimonials" class="nav-link">Reviews</a>
             </nav>
-            <a href="#contact" class="btn btn-primary rounded-pill">
-                Let's Talk <span class="btn-arrow">↗</span>
+            <span class="nav-capsule-sep" aria-hidden="true"></span>
+            <a href="#contact" class="nav-capsule-cta">
+                Let's Talk <span class="cta-arrow">↗</span>
             </a>
             <!-- Hamburger menu (Mobile) -->
             <button class="mobile-menu-btn" aria-label="Toggle menu">
@@ -85,11 +87,12 @@
         <!-- Hero Section (Ohio Agency Aesthetic) -->
         <section class="hero" id="hero">
             <div class="container hero-container hero-grid-3col">
-                <!-- Kolom Kiri: Eyebrow, Display Typography & Action Buttons -->
+                <!-- Kolom Kiri: Eyebrow Badge, Display Typography & Action Buttons -->
                 <div class="hero-col hero-left flex-col justify-center">
-                    <div class="hero-eyebrow">
-                        <span class="eyebrow-num">01 //</span>
-                        <span class="eyebrow-text">MOHAMMAD IKHSAN · VISUAL CREATOR</span>
+                    <div class="hero-badge-pill">
+                        <span class="badge-pill-tag">New</span>
+                        <span class="badge-pill-text">Available for Visual Projects</span>
+                        <span class="badge-pill-arrow">›</span>
                     </div>
                     <h1 class="hero-title">
                         Stories.<br>
@@ -101,12 +104,15 @@
                     </p>
                     <div class="hero-actions flex items-center gap-md mt-sm">
                         <a href="#work" class="btn btn-primary rounded-pill">
-                            Explore Works <span class="btn-arrow">↗</span>
+                            <span class="btn-circle-icon">↗</span> Explore Works
                         </a>
-                        <a href="#showreel" class="btn btn-secondary rounded-pill flex items-center gap-sm">
-                            <span class="icon-play">▶</span> Play Showreel
+                        <a href="#showreel" class="btn btn-secondary rounded-pill">
+                            Explore Templates
                         </a>
                     </div>
+                    <p class="hero-footnote text-muted">
+                        Over 25+ successful visual &amp; cinematic projects delivered with premium precision.
+                    </p>
                 </div>
 
                 <!-- Kolom Tengah: Foto Profil dengan Frame Aksen Biru & Corner Markers -->

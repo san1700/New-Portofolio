@@ -8,14 +8,20 @@ document.addEventListener('DOMContentLoaded', () => {
     const mobileBtn = document.querySelector('.mobile-menu-btn');
     const navLinks = document.querySelector('.nav-links');
 
-    // We also select the contact button if we want to show it inside mobile menu
-    const contactBtn = document.querySelector('.navbar > .container > .btn');
+    if (mobileBtn && navLinks) {
+        mobileBtn.addEventListener('click', () => {
+            mobileBtn.classList.toggle('active');
+            navLinks.classList.toggle('active');
+        });
 
-    mobileBtn.addEventListener('click', () => {
-        mobileBtn.classList.toggle('active');
-        navLinks.classList.toggle('active');
-        if (contactBtn) contactBtn.classList.toggle('active');
-    });
+        // Close mobile drawer when clicking a navigation link
+        navLinks.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileBtn.classList.remove('active');
+                navLinks.classList.remove('active');
+            });
+        });
+    }
 
     // =========================================
     // 1.5 TOOLS TICKER INTERACTION (Mobile Touch & Pause)
