@@ -69,7 +69,7 @@ document.addEventListener('DOMContentLoaded', () => {
             <div class="section-header-split reveal">
                 <div class="section-header-left">
                     <div class="section-eyebrow">
-                        <span class="eyebrow-num">03 //</span>
+                        <span class="eyebrow-num">04 //</span>
                         <span class="eyebrow-text">EXPERTISE &amp; CAPABILITIES</span>
                     </div>
                     <h2 class="section-title">Creative <span class="title-serif text-accent">Services</span></h2>
@@ -119,7 +119,7 @@ document.addEventListener('DOMContentLoaded', () => {
             <div class="section-header-split reveal mt-xl mb-lg">
                 <div class="section-header-left">
                     <div class="section-eyebrow">
-                        <span class="eyebrow-num">04 //</span>
+                        <span class="eyebrow-num">05 //</span>
                         <span class="eyebrow-text">CURATED PORTFOLIO</span>
                     </div>
                     <h2 class="section-title">Selected <span class="title-serif text-accent">Works</span></h2>
@@ -215,7 +215,7 @@ document.addEventListener('DOMContentLoaded', () => {
             <div class="section-header-split reveal mb-lg">
                 <div class="section-header-left">
                     <div class="section-eyebrow">
-                        <span class="eyebrow-num">05 //</span>
+                        <span class="eyebrow-num">06 //</span>
                         <span class="eyebrow-text">MEASURABLE VALUE</span>
                     </div>
                     <h2 class="section-title">Proven <span class="title-serif text-accent">Impact</span></h2>
@@ -270,7 +270,7 @@ document.addEventListener('DOMContentLoaded', () => {
             <div class="section-header-split reveal mb-lg">
                 <div class="section-header-left">
                     <div class="section-eyebrow">
-                        <span class="eyebrow-num">06 //</span>
+                        <span class="eyebrow-num">07 //</span>
                         <span class="eyebrow-text">CLIENT TESTIMONIALS</span>
                     </div>
                     <h2 class="section-title">Client <span class="title-serif text-accent">Feedback</span></h2>
@@ -593,6 +593,185 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
     }
+
+    // =========================================
+    // 9. SONY FX CINEMA RIG & 3D INTERACTIVITY
+    // =========================================
+    const cinemaStage = document.getElementById('cinema-stage');
+    const camera3D = document.getElementById('sony-camera-3d');
+    const lensReflection = document.getElementById('lens-reflection');
+    const btnLutToggle = document.getElementById('btn-lut-toggle');
+    const btnRecToggle = document.getElementById('btn-rec-toggle');
+    const monitorScreen = document.getElementById('monitor-screen');
+    const osdColorMode = document.getElementById('osd-color-mode');
+    const osdTimecode = document.getElementById('osd-timecode');
+    const cameraTally = document.getElementById('camera-tally');
+    const osdTallyDot = document.querySelector('.osd-tally-dot');
+    const meterL = document.getElementById('meter-l');
+    const meterR = document.getElementById('meter-r');
+
+    if (cinemaStage && camera3D) {
+        let currentRotX = 8, currentRotY = -18;
+        let targetRotX = 8, targetRotY = -18;
+        let isHovered = false;
+
+        const updateStageBounds = () => {
+            return cinemaStage.getBoundingClientRect();
+        };
+
+        const handlePointerMove = (clientX, clientY) => {
+            const rect = updateStageBounds();
+            const relX = (clientX - rect.left) / rect.width - 0.5; // [-0.5, 0.5]
+            const relY = (clientY - rect.top) / rect.height - 0.5; // [-0.5, 0.5]
+
+            // Maximum rotation angles (degrees)
+            targetRotY = -18 + relX * 42; 
+            targetRotX = 8 - relY * 34;
+
+            if (lensReflection) {
+                const shiftX = 50 + relX * 60;
+                const shiftY = 50 + relY * 60;
+                lensReflection.style.backgroundPosition = `${shiftX}% ${shiftY}%`;
+            }
+        };
+
+        cinemaStage.addEventListener('pointerenter', () => {
+            isHovered = true;
+        });
+
+        cinemaStage.addEventListener('pointermove', (e) => {
+            handlePointerMove(e.clientX, e.clientY);
+        });
+
+        cinemaStage.addEventListener('pointerleave', () => {
+            isHovered = false;
+            targetRotX = 8;
+            targetRotY = -18;
+        });
+
+        // Touch support for mobile devices
+        cinemaStage.addEventListener('touchmove', (e) => {
+            if (e.touches.length > 0) {
+                handlePointerMove(e.touches[0].clientX, e.touches[0].clientY);
+            }
+        }, { passive: true });
+
+        // Smooth Lerp Animation loop for Camera 3D
+        let animTime = 0;
+        const renderCamera3D = () => {
+            animTime += 0.02;
+            
+            // Subtle ambient breathing float when not hovered
+            const idleFloatX = isHovered ? 0 : Math.sin(animTime) * 2.5;
+            const idleFloatY = isHovered ? 0 : Math.cos(animTime * 0.8) * 3.5;
+
+            currentRotX += (targetRotX + idleFloatX - currentRotX) * 0.08;
+            currentRotY += (targetRotY + idleFloatY - currentRotY) * 0.08;
+
+            camera3D.style.transform = `rotateX(${currentRotX.toFixed(2)}deg) rotateY(${currentRotY.toFixed(2)}deg)`;
+            requestAnimationFrame(renderCamera3D);
+        };
+        requestAnimationFrame(renderCamera3D);
+
+        // Toggle LUT (Graded vs Flat S-Log3)
+        if (btnLutToggle && monitorScreen) {
+            btnLutToggle.addEventListener('click', () => {
+                const isGraded = monitorScreen.classList.toggle('lut-graded');
+                if (isGraded) {
+                    btnLutToggle.classList.add('active');
+                    btnLutToggle.querySelector('.btn-lbl').textContent = 'Film Grade 3D-LUT';
+                    if (osdColorMode) osdColorMode.textContent = 'REC.709 LUT [ON]';
+                } else {
+                    btnLutToggle.classList.remove('active');
+                    btnLutToggle.querySelector('.btn-lbl').textContent = 'S-Log3 Flat (Raw)';
+                    if (osdColorMode) osdColorMode.textContent = 'S-LOG3 FLAT [RAW]';
+                }
+            });
+        }
+
+        // Toggle REC / Standby
+        let isRecording = true;
+        let frames = 12, seconds = 28, minutes = 14, hours = 0;
+        let tcInterval = null;
+
+        const updateTimecodeDisplay = () => {
+            if (!osdTimecode) return;
+            frames += 2;
+            if (frames >= 60) {
+                frames = 0;
+                seconds++;
+                if (seconds >= 60) {
+                    seconds = 0;
+                    minutes++;
+                    if (minutes >= 60) {
+                        minutes = 0;
+                        hours++;
+                    }
+                }
+            }
+            const pad = (n) => String(n).padStart(2, '0');
+            osdTimecode.textContent = `${pad(hours)}:${pad(minutes)}:${pad(seconds)}:${pad(frames)}`;
+        };
+
+        tcInterval = setInterval(updateTimecodeDisplay, 40);
+
+        if (btnRecToggle) {
+            btnRecToggle.addEventListener('click', () => {
+                isRecording = !isRecording;
+                const recLbl = btnRecToggle.querySelector('.rec-lbl');
+                if (isRecording) {
+                    btnRecToggle.classList.add('active');
+                    if (cameraTally) cameraTally.classList.add('active');
+                    if (osdTallyDot) osdTallyDot.classList.add('active');
+                    if (recLbl) recLbl.textContent = 'REC 120FPS';
+                    if (!tcInterval) tcInterval = setInterval(updateTimecodeDisplay, 40);
+                } else {
+                    btnRecToggle.classList.remove('active');
+                    if (cameraTally) cameraTally.classList.remove('active');
+                    if (osdTallyDot) osdTallyDot.classList.remove('active');
+                    if (recLbl) recLbl.textContent = 'STBY 4K';
+                    if (tcInterval) {
+                        clearInterval(tcInterval);
+                        tcInterval = null;
+                    }
+                }
+            });
+        }
+
+        // Live Audio VU Meters simulation
+        if (meterL && meterR) {
+            setInterval(() => {
+                if (isRecording) {
+                    const randL = 40 + Math.random() * 55;
+                    const randR = 35 + Math.random() * 58;
+                    meterL.style.width = `${randL.toFixed(0)}%`;
+                    meterR.style.width = `${randR.toFixed(0)}%`;
+                } else {
+                    meterL.style.width = '8%';
+                    meterR.style.width = '8%';
+                }
+            }, 120);
+        }
+    }
+
+    // =========================================
+    // 10. 3D EDITING SOFTWARE CARDS PARALLAX TILT
+    // =========================================
+    const softCards = document.querySelectorAll('.soft-card-3d');
+    softCards.forEach(card => {
+        card.addEventListener('pointermove', (e) => {
+            const rect = card.getBoundingClientRect();
+            const x = (e.clientX - rect.left) / rect.width - 0.5;
+            const y = (e.clientY - rect.top) / rect.height - 0.5;
+            const tiltX = -y * 16;
+            const tiltY = x * 16;
+            card.style.transform = `perspective(900px) rotateX(${tiltX.toFixed(2)}deg) rotateY(${tiltY.toFixed(2)}deg) scale3d(1.02, 1.02, 1.02)`;
+        });
+
+        card.addEventListener('pointerleave', () => {
+            card.style.transform = `perspective(900px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)`;
+        });
+    });
 
     // --- Global: Tutup modal ketika tombol 'Escape' ditekan ---
     document.addEventListener('keydown', (e) => {
