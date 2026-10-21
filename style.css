@@ -896,17 +896,18 @@ ol {
    ========================================= */
 .hero {
   position: relative;
-  padding-block: clamp(60px, 9vh, 95px);
+  padding-top: clamp(60px, 8vh, 85px);
+  padding-bottom: 0;
   overflow: hidden;
   background: radial-gradient(circle at 50% 30%, rgba(237, 232, 223, 0.03) 0%, transparent 60%);
 }
 
 .hero-grid-3col {
   display: grid;
-  grid-template-columns: 1.05fr 1.35fr 1fr;
-  align-items: center;
+  grid-template-columns: 1fr 1.35fr 1fr;
+  align-items: flex-end;
   gap: clamp(1.5rem, 2.8vw, 3rem);
-  min-height: calc(100vh - 110px);
+  min-height: calc(100vh - 90px);
 }
 
 .hero-col {
@@ -917,6 +918,7 @@ ol {
 /* KOLOM KIRI: HEADLINE & ACTIONS */
 .hero-left {
   align-self: center;
+  padding-bottom: clamp(2rem, 5vh, 4.5rem);
 }
 
 .hero-title {
@@ -948,25 +950,26 @@ ol {
 }
 
 /* KOLOM TENGAH: FOTO PROFIL DENGAN EFEK HUDA MULIYA */
-/* KOLOM TENGAH: FOTO PROFIL DENGAN EFEK HUDA MULIYA & VAULTED ARCH PORTAL */
-/* KOLOM TENGAH: FOTO PROFIL DENGAN EFEK HUDA MULIYA & VAULTED ARCH PORTAL */
+/* KOLOM TENGAH: FOTO PROFIL DENGAN EFEK HUDA MULIYA & VAULTED ARCH PORTAL BACKDROP */
 .hero-center {
   display: flex;
   justify-content: center;
   align-items: flex-end;
+  align-self: flex-end;
   position: relative;
   width: 100%;
+  height: 100%;
   perspective: 1200px;
 }
 
 /* Big Outline Watermark Layer (Efek Huda Muliya) */
 .hero-outline-watermark {
   position: absolute;
-  top: 50%;
+  top: 48%;
   left: 50%;
   transform: translate(-50%, -50%);
   font-family: var(--font-primary);
-  font-size: clamp(5rem, 11vw, 9.8rem);
+  font-size: clamp(5.2rem, 12vw, 10.5rem);
   font-weight: 900;
   letter-spacing: 0.08em;
   line-height: 1;
@@ -981,80 +984,86 @@ ol {
   transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
 }
 
-/* 1. Portal Frame Kubah / Vaulted Arch Architecture (Efek Huda Muliya - Enlarged & Clean) */
-.hero-portrait-frame {
-  position: relative;
-  width: 100%;
-  max-width: 440px;
-  height: clamp(520px, 66vh, 620px);
-  border-radius: clamp(160px, 48%, 220px) clamp(160px, 48%, 220px) 0 0;
-  background: radial-gradient(circle at 50% 28%, rgba(94, 106, 210, 0.22) 0%, rgba(10, 10, 12, 0.75) 58%, rgba(5, 5, 6, 0.98) 100%);
-  border-top: 1px solid rgba(255, 255, 255, 0.22);
-  border-left: 1px solid rgba(255, 255, 255, 0.12);
-  border-right: 1px solid rgba(255, 255, 255, 0.12);
-  border-bottom: 2px solid rgba(94, 106, 210, 0.5);
-  box-shadow: 0 -14px 45px rgba(94, 106, 210, 0.22), 0 25px 60px rgba(0, 0, 0, 0.9), inset 0 2px 4px rgba(255, 255, 255, 0.2);
-  display: flex;
-  justify-content: center;
-  align-items: flex-end;
-  overflow: hidden;
-  perspective: 1000px;
-  transform-style: preserve-3d;
-  z-index: 2;
-  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease, border-color 0.35s ease;
-}
-
-/* Glowing Grounding Beam reflection at bottom baseline */
-.hero-portrait-frame::before {
-  content: '';
+/* Kotak / Vaulted Arch Portal Backdrop (Di BELAKANG Foto) */
+.hero-portal-arch-backdrop {
   position: absolute;
   bottom: 0;
-  left: 6%;
-  right: 6%;
-  height: 2px;
-  background: linear-gradient(90deg, transparent, rgba(94, 106, 210, 0.9) 50%, transparent);
-  box-shadow: 0 0 18px rgba(94, 106, 210, 0.95);
-  z-index: 8;
+  left: 50%;
+  transform: translateX(-50%);
+  width: clamp(300px, 27vw, 410px);
+  height: clamp(500px, 76vh, 690px);
+  border-radius: clamp(140px, 48%, 195px) clamp(140px, 48%, 195px) 0 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.18);
+  border-left: 1px solid rgba(255, 255, 255, 0.1);
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 2px solid rgba(94, 106, 210, 0.4);
+  background: linear-gradient(to top, rgba(255, 255, 255, 0.012) 0%, rgba(94, 106, 210, 0.05) 45%, rgba(255, 255, 255, 0.02) 100%);
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+  box-shadow: 0 -12px 40px rgba(94, 106, 210, 0.16), inset 0 1px 2px rgba(255, 255, 255, 0.18);
   pointer-events: none;
+  z-index: 2;
+  transition: border-color 0.5s ease, box-shadow 0.5s ease;
+  will-change: transform;
 }
 
-.hero-portrait-frame:hover {
-  border-top-color: rgba(147, 197, 253, 0.75);
-  border-left-color: rgba(94, 106, 210, 0.45);
-  border-right-color: rgba(94, 106, 210, 0.45);
-  border-bottom-color: rgba(94, 106, 210, 0.85);
-  box-shadow: 0 -18px 55px rgba(94, 106, 210, 0.35), 0 30px 70px rgba(0, 0, 0, 0.95), inset 0 2px 6px rgba(255, 255, 255, 0.35);
+.hero-center:hover .hero-portal-arch-backdrop {
+  border-top-color: rgba(147, 197, 253, 0.6);
+  border-left-color: rgba(94, 106, 210, 0.4);
+  border-right-color: rgba(94, 106, 210, 0.4);
+  box-shadow: 0 -18px 50px rgba(94, 106, 210, 0.28), inset 0 1px 4px rgba(255, 255, 255, 0.25);
 }
 
 /* Backlight Aura Glow Sphere (Efek Huda Muliya) */
 .backlight-aura-sphere {
   position: absolute;
-  top: 36%;
+  bottom: 12%;
   left: 50%;
-  transform: translate(-50%, -50%);
-  width: 320px;
-  height: 320px;
+  transform: translate(-50%, 0);
+  width: clamp(280px, 30vw, 420px);
+  height: clamp(280px, 30vw, 420px);
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(94, 106, 210, 0.48) 0%, rgba(99, 102, 241, 0.22) 55%, transparent 75%);
-  filter: blur(55px);
-  z-index: 1;
+  background: radial-gradient(circle, rgba(94, 106, 210, 0.45) 0%, rgba(99, 102, 241, 0.2) 55%, transparent 75%);
+  filter: blur(60px);
+  z-index: 3;
   pointer-events: none;
-  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.6s ease, filter 0.6s ease;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.6s ease;
   will-change: transform, opacity;
 }
 
-.hero-portrait-frame:hover .backlight-aura-sphere {
-  transform: translate(-50%, -50%) scale(1.3);
+.hero-center:hover .backlight-aura-sphere {
+  transform: translate(-50%, 0) scale(1.22);
   opacity: 0.95;
-  filter: blur(62px);
+}
+
+/* Foto Subjek Berdiri Megah DI ATAS KOTAK & Menancap di Bawah */
+.hero-framed-img {
+  position: relative;
+  z-index: 5;
+  display: block;
+  height: clamp(540px, 82vh, 780px);
+  width: auto;
+  max-width: 95vw;
+  object-fit: contain;
+  object-position: center bottom;
+  transform-origin: center bottom;
+  filter: grayscale(8%) brightness(1.02) contrast(1.12) drop-shadow(0 16px 36px rgba(0, 0, 0, 0.85));
+  transition: filter 0.6s ease-out;
+  transform-style: preserve-3d;
+  will-change: transform, filter;
+  pointer-events: auto;
+}
+
+.hero-center:hover .hero-framed-img {
+  filter: grayscale(0%) brightness(1.12) contrast(1.2) drop-shadow(0 24px 48px rgba(0, 0, 0, 0.95));
 }
 
 .portrait-floating-badge {
   position: absolute;
-  bottom: 20px;
+  bottom: 24px;
   left: 50%;
   transform: translateX(-50%) translateZ(26px);
-  z-index: 7;
+  z-index: 8;
   display: inline-flex;
   align-items: center;
   gap: 8px;
@@ -1075,7 +1084,7 @@ ol {
   transition: transform 0.25s ease, border-color 0.25s ease;
 }
 
-.hero-portrait-frame:hover .portrait-floating-badge {
+.hero-center:hover .portrait-floating-badge {
   border-color: var(--border-accent);
 }
 
@@ -1087,28 +1096,10 @@ ol {
   box-shadow: 0 0 8px var(--accent);
 }
 
-.hero-framed-img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  object-position: center bottom;
-  position: relative;
-  z-index: 3;
-  display: block;
-  transform-origin: center bottom;
-  filter: grayscale(12%) brightness(1.02) contrast(1.12) drop-shadow(0 14px 28px rgba(0, 0, 0, 0.8));
-  transition: filter 0.5s ease-out;
-  transform-style: preserve-3d;
-  will-change: transform, filter;
-}
-
-.hero-portrait-frame:hover .hero-framed-img {
-  filter: grayscale(0%) brightness(1.14) contrast(1.22) drop-shadow(0 20px 38px rgba(0, 0, 0, 0.9));
-}
-
 /* KOLOM KANAN: LINEAR BIO & HIGHLIGHT METRICS */
 .hero-right {
   align-self: center;
+  padding-bottom: clamp(2rem, 5vh, 4.5rem);
 }
 
 .hero-bio-card {
@@ -1271,10 +1262,13 @@ ol {
     margin-block: var(--spacing-sm);
   }
 
-  .hero-portrait-frame {
-    max-width: 380px;
-    height: 490px;
-    margin-inline: auto;
+  .hero-portal-arch-backdrop {
+    width: clamp(280px, 58vw, 360px);
+    height: clamp(420px, 58vh, 520px);
+  }
+
+  .hero-framed-img {
+    height: clamp(420px, 58vh, 520px);
   }
 
   .hero-right {
@@ -1343,9 +1337,13 @@ ol {
     width: 100%;
   }
 
-  .hero-portrait-frame {
-    max-width: 310px;
-    height: 430px;
+  .hero-portal-arch-backdrop {
+    width: clamp(240px, 76vw, 300px);
+    height: clamp(350px, 50vh, 430px);
+  }
+
+  .hero-framed-img {
+    height: clamp(350px, 50vh, 430px);
   }
 
   .hero-outline-watermark {
