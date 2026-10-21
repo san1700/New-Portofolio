@@ -3,6 +3,42 @@ import { servicesData, projectsData, statsData, testimonialsData } from './data.
 document.addEventListener('DOMContentLoaded', () => {
 
     // =========================================
+    // 0. LENIS SMOOTH SCROLLING (MOTIONSITES / FRAMER TOUCH)
+    // =========================================
+    let lenis = null;
+    if (typeof Lenis !== 'undefined') {
+        lenis = new Lenis({
+            duration: 1.2,
+            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+            orientation: 'vertical',
+            gestureOrientation: 'vertical',
+            smoothWheel: true,
+            wheelMultiplier: 1.0,
+            touchMultiplier: 1.5,
+        });
+
+        function raf(time) {
+            lenis.raf(time);
+            requestAnimationFrame(raf);
+        }
+        requestAnimationFrame(raf);
+
+        // Smooth scroll for internal anchor links (excluding showreel/modal triggers)
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                if (href && href !== '#' && href !== '#showreel' && href !== '#contact' && !this.hasAttribute('data-showreel-trigger')) {
+                    const target = document.querySelector(href);
+                    if (target) {
+                        e.preventDefault();
+                        lenis.scrollTo(target, { offset: -24, duration: 1.2 });
+                    }
+                }
+            });
+        });
+    }
+
+    // =========================================
     // 1. MOBILE MENU TOGGLE
     // =========================================
     const mobileBtn = document.querySelector('.mobile-menu-btn');
@@ -24,11 +60,19 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // =========================================
-    // 1.5 TOOLS TICKER INTERACTION (Mobile Touch & Pause)
+    // 1.5 TOOLS TICKER INTERACTION (Pause on Hover & Touch)
     // =========================================
     const tickerWrapper = document.getElementById('ticker-wrapper');
     const tickerTrack = document.getElementById('ticker-track');
     if (tickerWrapper && tickerTrack) {
+        tickerWrapper.addEventListener('mouseenter', () => {
+            tickerTrack.style.animationPlayState = 'paused';
+        });
+
+        tickerWrapper.addEventListener('mouseleave', () => {
+            tickerTrack.style.animationPlayState = 'running';
+        });
+
         tickerWrapper.addEventListener('touchstart', () => {
             tickerTrack.style.animationPlayState = 'paused';
         }, { passive: true });
@@ -39,8 +83,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // =========================================
-    // SCROLL REVEAL — IntersectionObserver
-    // (Dideklarasi di sini agar bisa dipakai oleh semua render di bawah)
+    // SCROLL REVEAL — IntersectionObserver (MotionSites.ai / Framer Style)
     // =========================================
     const observeRevealElements = () => {
         const revealObserver = new IntersectionObserver((entries) => {
@@ -51,7 +94,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             });
         }, {
-            threshold: 0.15,
+            threshold: 0.1,
             rootMargin: '0px 0px -40px 0px'
         });
 
@@ -59,6 +102,10 @@ document.addEventListener('DOMContentLoaded', () => {
             revealObserver.observe(el);
         });
     };
+
+    // Trigger immediate observer for hero & elements in initial viewport
+    observeRevealElements();
+    setTimeout(observeRevealElements, 80);
 
     // =========================================
     // 2. RENDER SERVICES SECTION (Ohio Agency Style)
@@ -587,10 +634,14 @@ document.addEventListener('DOMContentLoaded', () => {
         }, { passive: true });
 
         backToTopBtn.addEventListener('click', () => {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
+            if (lenis) {
+                lenis.scrollTo(0, { duration: 1.2 });
+            } else {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            }
         });
     }
 
