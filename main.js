@@ -152,7 +152,7 @@ document.addEventListener('DOMContentLoaded', () => {
             currentTransX += (targetTransX - currentTransX) * 0.08;
             currentTransY += (targetTransY - currentTransY) * 0.08;
 
-            img.style.transform = `perspective(1000px) rotateX(${currentRotateX.toFixed(2)}deg) rotateY(${currentRotateY.toFixed(2)}deg) translate3d(${currentTransX.toFixed(1)}px, ${currentTransY.toFixed(1)}px, 14px)`;
+            img.style.transform = `perspective(1000px) scale(1.08) rotateX(${currentRotateX.toFixed(2)}deg) rotateY(${currentRotateY.toFixed(2)}deg) translate3d(${currentTransX.toFixed(1)}px, ${currentTransY.toFixed(1)}px, 14px)`;
 
             if (watermark) {
                 watermark.style.transform = `translate(calc(-50% + ${(-currentTransX * 1.6).toFixed(1)}px), calc(-50% + ${(-currentTransY * 1.6).toFixed(1)}px))`;
