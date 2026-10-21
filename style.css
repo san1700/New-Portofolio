@@ -948,10 +948,11 @@ ol {
 }
 
 /* KOLOM TENGAH: FOTO PROFIL DENGAN EFEK HUDA MULIYA */
+/* KOLOM TENGAH: FOTO PROFIL DENGAN EFEK HUDA MULIYA & VAULTED ARCH PORTAL */
 .hero-center {
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-end;
   position: relative;
   width: 100%;
   perspective: 1200px;
@@ -979,15 +980,19 @@ ol {
   transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
 }
 
+/* 1. Portal Frame Kubah / Vaulted Arch Architecture (Efek Huda Muliya) */
 .hero-portrait-frame {
   position: relative;
   width: 100%;
-  max-width: 360px;
-  aspect-ratio: 4 / 5;
-  border-radius: 24px;
-  background: radial-gradient(circle at 50% 30%, rgba(94, 106, 210, 0.16) 0%, rgba(10, 10, 12, 0.95) 75%);
-  border: 1px solid var(--border-default);
-  box-shadow: var(--shadow-card);
+  max-width: 350px;
+  aspect-ratio: 3 / 4.15;
+  border-radius: clamp(140px, 46%, 175px) clamp(140px, 46%, 175px) 0 0;
+  background: radial-gradient(circle at 50% 25%, rgba(94, 106, 210, 0.22) 0%, rgba(10, 10, 12, 0.8) 55%, rgba(5, 5, 6, 0.98) 100%);
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  border-left: 1px solid rgba(255, 255, 255, 0.12);
+  border-right: 1px solid rgba(255, 255, 255, 0.12);
+  border-bottom: 2px solid rgba(94, 106, 210, 0.5);
+  box-shadow: 0 -12px 40px rgba(94, 106, 210, 0.2), 0 25px 60px rgba(0, 0, 0, 0.85), inset 0 2px 4px rgba(255, 255, 255, 0.18);
   display: flex;
   justify-content: center;
   align-items: flex-end;
@@ -998,21 +1003,38 @@ ol {
   transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease, border-color 0.35s ease;
 }
 
+/* Glowing Grounding Beam reflection at bottom baseline */
+.hero-portrait-frame::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 8%;
+  right: 8%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(94, 106, 210, 0.9) 50%, transparent);
+  box-shadow: 0 0 16px rgba(94, 106, 210, 0.9);
+  z-index: 8;
+  pointer-events: none;
+}
+
 .hero-portrait-frame:hover {
-  border-color: var(--border-accent);
-  box-shadow: var(--shadow-card-hover), 0 0 50px rgba(94, 106, 210, 0.2);
+  border-top-color: rgba(147, 197, 253, 0.75);
+  border-left-color: rgba(94, 106, 210, 0.45);
+  border-right-color: rgba(94, 106, 210, 0.45);
+  border-bottom-color: rgba(94, 106, 210, 0.85);
+  box-shadow: 0 -16px 50px rgba(94, 106, 210, 0.35), 0 30px 70px rgba(0, 0, 0, 0.95), inset 0 2px 6px rgba(255, 255, 255, 0.3);
 }
 
 /* Backlight Aura Glow Sphere (Efek Huda Muliya) */
 .backlight-aura-sphere {
   position: absolute;
-  top: 42%;
+  top: 38%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 250px;
-  height: 250px;
+  width: 260px;
+  height: 260px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(94, 106, 210, 0.45) 0%, rgba(99, 102, 241, 0.2) 55%, transparent 75%);
+  background: radial-gradient(circle, rgba(94, 106, 210, 0.45) 0%, rgba(99, 102, 241, 0.22) 55%, transparent 75%);
   filter: blur(48px);
   z-index: 1;
   pointer-events: none;
@@ -1040,6 +1062,7 @@ ol {
 /* Moving Laser Scan Beam (Efek Huda Muliya) */
 .scan-beam {
   position: absolute;
+  top: 0;
   left: 0;
   right: 0;
   height: 2px;
@@ -1048,27 +1071,67 @@ ol {
   background: linear-gradient(to right, transparent, rgba(94, 106, 210, 0.6) 20%, rgba(255, 255, 255, 0.95) 50%, rgba(94, 106, 210, 0.6) 80%, transparent);
   box-shadow: 0 0 14px rgba(94, 106, 210, 0.85), 0 0 4px #FFFFFF;
   animation: scanMove 7s linear infinite;
-  will-change: transform;
+  will-change: top, opacity;
 }
 
 @keyframes scanMove {
   0% {
-    transform: translateY(-20px);
+    top: 0%;
     opacity: 0;
   }
-  6% {
+  5% {
     opacity: 1;
   }
   92% {
     opacity: 1;
   }
   100% {
-    transform: translateY(460px);
+    top: 100%;
     opacity: 0;
   }
 }
 
-/* Linear Technical Corner Markers */
+/* Portal Arch Apex Indicator */
+.portal-arch-apex {
+  position: absolute;
+  top: 14px;
+  left: 50%;
+  transform: translateX(-50%) translateZ(15px);
+  z-index: 7;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.5);
+  pointer-events: none;
+  user-select: none;
+  padding: 4px 10px;
+  background: rgba(10, 10, 12, 0.65);
+  border-radius: var(--radius-pill);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  transition: color 0.3s ease, border-color 0.3s ease;
+}
+
+.portal-arch-apex .apex-dot {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background-color: var(--accent);
+  box-shadow: 0 0 6px var(--accent);
+}
+
+.hero-portrait-frame:hover .portal-arch-apex {
+  color: #EDE8DF;
+  border-color: rgba(94, 106, 210, 0.4);
+}
+
+/* Linear Technical Base Corner Markers */
 .frame-corner {
   position: absolute;
   width: 10px;
@@ -1083,32 +1146,18 @@ ol {
   border-color: var(--accent);
 }
 
-.corner-tl {
-  top: 14px;
-  left: 14px;
-  border-top: 1.5px solid;
-  border-left: 1.5px solid;
-}
-
-.corner-tr {
-  top: 14px;
-  right: 14px;
-  border-top: 1.5px solid;
-  border-right: 1.5px solid;
-}
-
 .corner-bl {
-  bottom: 14px;
-  left: 14px;
-  border-bottom: 1.5px solid;
-  border-left: 1.5px solid;
+  bottom: 0px;
+  left: 0px;
+  border-bottom: 2px solid;
+  border-left: 2px solid;
 }
 
 .corner-br {
-  bottom: 14px;
-  right: 14px;
-  border-bottom: 1.5px solid;
-  border-right: 1.5px solid;
+  bottom: 0px;
+  right: 0px;
+  border-bottom: 2px solid;
+  border-right: 2px solid;
 }
 
 .portrait-floating-badge {
@@ -1328,6 +1377,8 @@ ol {
     order: 2;
     margin-inline: auto;
     width: 100%;
+    align-items: center;
+    margin-block: var(--spacing-sm);
   }
 
   .hero-portrait-frame {
