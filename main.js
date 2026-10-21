@@ -83,6 +83,51 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // =========================================
+    // LINEAR SPOTLIGHT EFFECT (Mouse-Tracking Radial Glow)
+    // =========================================
+    const initSpotlightTracking = () => {
+        const cards = document.querySelectorAll('.spotlight-card, .project-card, .service-card, .hero-bio-card, .about-card, .testimonial-card, .cta-box');
+        cards.forEach(card => {
+            if (!card.dataset.spotlightInit) {
+                card.dataset.spotlightInit = 'true';
+                card.addEventListener('pointermove', (e) => {
+                    const rect = card.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    card.style.setProperty('--mouse-x', `${x}px`);
+                    card.style.setProperty('--mouse-y', `${y}px`);
+                });
+                card.addEventListener('pointerleave', () => {
+                    card.style.setProperty('--mouse-x', `-500px`);
+                    card.style.setProperty('--mouse-y', `-500px`);
+                });
+            }
+        });
+    };
+
+    // =========================================
+    // HERO SCROLL PARALLAX (Linear Cinematic Depth)
+    // =========================================
+    const heroSection = document.getElementById('hero');
+    const heroContainer = document.querySelector('.hero-container');
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    if (heroSection && heroContainer && !prefersReducedMotion) {
+        window.addEventListener('scroll', () => {
+            const scrollY = window.scrollY;
+            const heroHeight = heroSection.offsetHeight;
+            if (scrollY < heroHeight) {
+                const progress = scrollY / heroHeight;
+                const opacity = Math.max(0, 1 - progress * 1.4);
+                const scale = Math.max(0.96, 1 - progress * 0.04);
+                const translateY = progress * 40;
+                heroContainer.style.opacity = opacity.toFixed(3);
+                heroContainer.style.transform = `translateY(${translateY.toFixed(1)}px) scale(${scale.toFixed(3)})`;
+            }
+        }, { passive: true });
+    }
+
+    // =========================================
     // SCROLL REVEAL — IntersectionObserver (MotionSites.ai / Framer Style)
     // =========================================
     const observeRevealElements = () => {
@@ -101,9 +146,11 @@ document.addEventListener('DOMContentLoaded', () => {
         document.querySelectorAll('.reveal:not(.active)').forEach(el => {
             revealObserver.observe(el);
         });
+
+        initSpotlightTracking();
     };
 
-    // Trigger immediate observer for hero & elements in initial viewport
+    // Trigger immediate observer & spotlight for hero & elements in initial viewport
     observeRevealElements();
     setTimeout(observeRevealElements, 80);
 
