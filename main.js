@@ -128,6 +128,71 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // =========================================
+    // HERO PORTRAIT 3D GYROSCOPIC TILT & PARALLAX (Efek Huda Muliya)
+    // =========================================
+    const initPortrait3DTilt = () => {
+        const frame = document.querySelector('.hero-portrait-frame');
+        const img = document.querySelector('.hero-framed-img');
+        const watermark = document.querySelector('.hero-outline-watermark');
+        const aura = document.querySelector('.backlight-aura-sphere');
+        if (!frame || !img) return;
+
+        const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if (prefersReduced) return;
+
+        let targetRotateX = 0, targetRotateY = 0;
+        let targetTransX = 0, targetTransY = 0;
+        let currentRotateX = 0, currentRotateY = 0;
+        let currentTransX = 0, currentTransY = 0;
+
+        const updatePhysics = () => {
+            // Smooth spring damping interpolation
+            currentRotateX += (targetRotateX - currentRotateX) * 0.08;
+            currentRotateY += (targetRotateY - currentRotateY) * 0.08;
+            currentTransX += (targetTransX - currentTransX) * 0.08;
+            currentTransY += (targetTransY - currentTransY) * 0.08;
+
+            img.style.transform = `perspective(1000px) rotateX(${currentRotateX.toFixed(2)}deg) rotateY(${currentRotateY.toFixed(2)}deg) translate3d(${currentTransX.toFixed(1)}px, ${currentTransY.toFixed(1)}px, 14px)`;
+
+            if (watermark) {
+                watermark.style.transform = `translate(calc(-50% + ${(-currentTransX * 1.6).toFixed(1)}px), calc(-50% + ${(-currentTransY * 1.6).toFixed(1)}px))`;
+            }
+
+            if (aura) {
+                aura.style.transform = `translate(calc(-50% + ${(currentTransX * 0.7).toFixed(1)}px), calc(-50% + ${(currentTransY * 0.7).toFixed(1)}px)) scale(${frame.matches(':hover') ? 1.3 : 1})`;
+            }
+
+            requestAnimationFrame(updatePhysics);
+        };
+
+        requestAnimationFrame(updatePhysics);
+
+        window.addEventListener('mousemove', (e) => {
+            const rect = frame.getBoundingClientRect();
+            const frameCenterX = rect.left + rect.width / 2;
+            const frameCenterY = rect.top + rect.height / 2;
+
+            // Normalized distance (-1 to 1) from frame center
+            const normX = Math.max(-1, Math.min(1, (e.clientX - frameCenterX) / (window.innerWidth / 2)));
+            const normY = Math.max(-1, Math.min(1, (e.clientY - frameCenterY) / (window.innerHeight / 2)));
+
+            targetRotateX = -normY * 9;  // 3D tilt up/down
+            targetRotateY = normX * 11;  // 3D tilt left/right
+            targetTransX = normX * 12;   // translation horizontal
+            targetTransY = normY * 8;    // translation vertical
+        }, { passive: true });
+
+        frame.addEventListener('mouseleave', () => {
+            targetRotateX = 0;
+            targetRotateY = 0;
+            targetTransX = 0;
+            targetTransY = 0;
+        });
+    };
+
+    initPortrait3DTilt();
+
+    // =========================================
     // SCROLL REVEAL — IntersectionObserver (MotionSites.ai / Framer Style)
     // =========================================
     const observeRevealElements = () => {
