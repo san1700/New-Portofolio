@@ -134,6 +134,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const heroCenter = document.querySelector('.hero-center');
         const img = document.querySelector('.hero-framed-img');
         const watermark = document.querySelector('.hero-outline-watermark');
+        const tunnel = document.querySelector('.hero-perspective-tunnel');
         const aura = document.querySelector('.backlight-aura-sphere');
         const backdrop = document.querySelector('.hero-portal-arch-backdrop');
         if (!heroCenter || !img) return;
@@ -158,6 +159,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
             if (watermark) {
                 watermark.style.transform = `translate(calc(-50% + ${(-currentTransX * 1.2).toFixed(1)}px), calc(-50% + ${(-currentTransY * 1.2).toFixed(1)}px))`;
+            }
+
+            if (tunnel) {
+                // Counter-parallax & inverse subtle tilt menciptakan ilusi lorong perspektif 3D yang sangat dalam
+                tunnel.style.transform = `translateX(-50%) translate3d(${(-currentTransX * 0.45).toFixed(1)}px, ${(-currentTransY * 0.35).toFixed(1)}px, 0) rotateX(${(-currentRotateX * 0.35).toFixed(2)}deg) rotateY(${(-currentRotateY * 0.35).toFixed(2)}deg)`;
             }
 
             if (aura) {

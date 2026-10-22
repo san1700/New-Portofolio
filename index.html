@@ -125,6 +125,76 @@
                         <span>CREATIVE</span>
                     </div>
 
+                    <!-- Cosmic Perspective Depth Grid / Radial Tunnel (Efek Huda Muliya 3D Depth) -->
+                    <div class="hero-perspective-tunnel" aria-hidden="true">
+                        <svg class="tunnel-svg" viewBox="0 0 400 640" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <defs>
+                                <radialGradient id="tunnelCoreGlow" cx="50%" cy="50%" r="50%">
+                                    <stop offset="0%" stop-color="#3B82F6" stop-opacity="0.65" />
+                                    <stop offset="40%" stop-color="#6366F1" stop-opacity="0.25" />
+                                    <stop offset="100%" stop-color="#6366F1" stop-opacity="0" />
+                                </radialGradient>
+                                <linearGradient id="rayGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                                    <stop offset="0%" stop-color="#93C5FD" stop-opacity="0.4" />
+                                    <stop offset="50%" stop-color="#3B82F6" stop-opacity="0.18" />
+                                    <stop offset="100%" stop-color="#1E3A8A" stop-opacity="0.02" />
+                                </linearGradient>
+                                <linearGradient id="archGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                                    <stop offset="0%" stop-color="#93C5FD" stop-opacity="0.5" />
+                                    <stop offset="50%" stop-color="#3B82F6" stop-opacity="0.2" />
+                                    <stop offset="100%" stop-color="#2563EB" stop-opacity="0.03" />
+                                </linearGradient>
+                            </defs>
+
+                            <!-- Radial Perspective Rays -->
+                            <g class="tunnel-rays" stroke="url(#rayGrad)" stroke-width="1" opacity="0.8">
+                                <line x1="200" y1="340" x2="200" y2="30" stroke-dasharray="3 4" />
+                                <line x1="200" y1="340" x2="140" y2="35" />
+                                <line x1="200" y1="340" x2="260" y2="35" />
+                                <line x1="200" y1="340" x2="80" y2="75" stroke-dasharray="4 6" />
+                                <line x1="200" y1="340" x2="320" y2="75" stroke-dasharray="4 6" />
+                                <line x1="200" y1="340" x2="30" y2="160" />
+                                <line x1="200" y1="340" x2="370" y2="160" />
+                                <line x1="200" y1="340" x2="30" y2="280" stroke-dasharray="3 5" />
+                                <line x1="200" y1="340" x2="370" y2="280" stroke-dasharray="3 5" />
+                                <line x1="200" y1="340" x2="30" y2="440" />
+                                <line x1="200" y1="340" x2="370" y2="440" />
+                                <line x1="200" y1="340" x2="30" y2="640" stroke-dasharray="4 6" />
+                                <line x1="200" y1="340" x2="370" y2="640" stroke-dasharray="4 6" />
+                                <line x1="200" y1="340" x2="110" y2="640" />
+                                <line x1="200" y1="340" x2="290" y2="640" />
+                            </g>
+
+                            <!-- Concentric Arch Rings (Receding Spatial Stages) -->
+                            <path d="M 30,640 L 30,200 A 170,170 0 0,1 370,200 L 370,640"
+                                stroke="url(#archGrad)" stroke-width="1.2" fill="none" opacity="0.65" />
+                            <path d="M 65,640 L 65,235 A 135,135 0 0,1 335,235 L 335,640"
+                                stroke="url(#archGrad)" stroke-width="1" stroke-dasharray="4 6" fill="none" opacity="0.6" />
+                            <path d="M 105,640 L 105,275 A 95,95 0 0,1 295,275 L 295,640"
+                                stroke="url(#archGrad)" stroke-width="1" fill="none" opacity="0.55" />
+                            <path d="M 145,640 L 145,315 A 55,55 0 0,1 255,315 L 255,640"
+                                stroke="url(#archGrad)" stroke-width="1" stroke-dasharray="3 5" fill="none" opacity="0.7" />
+                            <path d="M 175,640 L 175,345 A 25,25 0 0,1 225,345 L 225,640"
+                                stroke="#60A5FA" stroke-width="1.4" fill="none" opacity="0.85" />
+
+                            <!-- Vanishing Focal Node & Aura -->
+                            <circle cx="200" cy="340" r="48" fill="url(#tunnelCoreGlow)" />
+                            <circle cx="200" cy="340" r="32" stroke="rgba(147, 197, 253, 0.3)" stroke-width="1" stroke-dasharray="2 4" />
+                            <circle cx="200" cy="340" r="14" stroke="#60A5FA" stroke-width="1.2" opacity="0.75" />
+                            <circle cx="200" cy="340" r="3" fill="#FFFFFF" opacity="0.95" />
+
+                            <!-- Tech Coordinate Indicators -->
+                            <g class="tunnel-tech-markers" font-family="'JetBrains Mono', monospace" font-size="6.5" fill="rgba(147, 197, 253, 0.5)" letter-spacing="1.5">
+                                <text x="200" y="20" text-anchor="middle">DEPTH ARCH · 01</text>
+                                <circle cx="200" cy="30" r="2.5" fill="#60A5FA" opacity="0.85" />
+                                <circle cx="140" cy="35" r="2" fill="#93C5FD" opacity="0.65" />
+                                <circle cx="260" cy="35" r="2" fill="#93C5FD" opacity="0.65" />
+                                <circle cx="80" cy="75" r="2" fill="#60A5FA" opacity="0.55" />
+                                <circle cx="320" cy="75" r="2" fill="#60A5FA" opacity="0.55" />
+                            </g>
+                        </svg>
+                    </div>
+
                     <!-- Kotak / Vaulted Arch Portal Backdrop (Di BELAKANG Foto) -->
                     <div class="hero-portal-arch-backdrop" aria-hidden="true"></div>
 

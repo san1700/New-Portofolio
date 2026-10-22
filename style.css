@@ -984,6 +984,44 @@ ol {
   transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
 }
 
+/* Cosmic Perspective Depth Grid / Radial Tunnel (Efek Huda Muliya 3D Depth) */
+.hero-perspective-tunnel {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: clamp(340px, 31vw, 460px);
+  height: clamp(520px, 78vh, 710px);
+  pointer-events: none;
+  z-index: 2;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  overflow: visible;
+  will-change: transform, opacity;
+  transition: opacity 0.5s ease;
+}
+
+.hero-perspective-tunnel .tunnel-svg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  filter: drop-shadow(0 0 20px rgba(94, 106, 210, 0.22));
+  transition: filter 0.5s ease;
+}
+
+.tunnel-rays {
+  transition: opacity 0.4s ease;
+}
+
+.hero-center:hover .tunnel-rays {
+  opacity: 0.95;
+}
+
+.hero-center:hover .tunnel-svg {
+  filter: drop-shadow(0 0 35px rgba(94, 106, 210, 0.38));
+}
+
 /* Kotak / Vaulted Arch Portal Backdrop (Di BELAKANG Foto) */
 .hero-portal-arch-backdrop {
   position: absolute;
@@ -1002,7 +1040,7 @@ ol {
   -webkit-backdrop-filter: blur(2px);
   box-shadow: 0 -12px 40px rgba(94, 106, 210, 0.16), inset 0 1px 2px rgba(255, 255, 255, 0.18);
   pointer-events: none;
-  z-index: 2;
+  z-index: 3;
   transition: border-color 0.5s ease, box-shadow 0.5s ease;
   will-change: transform;
 }
@@ -1025,7 +1063,7 @@ ol {
   border-radius: 50%;
   background: radial-gradient(circle, rgba(94, 106, 210, 0.45) 0%, rgba(99, 102, 241, 0.2) 55%, transparent 75%);
   filter: blur(60px);
-  z-index: 3;
+  z-index: 4;
   pointer-events: none;
   transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.6s ease;
   will-change: transform, opacity;
@@ -1262,6 +1300,11 @@ ol {
     margin-block: var(--spacing-sm);
   }
 
+  .hero-perspective-tunnel {
+    width: clamp(300px, 62vw, 390px);
+    height: clamp(430px, 60vh, 540px);
+  }
+
   .hero-portal-arch-backdrop {
     width: clamp(280px, 58vw, 360px);
     height: clamp(420px, 58vh, 520px);
@@ -1335,6 +1378,11 @@ ol {
 
   .hero-actions .btn {
     width: 100%;
+  }
+
+  .hero-perspective-tunnel {
+    width: clamp(260px, 80vw, 330px);
+    height: clamp(360px, 52vh, 450px);
   }
 
   .hero-portal-arch-backdrop {
