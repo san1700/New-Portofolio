@@ -1449,20 +1449,32 @@ ol {
 }
 
 /* =========================================
-   LINEAR SPOTLIGHT SURFACE SYSTEM
+   LINEAR & VERCEL SPOTLIGHT SURFACE SYSTEM
+   Dual-Layer: Dynamic Illuminated Border Beam + Soft Ambient Surface Fill
    ========================================= */
 .spotlight-card,
 .project-card,
 .service-card,
 .hero-bio-card,
 .about-card,
-.testimonial-card,
-.cta-box {
+.testimonial-card {
   position: relative;
   --mouse-x: -500px;
   --mouse-y: -500px;
 }
 
+/* Ensure card children sit above ambient background glow */
+.spotlight-card > *,
+.project-card > *,
+.service-card > *,
+.hero-bio-card > *,
+.about-card > *,
+.testimonial-card > * {
+  position: relative;
+  z-index: 2;
+}
+
+/* 1. Dynamic Illuminated Border Beam (Follows Cursor on Edge) */
 .spotlight-card::before,
 .project-card::before,
 .service-card::before,
@@ -1471,21 +1483,62 @@ ol {
 .testimonial-card::before {
   content: '';
   position: absolute;
-  inset: 0;
+  inset: -1px;
   border-radius: inherit;
-  background: radial-gradient(320px circle at var(--mouse-x, -500px) var(--mouse-y, -500px), rgba(94, 106, 210, 0.16), transparent 80%);
-  opacity: 0;
-  transition: opacity 0.3s ease;
+  padding: 1.5px;
+  background: radial-gradient(
+    380px circle at var(--mouse-x, -500px) var(--mouse-y, -500px),
+    rgba(96, 165, 250, 0.9) 0%,
+    rgba(37, 99, 235, 0.5) 30%,
+    rgba(255, 255, 255, 0.12) 65%,
+    transparent 85%
+  );
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
   pointer-events: none;
-  z-index: 4;
+  opacity: 0;
+  transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 6;
 }
 
+/* 2. Soft Ambient Surface Spotlight Wash (Linear Core Fill) */
+.spotlight-card::after,
+.project-card::after,
+.service-card::after,
+.hero-bio-card::after,
+.about-card::after,
+.testimonial-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(
+    500px circle at var(--mouse-x, -500px) var(--mouse-y, -500px),
+    rgba(37, 99, 235, 0.12) 0%,
+    rgba(94, 106, 210, 0.05) 45%,
+    transparent 75%
+  );
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 1;
+}
+
+/* Active Hover Illumination */
 .spotlight-card:hover::before,
 .project-card:hover::before,
 .service-card:hover::before,
 .hero-bio-card:hover::before,
 .about-card:hover::before,
-.testimonial-card:hover::before {
+.testimonial-card:hover::before,
+.spotlight-card:hover::after,
+.project-card:hover::after,
+.service-card:hover::after,
+.hero-bio-card:hover::after,
+.about-card:hover::after,
+.testimonial-card:hover::after {
   opacity: 1;
 }
 

@@ -83,20 +83,24 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // =========================================
-    // LINEAR SPOTLIGHT EFFECT (Mouse-Tracking Radial Glow)
+    // LINEAR & VERCEL SPOTLIGHT EFFECT (Mouse-Tracking Dynamic Radial Glow)
     // =========================================
     const initSpotlightTracking = () => {
-        const cards = document.querySelectorAll('.spotlight-card, .project-card, .service-card, .hero-bio-card, .about-card, .testimonial-card, .cta-box');
+        const cards = document.querySelectorAll('.spotlight-card, .project-card, .service-card, .hero-bio-card, .about-card, .testimonial-card');
         cards.forEach(card => {
             if (!card.dataset.spotlightInit) {
                 card.dataset.spotlightInit = 'true';
-                card.addEventListener('pointermove', (e) => {
+
+                const updateCoords = (e) => {
                     const rect = card.getBoundingClientRect();
                     const x = e.clientX - rect.left;
                     const y = e.clientY - rect.top;
-                    card.style.setProperty('--mouse-x', `${x}px`);
-                    card.style.setProperty('--mouse-y', `${y}px`);
-                });
+                    card.style.setProperty('--mouse-x', `${x.toFixed(1)}px`);
+                    card.style.setProperty('--mouse-y', `${y.toFixed(1)}px`);
+                };
+
+                card.addEventListener('pointerenter', updateCoords);
+                card.addEventListener('pointermove', updateCoords);
                 card.addEventListener('pointerleave', () => {
                     card.style.setProperty('--mouse-x', `-500px`);
                     card.style.setProperty('--mouse-y', `-500px`);
