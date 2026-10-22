@@ -59,43 +59,12 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // Clean up any lingering atmosphere attribute
+    document.documentElement.removeAttribute('data-atmosphere');
+    try { localStorage.removeItem('portfolio_atmosphere'); } catch (e) {}
+
     // =========================================
-    // DUAL-MODE ATMOSPHERE SYSTEM (Editor Cyan ↔ Cinema Amber)
-    // =========================================
-    const initAtmosphereSystem = () => {
-        const cyanBtn = document.getElementById('mode-cyan-btn');
-        const amberBtn = document.getElementById('mode-amber-btn');
-        if (!cyanBtn || !amberBtn) return;
-
-        const setAtmosphere = (mode) => {
-            if (mode === 'amber' || mode === 'cinema') {
-                document.documentElement.setAttribute('data-atmosphere', 'amber');
-                amberBtn.classList.add('active');
-                cyanBtn.classList.remove('active');
-                localStorage.setItem('portfolio_atmosphere', 'amber');
-            } else {
-                document.documentElement.setAttribute('data-atmosphere', 'cyan');
-                cyanBtn.classList.add('active');
-                amberBtn.classList.remove('active');
-                localStorage.setItem('portfolio_atmosphere', 'cyan');
-            }
-
-            // Sync sliding pill on active filter button if present
-            const activeFilter = document.querySelector('.filter-btn.active');
-            const updatePillFn = window._updateFilterSlidingPill;
-            if (activeFilter && typeof updatePillFn === 'function') {
-                updatePillFn(activeFilter);
-            }
-        };
-
-        const savedMode = localStorage.getItem('portfolio_atmosphere') || 'cyan';
-        setAtmosphere(savedMode);
-
-        cyanBtn.addEventListener('click', () => setAtmosphere('cyan'));
-        amberBtn.addEventListener('click', () => setAtmosphere('amber'));
-    };
-
-    initAtmosphereSystem();
+    // 1.5 TOOLS TICKER INTERACTION (Pause on Hover & Touch)
     // =========================================
     const tickerWrapper = document.getElementById('ticker-wrapper');
     const tickerTrack = document.getElementById('ticker-track');
