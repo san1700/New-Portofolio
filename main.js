@@ -60,7 +60,42 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // =========================================
-    // 1.5 TOOLS TICKER INTERACTION (Pause on Hover & Touch)
+    // DUAL-MODE ATMOSPHERE SYSTEM (Editor Cyan ↔ Cinema Amber)
+    // =========================================
+    const initAtmosphereSystem = () => {
+        const cyanBtn = document.getElementById('mode-cyan-btn');
+        const amberBtn = document.getElementById('mode-amber-btn');
+        if (!cyanBtn || !amberBtn) return;
+
+        const setAtmosphere = (mode) => {
+            if (mode === 'amber' || mode === 'cinema') {
+                document.documentElement.setAttribute('data-atmosphere', 'amber');
+                amberBtn.classList.add('active');
+                cyanBtn.classList.remove('active');
+                localStorage.setItem('portfolio_atmosphere', 'amber');
+            } else {
+                document.documentElement.setAttribute('data-atmosphere', 'cyan');
+                cyanBtn.classList.add('active');
+                amberBtn.classList.remove('active');
+                localStorage.setItem('portfolio_atmosphere', 'cyan');
+            }
+
+            // Sync sliding pill on active filter button if present
+            const activeFilter = document.querySelector('.filter-btn.active');
+            const updatePillFn = window._updateFilterSlidingPill;
+            if (activeFilter && typeof updatePillFn === 'function') {
+                updatePillFn(activeFilter);
+            }
+        };
+
+        const savedMode = localStorage.getItem('portfolio_atmosphere') || 'cyan';
+        setAtmosphere(savedMode);
+
+        cyanBtn.addEventListener('click', () => setAtmosphere('cyan'));
+        amberBtn.addEventListener('click', () => setAtmosphere('amber'));
+    };
+
+    initAtmosphereSystem();
     // =========================================
     const tickerWrapper = document.getElementById('ticker-wrapper');
     const tickerTrack = document.getElementById('ticker-track');
@@ -302,7 +337,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     </p>
                 </div>
             </div>
-            <div class="project-filters flex gap-sm flex-wrap justify-start mb-lg">
+            <div class="project-filters flex gap-sm flex-wrap justify-start mb-lg" id="project-filters">
+                <span class="filter-sliding-pill" id="filter-sliding-pill" aria-hidden="true"></span>
                 <button class="filter-btn active" data-filter="All">All <span class="filter-count">${countAll}</span></button>
                 <button class="filter-btn" data-filter="Video Editing">Video Editing <span class="filter-count">${countVideoEditing}</span></button>
                 <button class="filter-btn" data-filter="Videography">Videography <span class="filter-count">${countVideography}</span></button>
@@ -314,6 +350,36 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const projectsContainer = document.getElementById('projects-container');
         const filterBtns = document.querySelectorAll('.filter-btn');
+
+        // Sliding Pill Controller
+        const updateSlidingPill = (activeBtn) => {
+            const pill = document.getElementById('filter-sliding-pill');
+            const container = document.getElementById('project-filters');
+            if (!pill || !activeBtn || !container) return;
+
+            const btnRect = activeBtn.getBoundingClientRect();
+            const containerRect = container.getBoundingClientRect();
+            const leftOffset = btnRect.left - containerRect.left;
+            const topOffset = btnRect.top - containerRect.top;
+
+            pill.style.width = `${btnRect.width}px`;
+            pill.style.height = `${btnRect.height}px`;
+            pill.style.transform = `translate(${leftOffset}px, ${topOffset}px)`;
+            pill.style.opacity = '1';
+        };
+
+        window._updateFilterSlidingPill = updateSlidingPill;
+
+        // Initialize sliding pill position
+        requestAnimationFrame(() => {
+            const initialActive = workSection.querySelector('.filter-btn.active');
+            if (initialActive) updateSlidingPill(initialActive);
+        });
+
+        window.addEventListener('resize', () => {
+            const currentActive = workSection.querySelector('.filter-btn.active');
+            if (currentActive) updateSlidingPill(currentActive);
+        }, { passive: true });
 
         const renderProjects = (filterCategory) => {
             // Fade out
@@ -331,6 +397,15 @@ document.addEventListener('DOMContentLoaded', () => {
                         <div class="project-image-wrapper">
                             <img src="${project.image}" alt="${project.title}" class="project-image" loading="lazy" onerror="this.style.opacity='0';">
                             <span class="project-badge-tag">${project.tag || project.category}</span>
+                            
+                            <!-- Software Tool & Format Pill (Langsung di Thumbnail) -->
+                            <div class="project-software-badge">
+                                <span class="software-dot"></span>
+                                <span class="software-name">${(project.specs && project.specs.software) ? project.specs.software.split(' & ')[0] : (project.tags ? project.tags[0] : 'Premiere')}</span>
+                                <span class="software-sep">·</span>
+                                <span class="software-format">${project.aspectRatio === '9/16' ? '9:16 Reel' : (project.videoType === 'youtube' ? '16:9 Cinema' : 'Visual')}</span>
+                            </div>
+
                             <div class="project-overlay-trigger">
                                 <span class="trigger-circle">
                                     <span class="trigger-arrow">↗</span>
@@ -368,10 +443,11 @@ document.addEventListener('DOMContentLoaded', () => {
         // Logic ketika filter diklik
         filterBtns.forEach(btn => {
             btn.addEventListener('click', (e) => {
-                filterBtns.forEach(b => b.classList.remove('active'));
                 const targetBtn = e.target.closest('.filter-btn');
                 if (targetBtn) {
+                    filterBtns.forEach(b => b.classList.remove('active'));
                     targetBtn.classList.add('active');
+                    updateSlidingPill(targetBtn);
                     renderProjects(targetBtn.dataset.filter);
                 }
             });
