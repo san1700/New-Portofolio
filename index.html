@@ -476,18 +476,57 @@
                     <line x1="6" y1="6" x2="18" y2="18"></line>
                 </svg>
             </button>
-            <div class="modal-image-wrapper">
-                <img id="modal-project-img" src="" alt="" class="modal-image">
+
+            <!-- Media Container: Video Player / Reels Player / Image Preview -->
+            <div class="modal-media-wrapper" id="modal-media-wrapper">
+                <!-- HTML5 Native Video Element -->
+                <video id="modal-project-video" class="modal-video" controls playsinline preload="metadata" style="display: none;"></video>
+                
+                <!-- YouTube / Vimeo Video Embed Iframe -->
+                <iframe id="modal-project-iframe" class="modal-iframe" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="display: none;"></iframe>
+                
+                <!-- Static High-Res Image Preview -->
+                <img id="modal-project-img" src="" alt="" class="modal-image" style="display: none;">
+                
+                <!-- Interactive Media Badge -->
+                <div class="modal-media-badge" id="modal-media-badge">
+                    <span class="badge-dot"></span>
+                    <span id="modal-media-badge-text">VIDEO PREVIEW</span>
+                </div>
             </div>
+
             <div class="modal-body">
-                <span id="modal-project-category" class="project-category text-accent"></span>
-                <h2 id="modal-project-title" class="modal-title"></h2>
+                <div class="modal-header-meta flex items-center justify-between">
+                    <span id="modal-project-category" class="project-category text-accent"></span>
+                    <span id="modal-project-client" class="project-client text-muted font-mono font-xs"></span>
+                </div>
+
+                <h2 id="modal-project-title" class="modal-title mt-xs"></h2>
+                
                 <div id="modal-project-tags" class="project-tags flex gap-sm flex-wrap mt-sm"></div>
-                <p id="modal-project-desc" class="modal-desc text-muted mt-sm"></p>
-                <div class="modal-actions mt-md">
+                
+                <p id="modal-project-desc" class="modal-desc text-muted mt-md"></p>
+
+                <!-- Project Specs Grid (Software, Format, Scope) -->
+                <div class="modal-specs-grid grid grid-cols-3 gap-sm mt-md" id="modal-specs-grid">
+                    <div class="spec-card">
+                        <span class="spec-label">Software</span>
+                        <span class="spec-value" id="spec-software">Premiere Pro</span>
+                    </div>
+                    <div class="spec-card">
+                        <span class="spec-label">Format / Ratio</span>
+                        <span class="spec-value" id="spec-format">9:16 Vertical</span>
+                    </div>
+                    <div class="spec-card">
+                        <span class="spec-label">Deliverable</span>
+                        <span class="spec-value" id="spec-scope">Full Edit & SFX</span>
+                    </div>
+                </div>
+
+                <div class="modal-actions mt-lg flex items-center gap-md flex-wrap">
                     <a id="modal-project-url" href="#" target="_blank" rel="noopener noreferrer"
                         class="btn btn-primary rounded-pill">
-                        Lihat Postingan Klien
+                        <span>Lihat Postingan Klien</span>
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                             stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-left: 8px;">
                             <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
@@ -495,6 +534,9 @@
                             <line x1="10" y1="14" x2="21" y2="3"></line>
                         </svg>
                     </a>
+                    <button type="button" class="btn btn-secondary rounded-pill modal-contact-trigger" id="modal-inquire-btn">
+                        Order Proyek Serupa ↗
+                    </button>
                 </div>
             </div>
         </div>

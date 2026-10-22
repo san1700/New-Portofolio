@@ -61,9 +61,18 @@ const projectsData = [
         title: "Promosi Video & Reels Falisha Laundry",
         category: "Video Editing",
         tag: "SHORT FORM CONTENT",
+        client: "Falisha Laundry & Care",
         image: "images/project-laundry.jpg",
+        videoType: "video",
+        videoUrl: "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4",
+        aspectRatio: "9/16",
         description: "Mengedit video pendek ritmis cepat dengan motion grafik dan sound design untuk kampanye media sosial klien.",
         tags: ["CapCut", "Reels", "Sound Design", "Motion Graphics"],
+        specs: {
+            software: "CapCut Pro & Premiere",
+            format: "9:16 Vertical Reel (1080x1920)",
+            scope: "Beat-Sync, Motion & SFX"
+        },
         link: "https://www.instagram.com/reel/contoh-link-reels-klien",
         liveUrl: "https://www.instagram.com/reel/contoh-link-reels-klien"
     },
@@ -72,9 +81,18 @@ const projectsData = [
         title: "Dokumentasi Sinematik & Drone Kotagede",
         category: "Videography",
         tag: "COMMERCIAL / DRONE",
+        client: "Dinas Pariwisata & Budaya",
         image: "images/project-drone.jpg",
-        description: "Pengambilan video udara menggunakan drone dan color grading sinematik untuk proyek video kultural.",
+        videoType: "youtube",
+        youtubeId: "5qap5aO4i9A",
+        aspectRatio: "16/9",
+        description: "Pengambilan video udara menggunakan drone dan color grading sinematik untuk proyek video kultural dan promosi warisan sejarah.",
         tags: ["Drone", "Videography", "Color Grading", "4K Footage"],
+        specs: {
+            software: "DaVinci Resolve & Premiere",
+            format: "16:9 Widescreen (4K UHD)",
+            scope: "Aerial Drone & Color Grade"
+        },
         link: "https://www.youtube.com/watch?v=contoh-link-youtube",
         liveUrl: "https://www.youtube.com/watch?v=contoh-link-youtube"
     },
@@ -83,9 +101,17 @@ const projectsData = [
         title: "Branding Visual & Social Media Kit Kopi Senja",
         category: "Graphic Design",
         tag: "BRAND IDENTITY",
+        client: "Kopi Senja Artisan Cafe",
         image: "images/project-branding.jpg",
+        videoType: "image",
+        aspectRatio: "16/9",
         description: "Desain identitas brand visual, feed Instagram aesthetic, banner promosi, dan packaging untuk kedai kopi artisan.",
         tags: ["Photoshop", "CorelDraw", "Brand Identity", "Social Kit"],
+        specs: {
+            software: "Photoshop & CorelDraw",
+            format: "Vector & High-Res PNG",
+            scope: "Logo, Brand Guidelines & Feed"
+        },
         link: "https://www.instagram.com/p/contoh-link-branding-kopi",
         liveUrl: "https://www.instagram.com/p/contoh-link-branding-kopi"
     },
@@ -94,9 +120,17 @@ const projectsData = [
         title: "Dokumentasi Landscape & Human Interest",
         category: "Photography",
         tag: "PHOTO STORY",
+        client: "Editorial & Cultural Project",
         image: "images/project-photography.jpg",
+        videoType: "image",
+        aspectRatio: "16/9",
         description: "Sesi foto lanskap pesisir dan potret aktivitas pengrajin lokal dengan color retouching hangat dan berkarakter.",
         tags: ["Photography", "Lightroom", "Human Interest", "Color Retouch"],
+        specs: {
+            software: "Adobe Lightroom Classic",
+            format: "RAW to High-Res JPEG",
+            scope: "Composition & Warm Retouch"
+        },
         link: "https://www.instagram.com/p/contoh-link-photo-story",
         liveUrl: "https://www.instagram.com/p/contoh-link-photo-story"
     },
@@ -105,9 +139,18 @@ const projectsData = [
         title: "Commercial Product Reels - Fashion Streetwear",
         category: "Video Editing",
         tag: "COMMERCIAL REELS",
+        client: "Urban Pulse Apparel",
         image: "images/project-fashion.jpg",
+        videoType: "video",
+        videoUrl: "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4",
+        aspectRatio: "9/16",
         description: "Editing video promosi produk streetwear dengan transisi dinamis, beat sync, dan tipografi modern yang engaging.",
         tags: ["Premiere Pro", "Beat Sync", "Commercial", "Streetwear"],
+        specs: {
+            software: "Adobe Premiere Pro",
+            format: "9:16 Vertical Reel",
+            scope: "Speed Ramp & Kinetic Type"
+        },
         link: "https://www.instagram.com/reel/contoh-link-fashion-reels",
         liveUrl: "https://www.instagram.com/reel/contoh-link-fashion-reels"
     },
@@ -116,9 +159,18 @@ const projectsData = [
         title: "Company Profile & Event Highlight Batik Heritage",
         category: "Videography",
         tag: "COMPANY PROFILE",
+        client: "Yayasan Batik Nusantara",
         image: "images/project-event.jpg",
+        videoType: "youtube",
+        youtubeId: "5qap5aO4i9A",
+        aspectRatio: "16/9",
         description: "Liputan video sinematik pameran budaya dan profil workshop batik dengan wawancara serta aerial b-roll.",
         tags: ["Videography", "Cinematic", "Event Highlight", "B-Roll"],
+        specs: {
+            software: "Premiere Pro & After Effects",
+            format: "16:9 Cinematic (4K UHD)",
+            scope: "Full Production & Interview"
+        },
         link: "https://www.youtube.com/watch?v=contoh-link-company-profile",
         liveUrl: "https://www.youtube.com/watch?v=contoh-link-company-profile"
     }

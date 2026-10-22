@@ -514,20 +514,58 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- 1. Project Detail Modal ---
     const projectModal = document.getElementById('project-modal');
     const closeProjectModalBtn = document.getElementById('close-project-modal');
+    const modalMediaWrapper = document.getElementById('modal-media-wrapper');
+    const modalProjectVideo = document.getElementById('modal-project-video');
+    const modalProjectIframe = document.getElementById('modal-project-iframe');
     const modalProjectImg = document.getElementById('modal-project-img');
+    const modalMediaBadge = document.getElementById('modal-media-badge');
+    const modalMediaBadgeText = document.getElementById('modal-media-badge-text');
     const modalProjectCategory = document.getElementById('modal-project-category');
+    const modalProjectClient = document.getElementById('modal-project-client');
     const modalProjectTitle = document.getElementById('modal-project-title');
     const modalProjectTags = document.getElementById('modal-project-tags');
     const modalProjectDesc = document.getElementById('modal-project-desc');
     const modalProjectUrl = document.getElementById('modal-project-url');
+    const modalInquireBtn = document.getElementById('modal-inquire-btn');
+    const specSoftware = document.getElementById('spec-software');
+    const specFormat = document.getElementById('spec-format');
+    const specScope = document.getElementById('spec-scope');
+
+    // Menghentikan playback & membersihkan resource saat modal ditutup
+    const closeProjectDetailModal = () => {
+        if (!projectModal) return;
+        closeModal(projectModal);
+
+        if (modalProjectVideo) {
+            modalProjectVideo.pause();
+            modalProjectVideo.currentTime = 0;
+            modalProjectVideo.removeAttribute('src');
+            modalProjectVideo.load();
+            modalProjectVideo.style.display = 'none';
+        }
+
+        if (modalProjectIframe) {
+            modalProjectIframe.src = '';
+            modalProjectIframe.style.display = 'none';
+        }
+
+        if (modalProjectImg) {
+            modalProjectImg.src = '';
+            modalProjectImg.style.display = 'none';
+        }
+
+        if (modalMediaWrapper) {
+            modalMediaWrapper.classList.remove('aspect-9-16', 'aspect-16-9', 'aspect-image');
+        }
+    };
 
     if (closeProjectModalBtn && projectModal) {
-        closeProjectModalBtn.addEventListener('click', () => closeModal(projectModal));
+        closeProjectModalBtn.addEventListener('click', closeProjectDetailModal);
 
         // Tutup saat area luar modal (backdrop) diklik
         projectModal.addEventListener('click', (e) => {
             if (e.target === projectModal) {
-                closeModal(projectModal);
+                closeProjectDetailModal();
             }
         });
     }
@@ -543,12 +581,77 @@ document.addEventListener('DOMContentLoaded', () => {
             const project = projectsData.find(p => String(p.id) === String(projectId));
             if (!project) return;
 
-            // Isi konten modal
-            modalProjectImg.src = project.image;
-            modalProjectImg.alt = project.title;
-            modalProjectCategory.textContent = project.category;
-            modalProjectTitle.textContent = project.title;
-            modalProjectDesc.textContent = project.description || 'Proyek portofolio unggulan dengan arsitektur modern dan performa tinggi.';
+            // Reset media state
+            if (modalProjectVideo) {
+                modalProjectVideo.pause();
+                modalProjectVideo.currentTime = 0;
+                modalProjectVideo.removeAttribute('src');
+                modalProjectVideo.style.display = 'none';
+            }
+            if (modalProjectIframe) {
+                modalProjectIframe.src = '';
+                modalProjectIframe.style.display = 'none';
+            }
+            if (modalProjectImg) {
+                modalProjectImg.style.display = 'none';
+            }
+            if (modalMediaWrapper) {
+                modalMediaWrapper.classList.remove('aspect-9-16', 'aspect-16-9', 'aspect-image');
+            }
+
+            // Tentukan rasio & tipe media
+            const isVerticalReel = project.aspectRatio === '9/16';
+            const ratioClass = isVerticalReel ? 'aspect-9-16' : 'aspect-16-9';
+            const videoType = project.videoType || (project.videoUrl ? 'video' : (project.youtubeId ? 'youtube' : 'image'));
+
+            if (modalMediaWrapper) {
+                modalMediaWrapper.classList.add(videoType === 'image' ? 'aspect-image' : ratioClass);
+            }
+
+            if (videoType === 'video' && project.videoUrl) {
+                if (modalProjectVideo) {
+                    modalProjectVideo.src = project.videoUrl;
+                    modalProjectVideo.poster = project.image || '';
+                    modalProjectVideo.style.display = 'block';
+                }
+                if (modalMediaBadgeText) {
+                    modalMediaBadgeText.textContent = isVerticalReel ? 'REELS PREVIEW (9:16)' : 'VIDEO PREVIEW (16:9)';
+                }
+            } else if (videoType === 'youtube' && project.youtubeId) {
+                if (modalProjectIframe) {
+                    modalProjectIframe.src = `https://www.youtube-nocookie.com/embed/${project.youtubeId}?autoplay=1&mute=0&rel=0`;
+                    modalProjectIframe.style.display = 'block';
+                }
+                if (modalMediaBadgeText) {
+                    modalMediaBadgeText.textContent = 'YOUTUBE EMBED';
+                }
+            } else {
+                if (modalProjectImg) {
+                    modalProjectImg.src = project.image || '';
+                    modalProjectImg.alt = project.title || 'Project Preview';
+                    modalProjectImg.style.display = 'block';
+                }
+                if (modalMediaBadgeText) {
+                    modalMediaBadgeText.textContent = 'IMAGE SHOWCASE';
+                }
+            }
+
+            // Isi konten teks & meta
+            if (modalProjectCategory) modalProjectCategory.textContent = project.category || 'Portfolio';
+            if (modalProjectClient) modalProjectClient.textContent = project.client ? `Client: ${project.client}` : '';
+            if (modalProjectTitle) modalProjectTitle.textContent = project.title || 'Judul Proyek';
+            if (modalProjectDesc) modalProjectDesc.textContent = project.description || 'Proyek portofolio unggulan dengan arsitektur visual modern dan presisi tinggi.';
+
+            // Technical Specs Grid
+            if (project.specs) {
+                if (specSoftware) specSoftware.textContent = project.specs.software || 'Premiere Pro';
+                if (specFormat) specFormat.textContent = project.specs.format || (isVerticalReel ? '9:16 Vertical Reel' : '16:9 Widescreen');
+                if (specScope) specScope.textContent = project.specs.scope || 'Full Production & Edit';
+            } else {
+                if (specSoftware) specSoftware.textContent = 'Premiere & After Effects';
+                if (specFormat) specFormat.textContent = isVerticalReel ? '9:16 Vertical Reel' : '16:9 Widescreen';
+                if (specScope) specScope.textContent = 'Full Edit & Color Grading';
+            }
 
             // Render dinamis tombol tautan eksternal ("Lihat Postingan Klien")
             const targetLink = project.link || project.liveUrl || '';
@@ -559,7 +662,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     modalProjectUrl.target = '_blank';
                     modalProjectUrl.rel = 'noopener noreferrer';
 
-                    // Label tombol dinamis sesuai platform atau kategori
                     let btnLabel = 'Lihat Postingan Klien';
                     if (project.linkLabel) {
                         btnLabel = project.linkLabel;
@@ -587,9 +689,28 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             }
 
-            modalProjectTags.innerHTML = (project.tags || [])
-                .map(tag => `<span class="project-tag">${tag}</span>`)
-                .join('');
+            // Quick Inquire Action: Auto-prefill contact modal
+            if (modalInquireBtn) {
+                modalInquireBtn.onclick = () => {
+                    closeProjectDetailModal();
+                    const contactModalEl = document.getElementById('contact-modal');
+                    if (contactModalEl) {
+                        openModal(contactModalEl);
+                        const msgInput = document.getElementById('contact-message');
+                        if (msgInput) {
+                            msgInput.value = `Halo Mohammad Ikhsan! Saya tertarik memesan proyek serupa dengan: "${project.title}" (${project.category}). Mohon info estimasi biaya dan timeline pengerjaannya.`;
+                            msgInput.focus();
+                        }
+                    }
+                };
+            }
+
+            // Tags
+            if (modalProjectTags) {
+                modalProjectTags.innerHTML = (project.tags || [])
+                    .map(tag => `<span class="project-tag">${tag}</span>`)
+                    .join('');
+            }
 
             openModal(projectModal);
         });
@@ -764,7 +885,7 @@ document.addEventListener('DOMContentLoaded', () => {
     document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape' || e.key === 'Esc') {
             if (projectModal && projectModal.classList.contains('active')) {
-                closeModal(projectModal);
+                closeProjectDetailModal();
             }
             if (contactModal && contactModal.classList.contains('active')) {
                 closeModal(contactModal);
