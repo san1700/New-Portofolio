@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let lenis = null;
     if (typeof Lenis !== 'undefined') {
         lenis = new Lenis({
-            duration: 1.2,
+            duration: 0.7,
             easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
             orientation: 'vertical',
             gestureOrientation: 'vertical',
@@ -28,15 +28,19 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         requestAnimationFrame(raf);
 
-        // Smooth scroll for internal anchor links (excluding showreel/modal triggers)
+        // Smooth scroll for internal anchor links (with snappy immediate response)
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 const href = this.getAttribute('href');
-                if (href && href !== '#' && href !== '#showreel' && href !== '#contact' && !this.hasAttribute('data-showreel-trigger')) {
+                if (href && href !== '#' && href !== '#showreel' && !this.hasAttribute('data-showreel-trigger')) {
+                    if (href === '#contact' && document.getElementById('contact-modal')) {
+                        // Handled by contact modal listener
+                        return;
+                    }
                     const target = document.querySelector(href);
                     if (target) {
                         e.preventDefault();
-                        lenis.scrollTo(target, { offset: -24, duration: 1.2 });
+                        lenis.scrollTo(target, { offset: -24, duration: 0.65 });
                     }
                 }
             });
@@ -92,28 +96,44 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // =========================================
-    // LINEAR & VERCEL SPOTLIGHT EFFECT (Mouse-Tracking Dynamic Radial Glow)
+    // LINEAR & VERCEL SPOTLIGHT EFFECT (Optimized High-Performance RAF Tracking)
     // =========================================
     const initSpotlightTracking = () => {
-        const cards = document.querySelectorAll('.spotlight-card, .project-card, .service-card, .hero-bio-card, .about-card, .testimonial-card');
+        const cards = document.querySelectorAll('.spotlight-card, .project-card, .service-card, .hero-bio-card, .about-card, .testimonial-card, .portal-card, .arsenal-card');
         cards.forEach(card => {
             if (!card.dataset.spotlightInit) {
                 card.dataset.spotlightInit = 'true';
+                let rect = null;
+                let ticking = false;
 
-                const updateCoords = (e) => {
-                    const rect = card.getBoundingClientRect();
-                    const x = e.clientX - rect.left;
-                    const y = e.clientY - rect.top;
+                const setPos = (clientX, clientY) => {
+                    if (!rect) rect = card.getBoundingClientRect();
+                    const x = clientX - rect.left;
+                    const y = clientY - rect.top;
                     card.style.setProperty('--mouse-x', `${x.toFixed(1)}px`);
                     card.style.setProperty('--mouse-y', `${y.toFixed(1)}px`);
                 };
 
-                card.addEventListener('pointerenter', updateCoords);
-                card.addEventListener('pointermove', updateCoords);
+                card.addEventListener('pointerenter', (e) => {
+                    rect = card.getBoundingClientRect();
+                    setPos(e.clientX, e.clientY);
+                }, { passive: true });
+
+                card.addEventListener('pointermove', (e) => {
+                    if (!ticking) {
+                        ticking = true;
+                        requestAnimationFrame(() => {
+                            setPos(e.clientX, e.clientY);
+                            ticking = false;
+                        });
+                    }
+                }, { passive: true });
+
                 card.addEventListener('pointerleave', () => {
+                    rect = null;
                     card.style.setProperty('--mouse-x', `-500px`);
                     card.style.setProperty('--mouse-y', `-500px`);
-                });
+                }, { passive: true });
             }
         });
     };
@@ -141,7 +161,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // =========================================
-    // HERO PORTRAIT 3D GYROSCOPIC TILT & PARALLAX (Efek Huda Muliya - Subtle & Refined)
+    // HERO PORTRAIT 3D GYROSCOPIC TILT & PARALLAX (Immediate, Responsive & Smooth)
     // =========================================
     const initPortrait3DTilt = () => {
         const heroCenter = document.querySelector('.hero-center');
@@ -161,13 +181,13 @@ document.addEventListener('DOMContentLoaded', () => {
         let currentTransX = 0, currentTransY = 0;
 
         const updatePhysics = () => {
-            // Smooth subtle spring damping (persis seperti di referensi Huda Muliya)
-            currentRotateX += (targetRotateX - currentRotateX) * 0.055;
-            currentRotateY += (targetRotateY - currentRotateY) * 0.055;
-            currentTransX += (targetTransX - currentTransX) * 0.055;
-            currentTransY += (targetTransY - currentTransY) * 0.055;
+            // Highly responsive damping (0.20 for immediate cursor synchronization)
+            currentRotateX += (targetRotateX - currentRotateX) * 0.20;
+            currentRotateY += (targetRotateY - currentRotateY) * 0.20;
+            currentTransX += (targetTransX - currentTransX) * 0.20;
+            currentTransY += (targetTransY - currentTransY) * 0.20;
 
-            // Foto tilt halus (max ~2.8 deg dan translasi lembut ~8px)
+            // Foto tilt halus
             img.style.transform = `perspective(1200px) rotateX(${currentRotateX.toFixed(2)}deg) rotateY(${currentRotateY.toFixed(2)}deg) translate3d(${currentTransX.toFixed(1)}px, ${currentTransY.toFixed(1)}px, 0)`;
 
             if (watermark) {
@@ -175,7 +195,6 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             if (tunnel) {
-                // Counter-parallax & inverse subtle tilt menciptakan ilusi lorong perspektif 3D yang sangat dalam
                 tunnel.style.transform = `translateX(-50%) translate3d(${(-currentTransX * 0.45).toFixed(1)}px, ${(-currentTransY * 0.35).toFixed(1)}px, 0) rotateX(${(-currentRotateX * 0.35).toFixed(2)}deg) rotateY(${(-currentRotateY * 0.35).toFixed(2)}deg)`;
             }
 
@@ -193,11 +212,9 @@ document.addEventListener('DOMContentLoaded', () => {
         requestAnimationFrame(updatePhysics);
 
         window.addEventListener('mousemove', (e) => {
-            // Normalisasi -1 sampai 1 dari posisi kursor layar penuh (seperti di Huda Muliya)
             const normX = (e.clientX / window.innerWidth) * 2 - 1;
             const normY = (e.clientY / window.innerHeight) * 2 - 1;
 
-            // Sudut kemiringan halus dan tidak berlebihan (sesuai Huda Muliya: max 2.8 derajat)
             targetRotateX = -normY * 2.8;
             targetRotateY = normX * 2.8;
             targetTransX = normX * 8;
@@ -424,8 +441,8 @@ document.addEventListener('DOMContentLoaded', () => {
         }, { passive: true });
 
         const renderProjects = (filterCategory, filterKey) => {
-            // Fade out
-            projectsContainer.style.opacity = 0;
+            // Immediate responsive transition
+            projectsContainer.style.opacity = 0.3;
 
             setTimeout(() => {
                 let filteredData = currentProjects;
@@ -867,12 +884,23 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Trigger tombol "Let's Talk" di navbar, CTA banner, atau tombol lainnya
+    // Trigger tombol "Let's Talk" / "Contact" di navbar, CTA banner, atau tombol lainnya
     document.addEventListener('click', (e) => {
         const contactTrigger = e.target.closest('a[href="#contact"]');
         if (contactTrigger) {
             e.preventDefault();
-            openModal(contactModal);
+            if (contactModal) {
+                openModal(contactModal);
+            } else {
+                const contactSection = document.getElementById('contact');
+                if (contactSection) {
+                    if (lenis) {
+                        lenis.scrollTo(contactSection, { offset: -24, duration: 0.65 });
+                    } else {
+                        contactSection.scrollIntoView({ behavior: 'smooth' });
+                    }
+                }
+            }
         }
     });
 

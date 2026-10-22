@@ -1708,6 +1708,11 @@ ol {
   border-color: transparent;
 }
 
+.filter-btn:active {
+  transform: scale(0.96);
+  transition: transform 0.08s ease;
+}
+
 .filter-count {
   display: inline-flex;
   align-items: center;
