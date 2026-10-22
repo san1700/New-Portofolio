@@ -3387,3 +3387,421 @@ ol {
     display: none;
   }
 }
+
+/* ==========================================================================
+   MULTI-PAGE DUAL-TRACK ARCHITECTURE & SUBPAGE STYLING
+   ========================================================================== */
+
+/* 1. Dual Concentration Portal (Huda Muliya Architecture) */
+.portal-tracks-section {
+  padding-block: 80px 40px;
+  position: relative;
+  z-index: 2;
+}
+
+.portal-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 32px;
+}
+
+.portal-card {
+  position: relative;
+  padding: 36px;
+  border-radius: var(--radius-card);
+  background: var(--bg-card);
+  border: 1px solid var(--border-default);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  overflow: hidden;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s ease, box-shadow 0.4s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.portal-card:hover {
+  transform: translateY(-6px);
+  border-color: var(--border-hover);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+}
+
+.portal-cinema:hover {
+  border-color: rgba(94, 106, 210, 0.45);
+}
+
+.portal-design:hover {
+  border-color: rgba(16, 185, 129, 0.45);
+}
+
+.portal-card-glow {
+  position: absolute;
+  top: -50px;
+  right: -50px;
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  pointer-events: none;
+  opacity: 0.15;
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.cinema-glow {
+  background: radial-gradient(circle, #5E6AD2 0%, transparent 70%);
+}
+
+.design-glow {
+  background: radial-gradient(circle, #10B981 0%, transparent 70%);
+}
+
+.portal-card:hover .portal-card-glow {
+  opacity: 0.35;
+  transform: scale(1.15);
+}
+
+.portal-tag {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  font-weight: 600;
+  color: var(--foreground-muted);
+}
+
+.portal-badge {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  padding: 4px 10px;
+  border-radius: 99px;
+  font-weight: 500;
+}
+
+.cinema-badge {
+  background: rgba(94, 106, 210, 0.15);
+  color: #93C5FD;
+  border: 1px solid rgba(94, 106, 210, 0.3);
+}
+
+.design-badge {
+  background: rgba(16, 185, 129, 0.15);
+  color: #6EE7B7;
+  border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+.portal-card-media {
+  width: 100%;
+  height: 200px;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid var(--border-default);
+  position: relative;
+}
+
+.portal-preview-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.portal-card:hover .portal-preview-img {
+  transform: scale(1.05);
+}
+
+.portal-title {
+  font-size: 1.6rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--foreground);
+}
+
+.portal-desc {
+  font-size: 0.94rem;
+  line-height: 1.6;
+  flex-grow: 1;
+}
+
+.tech-badge {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  padding: 4px 10px;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--foreground-muted);
+  border: 1px solid var(--border-default);
+}
+
+.portal-card-footer {
+  border-top: 1px solid var(--border-default);
+  padding-top: 20px;
+}
+
+/* 2. Subpage Hero Sections (cinema.html & design.html) */
+.hero-subpage {
+  padding-top: 130px;
+  padding-bottom: 70px;
+  min-height: auto;
+}
+
+.hero-grid-subpage {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 48px;
+  align-items: center;
+}
+
+.track-badge-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.track-pill {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  padding: 4px 12px;
+  border-radius: 99px;
+  text-transform: uppercase;
+}
+
+.cinema-pill {
+  background: rgba(94, 106, 210, 0.15);
+  color: #93C5FD;
+  border: 1px solid rgba(94, 106, 210, 0.35);
+}
+
+.design-pill {
+  background: rgba(16, 185, 129, 0.15);
+  color: #6EE7B7;
+  border: 1px solid rgba(16, 185, 129, 0.35);
+}
+
+.track-status {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--foreground-muted);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.production-pills-row {
+  margin-top: 24px;
+}
+
+.subpage-visual-card {
+  position: relative;
+  border-radius: var(--radius-card);
+  overflow: hidden;
+  border: 1px solid var(--border-default);
+  background: var(--bg-card);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.7);
+}
+
+.subpage-hero-img {
+  width: 100%;
+  height: 380px;
+  object-fit: cover;
+  display: block;
+}
+
+.subpage-visual-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 24px;
+  background: linear-gradient(to top, rgba(5, 5, 6, 0.95) 0%, rgba(5, 5, 6, 0.6) 60%, transparent 100%);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.playback-indicator {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  color: #FFFFFF;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  letter-spacing: 0.08em;
+  font-weight: 600;
+}
+
+.rec-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #EF4444;
+  animation: pulse-dot 1.5s infinite ease-in-out;
+}
+
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.85); }
+}
+
+.footage-meta .footage-title {
+  display: block;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #FFFFFF;
+}
+
+.footage-meta .footage-sub {
+  display: block;
+  font-size: 0.8rem;
+  color: var(--foreground-muted);
+  font-family: var(--font-mono);
+}
+
+/* 3. Arsenal & Tools Grid */
+.arsenal-section {
+  padding-block: 60px 40px;
+}
+
+.arsenal-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+.arsenal-card {
+  padding: 24px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-default);
+  border-radius: 14px;
+  transition: transform 0.3s ease, border-color 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.arsenal-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--border-hover);
+}
+
+.arsenal-logo {
+  width: 44px;
+  height: 44px;
+  object-fit: contain;
+  margin-bottom: 16px;
+  filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.4));
+}
+
+.arsenal-icon-box {
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  background: rgba(16, 185, 129, 0.15);
+  color: #10B981;
+  margin-bottom: 16px;
+}
+
+.arsenal-title {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--foreground);
+  margin-bottom: 6px;
+}
+
+.arsenal-desc {
+  font-size: 0.84rem;
+  line-height: 1.5;
+}
+
+/* 4. Contact Section on Subpages */
+.contact-section {
+  padding-block: 40px 80px;
+}
+
+.contact-card {
+  padding: 48px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-card);
+}
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+}
+
+.contact-title {
+  font-size: 1.8rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.contact-form .form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.form-label {
+  color: var(--foreground-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.form-input {
+  width: 100%;
+  padding: 12px 16px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--border-default);
+  border-radius: 8px;
+  color: var(--foreground);
+  font-family: inherit;
+  font-size: 0.92rem;
+  transition: border-color 0.25s ease, background 0.25s ease;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: var(--accent);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+select.form-input {
+  cursor: pointer;
+  background-color: #0d0f14;
+}
+
+/* Responsive adjustments */
+@media (max-width: 900px) {
+  .portal-cards-grid,
+  .hero-grid-subpage,
+  .contact-grid {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+
+  .arsenal-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .subpage-hero-img {
+    height: 280px;
+  }
+
+  .contact-card {
+    padding: 28px;
+  }
+}
+
+@media (max-width: 640px) {
+  .arsenal-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .portal-card {
+    padding: 24px;
+  }
+}

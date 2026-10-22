@@ -1,4 +1,9 @@
-import { servicesData, projectsData, statsData, testimonialsData } from './data.js';
+import {
+    servicesData, cinemaServices, designServices,
+    projectsData, cinemaProjects, designProjects,
+    statsData, statsDataCinema, statsDataDesign,
+    testimonialsData, testimonialsDataCinema, testimonialsDataDesign
+} from './data.js';
 
 document.addEventListener('DOMContentLoaded', () => {
 
@@ -237,7 +242,79 @@ document.addEventListener('DOMContentLoaded', () => {
     setTimeout(observeRevealElements, 80);
 
     // =========================================
-    // 2. RENDER SERVICES SECTION (Ohio Agency Style)
+    // MULTI-PAGE & DUAL CONCENTRATION CONTEXT
+    // =========================================
+    const currentPage = document.body.getAttribute('data-page') || 'home';
+    let currentServices = servicesData;
+    let currentProjects = projectsData;
+    let currentStats = statsData;
+    let currentTestimonials = testimonialsData;
+    let filterConfigs = [];
+
+    let servicesEyebrow = "EXPERTISE &amp; CAPABILITIES";
+    let servicesTitle = `Creative <span class="title-serif text-accent">Services</span>`;
+    let servicesLead = `Layanan produksi visual terpadu — dari editing reels dinamis, pengambilan gambar drone sinematik, hingga identitas desain grafis berdaya saing global.`;
+
+    let workEyebrow = "CURATED PORTFOLIO";
+    let workTitle = `Selected <span class="title-serif text-accent">Works</span>`;
+    let workLead = `Koleksi karya visual pilihan berfokus pada storytelling ritmis, estetika sinematik, dan dampak engagement nyata bagi brand.`;
+
+    if (currentPage === 'cinema') {
+        currentServices = cinemaServices;
+        currentProjects = cinemaProjects;
+        currentStats = statsDataCinema;
+        currentTestimonials = testimonialsDataCinema;
+        servicesEyebrow = "AUDIO-VISUAL REPERTOIRE";
+        servicesTitle = `Cinema &amp; Media <span class="title-serif text-accent">Services</span>`;
+        servicesLead = `Spesialisasi produksi visual bergerak — dari video pendek vertikal (Reels/TikTok), videografi udara sinematik, hingga color retouching filmis.`;
+
+        workEyebrow = "CINEMATIC SHOWCASE";
+        workTitle = `Cinema &amp; Video <span class="title-serif text-accent">Repertoire</span>`;
+        workLead = `Rangkaian karya videografi komersial, liputan drone 4K, fashion reels beritme cepat, dan foto bernuansa sinematik.`;
+
+        filterConfigs = [
+            { label: 'All Works', filter: 'All' },
+            { label: 'Reels & Short Form', filter: 'Reels & Short Form', key: 'subCategory' },
+            { label: 'Videography & Drone', filter: 'Videography & Drone', key: 'subCategory' },
+            { label: 'Photography & Retouch', filter: 'Photography & Retouch', key: 'subCategory' }
+        ];
+    } else if (currentPage === 'design') {
+        currentServices = designServices;
+        currentProjects = designProjects;
+        currentStats = statsDataDesign;
+        currentTestimonials = testimonialsDataDesign;
+        servicesEyebrow = "COMMUNICATION &amp; SYSTEMS";
+        servicesTitle = `Graphic &amp; UI/UX <span class="title-serif text-accent">Services</span>`;
+        servicesLead = `Perancangan visual berkarakter kuat — dari antarmuka digital (UI/UX) web &amp; mobile, identitas visual brand, carousel edukatif, hingga poster tipografi.`;
+
+        workEyebrow = "DESIGN SHOWCASE";
+        workTitle = `Graphic &amp; Product <span class="title-serif text-accent">Showcase</span>`;
+        workLead = `Studi kasus antarmuka aplikasi digital, sistem identitas visual brand, carousel edukatif berslide banyak, dan poster modern.`;
+
+        filterConfigs = [
+            { label: 'All Designs', filter: 'All' },
+            { label: 'UI/UX Design', filter: 'UI/UX Design', key: 'category' },
+            { label: 'Brand Identity', filter: 'Brand Identity', key: 'category' },
+            { label: 'Social Carousel', filter: 'Social Carousel', key: 'category' },
+            { label: 'Poster Design', filter: 'Poster Design', key: 'category' }
+        ];
+    } else {
+        // Home Gateway
+        currentServices = servicesData;
+        currentProjects = projectsData;
+        currentStats = statsData;
+        currentTestimonials = testimonialsData;
+        filterConfigs = [
+            { label: 'All Curated', filter: 'All' },
+            { label: 'Video Editing', filter: 'Video Editing', key: 'category' },
+            { label: 'Videography', filter: 'Videography', key: 'category' },
+            { label: 'UI/UX Design', filter: 'UI/UX Design', key: 'category' },
+            { label: 'Brand Identity', filter: 'Brand Identity', key: 'category' }
+        ];
+    }
+
+    // =========================================
+    // 2. RENDER SERVICES SECTION
     // =========================================
     const servicesSection = document.getElementById('services');
     if (servicesSection) {
@@ -245,21 +322,18 @@ document.addEventListener('DOMContentLoaded', () => {
             <div class="section-header-split reveal">
                 <div class="section-header-left">
                     <div class="section-eyebrow">
-                        <span class="eyebrow-num">03 //</span>
-                        <span class="eyebrow-text">EXPERTISE &amp; CAPABILITIES</span>
+                        <span class="eyebrow-text">${servicesEyebrow}</span>
                     </div>
-                    <h2 class="section-title">Creative <span class="title-serif text-accent">Services</span></h2>
+                    <h2 class="section-title">${servicesTitle}</h2>
                 </div>
                 <div class="section-header-right">
-                    <p class="section-lead-desc text-muted">
-                        Layanan produksi visual terpadu — dari editing reels dinamis, pengambilan gambar drone sinematik, hingga identitas desain grafis berdaya saing global.
-                    </p>
+                    <p class="section-lead-desc text-muted">${servicesLead}</p>
                 </div>
             </div>
             <div class="grid grid-cols-2 gap-md services-grid mt-lg">
         `;
 
-        servicesData.forEach((service, i) => {
+        currentServices.forEach((service, i) => {
             const indexStr = String(i + 1).padStart(2, '0');
             servicesHTML += `
                 <div class="service-card reveal reveal-delay-${(i % 4) + 1} bg-card rounded-card">
@@ -281,38 +355,37 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // =========================================
-    // 3. RENDER PROJECTS (WORK) SECTION WITH FILTERS (Ohio Agency Style)
+    // 3. RENDER PROJECTS (WORK) SECTION WITH FILTERS
     // =========================================
     const workSection = document.getElementById('work');
     if (workSection) {
-        const countAll = projectsData.length;
-        const countVideoEditing = projectsData.filter(p => p.category === 'Video Editing').length;
-        const countVideography = projectsData.filter(p => p.category === 'Videography').length;
-        const countDesign = projectsData.filter(p => p.category === 'Graphic Design').length;
-        const countPhoto = projectsData.filter(p => p.category === 'Photography').length;
+        // Bangun tombol filter sesuai konfigurasi halaman
+        const filterButtonsHTML = filterConfigs.map((cfg, idx) => {
+            let count = currentProjects.length;
+            if (cfg.filter !== 'All') {
+                count = currentProjects.filter(p => {
+                    if (cfg.key === 'subCategory') return p.subCategory === cfg.filter;
+                    return p.category === cfg.filter;
+                }).length;
+            }
+            return `<button class="filter-btn ${idx === 0 ? 'active' : ''}" data-filter="${cfg.filter}" data-key="${cfg.key || ''}">${cfg.label} <span class="filter-count">${count}</span></button>`;
+        }).join('');
 
         workSection.innerHTML = `
             <div class="section-header-split reveal mt-xl mb-lg">
                 <div class="section-header-left">
                     <div class="section-eyebrow">
-                        <span class="eyebrow-num">04 //</span>
-                        <span class="eyebrow-text">CURATED PORTFOLIO</span>
+                        <span class="eyebrow-text">${workEyebrow}</span>
                     </div>
-                    <h2 class="section-title">Selected <span class="title-serif text-accent">Works</span></h2>
+                    <h2 class="section-title">${workTitle}</h2>
                 </div>
                 <div class="section-header-right">
-                    <p class="section-lead-desc text-muted">
-                        Koleksi karya visual pilihan berfokus pada storytelling ritmis, estetika sinematik, dan dampak engagement nyata bagi brand.
-                    </p>
+                    <p class="section-lead-desc text-muted">${workLead}</p>
                 </div>
             </div>
             <div class="project-filters flex gap-sm flex-wrap justify-start mb-lg" id="project-filters">
                 <span class="filter-sliding-pill" id="filter-sliding-pill" aria-hidden="true"></span>
-                <button class="filter-btn active" data-filter="All">All <span class="filter-count">${countAll}</span></button>
-                <button class="filter-btn" data-filter="Video Editing">Video Editing <span class="filter-count">${countVideoEditing}</span></button>
-                <button class="filter-btn" data-filter="Videography">Videography <span class="filter-count">${countVideography}</span></button>
-                <button class="filter-btn" data-filter="Graphic Design">Graphic Design <span class="filter-count">${countDesign}</span></button>
-                <button class="filter-btn" data-filter="Photography">Photography <span class="filter-count">${countPhoto}</span></button>
+                ${filterButtonsHTML}
             </div>
             <div class="grid grid-cols-2 gap-lg projects-grid" id="projects-container" style="transition: opacity 0.3s ease;"></div>
         `;
@@ -350,15 +423,18 @@ document.addEventListener('DOMContentLoaded', () => {
             if (currentActive) updateSlidingPill(currentActive);
         }, { passive: true });
 
-        const renderProjects = (filterCategory) => {
+        const renderProjects = (filterCategory, filterKey) => {
             // Fade out
             projectsContainer.style.opacity = 0;
 
             setTimeout(() => {
-                let filteredData = projectsData;
+                let filteredData = currentProjects;
 
                 if (filterCategory !== 'All') {
-                    filteredData = projectsData.filter(p => p.category === filterCategory);
+                    filteredData = currentProjects.filter(p => {
+                        if (filterKey === 'subCategory') return p.subCategory === filterCategory;
+                        return p.category === filterCategory || p.subCategory === filterCategory;
+                    });
                 }
 
                 projectsContainer.innerHTML = filteredData.map((project, i) => `
@@ -367,12 +443,12 @@ document.addEventListener('DOMContentLoaded', () => {
                             <img src="${project.image}" alt="${project.title}" class="project-image" loading="lazy" onerror="this.style.opacity='0';">
                             <span class="project-badge-tag">${project.tag || project.category}</span>
                             
-                            <!-- Software Tool & Format Pill (Langsung di Thumbnail) -->
+                            <!-- Software Tool & Format Pill -->
                             <div class="project-software-badge">
                                 <span class="software-dot"></span>
                                 <span class="software-name">${(project.specs && project.specs.software) ? project.specs.software.split(' & ')[0] : (project.tags ? project.tags[0] : 'Premiere')}</span>
                                 <span class="software-sep">·</span>
-                                <span class="software-format">${project.aspectRatio === '9/16' ? '9:16 Reel' : (project.videoType === 'youtube' ? '16:9 Cinema' : 'Visual')}</span>
+                                <span class="software-format">${project.aspectRatio === '9/16' ? '9:16 Reel' : (project.videoType === 'youtube' ? '16:9 Cinema' : (project.specs && project.specs.format ? project.specs.format.split(' ')[0] : 'Visual'))}</span>
                             </div>
 
                             <div class="project-overlay-trigger">
@@ -403,11 +479,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 // Fade in
                 projectsContainer.style.opacity = 1;
-            }, 300); // Waktu yang sama dengan transition CSS di atas
+            }, 300);
         };
 
         // Render awal semua projek
-        renderProjects('All');
+        renderProjects('All', '');
 
         // Logic ketika filter diklik
         filterBtns.forEach(btn => {
@@ -417,14 +493,14 @@ document.addEventListener('DOMContentLoaded', () => {
                     filterBtns.forEach(b => b.classList.remove('active'));
                     targetBtn.classList.add('active');
                     updateSlidingPill(targetBtn);
-                    renderProjects(targetBtn.dataset.filter);
+                    renderProjects(targetBtn.dataset.filter, targetBtn.dataset.key);
                 }
             });
         });
     }
 
     // =========================================
-    // 4. RENDER IMPACT SECTION (Ohio Agency Style)
+    // 4. RENDER IMPACT SECTION
     // =========================================
     const impactSection = document.getElementById('impact');
     if (impactSection) {
@@ -432,7 +508,6 @@ document.addEventListener('DOMContentLoaded', () => {
             <div class="section-header-split reveal mb-lg">
                 <div class="section-header-left">
                     <div class="section-eyebrow">
-                        <span class="eyebrow-num">05 //</span>
                         <span class="eyebrow-text">MEASURABLE VALUE</span>
                     </div>
                     <h2 class="section-title">Proven <span class="title-serif text-accent">Impact</span></h2>
@@ -446,7 +521,7 @@ document.addEventListener('DOMContentLoaded', () => {
             <div class="impact-grid border-t border-b">
         `;
 
-        statsData.forEach(stat => {
+        currentStats.forEach(stat => {
             impactHTML += `
                 <div class="stat-item reveal">
                     <div class="stat-value">${stat.value}</div>
@@ -459,17 +534,19 @@ document.addEventListener('DOMContentLoaded', () => {
         impactSection.innerHTML = impactHTML;
 
         const gridEl = impactSection.querySelector('.impact-grid');
-        gridEl.style.borderTop = "1px solid rgba(255,255,255,0.08)";
-        gridEl.style.borderBottom = "1px solid rgba(255,255,255,0.08)";
-        gridEl.style.paddingBlock = "60px";
+        if (gridEl) {
+            gridEl.style.borderTop = "1px solid rgba(255,255,255,0.08)";
+            gridEl.style.borderBottom = "1px solid rgba(255,255,255,0.08)";
+            gridEl.style.paddingBlock = "60px";
+        }
     }
 
     // =========================================
-    // 5. RENDER TESTIMONIALS SECTION (Ohio Agency Style)
+    // 5. RENDER TESTIMONIALS SECTION
     // =========================================
     const testimonialsSection = document.getElementById('testimonials');
     if (testimonialsSection) {
-        let trackHTML = testimonialsData.map(testi => `
+        let trackHTML = currentTestimonials.map(testi => `
             <div class="testimonial-card">
                 <div class="quote-icon">“</div>
                 <p class="testimonial-quote">${testi.quote}</p>
@@ -487,7 +564,6 @@ document.addEventListener('DOMContentLoaded', () => {
             <div class="section-header-split reveal mb-lg">
                 <div class="section-header-left">
                     <div class="section-eyebrow">
-                        <span class="eyebrow-num">06 //</span>
                         <span class="eyebrow-text">CLIENT TESTIMONIALS</span>
                     </div>
                     <h2 class="section-title">Client <span class="title-serif text-accent">Feedback</span></h2>
@@ -517,22 +593,24 @@ document.addEventListener('DOMContentLoaded', () => {
         const prevBtn = document.getElementById('prev-testi');
         const nextBtn = document.getElementById('next-testi');
 
-        let currentIndex = 0;
-        const totalTestimonials = testimonialsData.length;
+        if (track && prevBtn && nextBtn) {
+            let currentIndex = 0;
+            const totalTestimonials = currentTestimonials.length;
 
-        const updateSlider = () => {
-            track.style.transform = `translateX(-${currentIndex * 100}%)`;
-        };
+            const updateSlider = () => {
+                track.style.transform = `translateX(-${currentIndex * 100}%)`;
+            };
 
-        prevBtn.addEventListener('click', () => {
-            currentIndex = (currentIndex > 0) ? currentIndex - 1 : totalTestimonials - 1;
-            updateSlider();
-        });
+            prevBtn.addEventListener('click', () => {
+                currentIndex = (currentIndex > 0) ? currentIndex - 1 : totalTestimonials - 1;
+                updateSlider();
+            });
 
-        nextBtn.addEventListener('click', () => {
-            currentIndex = (currentIndex < totalTestimonials - 1) ? currentIndex + 1 : 0;
-            updateSlider();
-        });
+            nextBtn.addEventListener('click', () => {
+                currentIndex = (currentIndex < totalTestimonials - 1) ? currentIndex + 1 : 0;
+                updateSlider();
+            });
+        }
     }
 
     // =========================================
@@ -633,7 +711,8 @@ document.addEventListener('DOMContentLoaded', () => {
             if (!card) return;
 
             const projectId = card.dataset.id;
-            const project = projectsData.find(p => String(p.id) === String(projectId));
+            const allAvailableProjects = [...cinemaProjects, ...designProjects, ...projectsData];
+            const project = allAvailableProjects.find(p => String(p.id) === String(projectId));
             if (!project) return;
 
             // Reset media state
