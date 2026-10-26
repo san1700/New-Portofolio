@@ -537,41 +537,28 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
 
                 projectsContainer.innerHTML = filteredData.map((project, i) => {
-                    const formatLabel = project.aspectRatio === '9/16' ? '9:16 Vertical Reel' : (project.videoType === 'youtube' ? '16:9 Cinema 4K' : (project.specs && project.specs.format ? project.specs.format.split(' ')[0] : 'Visual Design'));
-                    const primarySoftware = (project.specs && project.specs.software) ? project.specs.software.split(' & ')[0] : (project.tags ? project.tags[0] : 'Creative Suite');
+                    const tag1 = project.category || 'Creative Work';
+                    let tag2 = project.subCategory || (project.specs && project.specs.format ? project.specs.format.split(' ')[0] : (project.tags ? project.tags[0] : ''));
+                    if (tag2 && tag2.toLowerCase() === tag1.toLowerCase()) {
+                        tag2 = (project.tags && project.tags[1]) ? project.tags[1] : (project.tags && project.tags[0] ? project.tags[0] : '');
+                    }
 
                     return `
                     <div class="project-card spotlight-card reveal reveal-delay-${(i % 4) + 1} rounded-card group" data-id="${project.id}" style="cursor: pointer;">
-                        <div class="project-image-wrapper">
-                            <img src="${project.image}" alt="${project.title}" class="project-image" loading="lazy" onerror="this.style.opacity='0';">
-                            <span class="project-badge-tag">${project.tag || project.category}</span>
-                            
-                            <!-- Software Tool & Format Pill -->
-                            <div class="project-software-badge">
-                                <span class="software-dot"></span>
-                                <span class="software-name">${primarySoftware}</span>
-                                <span class="software-sep">·</span>
-                                <span class="software-format">${formatLabel}</span>
+                        <div class="project-card-inner">
+                            <div class="project-card-content">
+                                <div class="project-card-tags">
+                                    <span class="project-tag-pill">${tag1}</span>
+                                    ${tag2 ? `<span class="project-tag-pill">${tag2}</span>` : ''}
+                                </div>
+                                <h3 class="project-title">
+                                    <span>${project.title}</span>
+                                    <span class="project-title-arrow" aria-hidden="true">↗</span>
+                                </h3>
+                                <p class="project-short-desc text-muted">${project.description}</p>
                             </div>
-
-                            <div class="project-overlay-trigger">
-                                <span class="trigger-circle">
-                                    <span class="trigger-arrow">↗</span>
-                                </span>
-                            </div>
-                        </div>
-                        <div class="project-content">
-                            <div class="project-meta-row flex items-center justify-between">
-                                <span class="project-category text-accent">${project.category}</span>
-                                <span class="project-year font-mono">// 2026</span>
-                            </div>
-                            <h3 class="project-title flex items-center justify-between">
-                                <span>${project.title}</span>
-                                <span class="project-title-arrow">↗</span>
-                            </h3>
-                            <p class="project-short-desc text-muted mt-xs">${project.description}</p>
-                            <div class="project-tags flex gap-sm flex-wrap mt-sm">
-                                ${(project.tags || []).map(tag => `<span class="project-tag">${tag}</span>`).join('')}
+                            <div class="project-card-media">
+                                <img src="${project.image}" alt="${project.title}" class="project-image" loading="lazy" onerror="this.style.opacity='0';">
                             </div>
                         </div>
                     </div>
