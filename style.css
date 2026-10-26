@@ -1533,6 +1533,18 @@ ol {
   padding: 0;
 }
 
+/* Works Flyout Specific Layout (Clean 2-Track Menu) */
+.nav-popover-works {
+  width: 350px;
+}
+
+.popover-grid-works {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 0;
+}
+
 .popover-item-min {
   display: flex;
   align-items: flex-start;
@@ -2180,7 +2192,8 @@ ol {
   }
 
   .nav-links.active .popover-grid,
-  .nav-links.active .popover-grid-minimal {
+  .nav-links.active .popover-grid-minimal,
+  .nav-links.active .popover-grid-works {
     grid-template-columns: 1fr;
     gap: 4px;
     padding: 8px;

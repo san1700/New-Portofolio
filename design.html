@@ -49,7 +49,7 @@
         })();
     </script>
 
-    <link rel="stylesheet" href="style.css?v=10.3">
+    <link rel="stylesheet" href="style.css?v=10.4">
 </head>
 
 <body data-page="design">
@@ -141,7 +141,37 @@
 
                 <a href="cinema.html" class="nav-link">Cinema &amp; Media</a>
                 <a href="design.html" class="nav-link active">Graphic &amp; UI/UX</a>
-                <a href="#work" class="nav-link">Works</a>
+                <!-- Works with Hover Popover (Interactive Flyout Mega-Menu) -->
+                <div class="nav-item-dropdown" id="works-dropdown-wrap">
+                    <a href="index.html#work" class="nav-link nav-link-dropdown" aria-haspopup="true" aria-expanded="false" id="works-nav-trigger">
+                        <span>Works</span>
+                        <svg class="dropdown-chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+                    </a>
+
+                    <!-- Minimalist Flyout Menu (2 Tracks: Cinema & Media, Graphic & UI/UX) -->
+                    <div class="nav-popover nav-popover-minimal nav-popover-works" role="region" aria-label="Works Track Overview">
+                        <div class="popover-arrow" aria-hidden="true"></div>
+                        <div class="popover-grid popover-grid-works">
+                            <!-- Track 1: Cinema & Media -->
+                            <a href="cinema.html" class="popover-item-min">
+                                <svg class="popover-min-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m22 8-6 4 6 4V8Z"/><rect width="14" height="12" x="2" y="6" rx="2"/></svg>
+                                <div class="popover-min-text">
+                                    <div class="popover-min-title">Cinema &amp; Media</div>
+                                    <p class="popover-min-desc">Commercial Reels, Drone Videography &amp; Visual Production</p>
+                                </div>
+                            </a>
+
+                            <!-- Track 2: Graphic & UI/UX -->
+                            <a href="design.html" class="popover-item-min">
+                                <svg class="popover-min-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg>
+                                <div class="popover-min-text">
+                                    <div class="popover-min-title">Graphic &amp; UI/UX</div>
+                                    <p class="popover-min-desc">UI/UX Mobile Apps, Design Systems &amp; Visual Identity</p>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
                 <a href="#contact" class="nav-link">Contact</a>
             </nav>
             <span class="nav-capsule-sep" aria-hidden="true"></span>
@@ -447,7 +477,7 @@
         </div>
     </div>
 
-    <script type="module" src="main.js?v=10.1"></script>
+    <script type="module" src="main.js?v=10.4"></script>
 </body>
 
 </html>

@@ -48,12 +48,11 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // =========================================
-    // 1. MOBILE MENU TOGGLE & SEKECO DROPDOWN
+    // 1. MOBILE MENU TOGGLE & SEKECO DROPDOWNS (HOME & WORKS)
     // =========================================
     const mobileBtn = document.querySelector('.mobile-menu-btn');
     const navLinks = document.querySelector('.nav-links');
-    const homeDropdown = document.getElementById('home-dropdown-wrap');
-    const homeTrigger = document.getElementById('home-nav-trigger');
+    const dropdownWraps = document.querySelectorAll('.nav-item-dropdown');
 
     if (mobileBtn && navLinks) {
         mobileBtn.addEventListener('click', () => {
@@ -66,21 +65,36 @@ document.addEventListener('DOMContentLoaded', () => {
             link.addEventListener('click', () => {
                 mobileBtn.classList.remove('active');
                 navLinks.classList.remove('active');
-                if (homeDropdown) homeDropdown.classList.remove('is-open');
+                dropdownWraps.forEach(d => {
+                    d.classList.remove('is-open');
+                    const trig = d.querySelector('.nav-link-dropdown');
+                    if (trig) trig.setAttribute('aria-expanded', 'false');
+                });
             });
         });
 
-        // Mobile accordion toggle for Home dropdown
-        if (homeTrigger && homeDropdown) {
-            homeTrigger.addEventListener('click', (e) => {
-                if (window.innerWidth <= 900) {
-                    e.preventDefault();
-                    homeDropdown.classList.toggle('is-open');
-                    const expanded = homeDropdown.classList.contains('is-open');
-                    homeTrigger.setAttribute('aria-expanded', expanded ? 'true' : 'false');
-                }
-            });
-        }
+        // Mobile accordion toggle for all dropdowns (Home & Works)
+        dropdownWraps.forEach(dropdown => {
+            const trigger = dropdown.querySelector('.nav-link-dropdown');
+            if (trigger) {
+                trigger.addEventListener('click', (e) => {
+                    if (window.innerWidth <= 900) {
+                        e.preventDefault();
+                        const wasOpen = dropdown.classList.contains('is-open');
+                        // Close any other open dropdown in accordion
+                        dropdownWraps.forEach(other => {
+                            if (other !== dropdown) {
+                                other.classList.remove('is-open');
+                                const otherTrigger = other.querySelector('.nav-link-dropdown');
+                                if (otherTrigger) otherTrigger.setAttribute('aria-expanded', 'false');
+                            }
+                        });
+                        dropdown.classList.toggle('is-open', !wasOpen);
+                        trigger.setAttribute('aria-expanded', !wasOpen ? 'true' : 'false');
+                    }
+                });
+            }
+        });
     }
 
     // =========================================

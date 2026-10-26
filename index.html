@@ -52,16 +52,16 @@
 
     <!-- Prevent Theme Flash -->
     <script>
-        (function() {
+        (function () {
             try {
                 if (localStorage.getItem('portfolio_theme') === 'light') {
                     document.documentElement.setAttribute('data-theme', 'light');
                 }
-            } catch(e) {}
+            } catch (e) { }
         })();
     </script>
 
-    <link rel="stylesheet" href="style.css?v=10.3">
+    <link rel="stylesheet" href="style.css?v=10.4">
 </head>
 
 <body data-page="home">
@@ -85,9 +85,14 @@
             <nav class="nav-links">
                 <!-- Home with Hover Popover (Sekeco Minimalist Style) -->
                 <div class="nav-item-dropdown" id="home-dropdown-wrap">
-                    <a href="index.html" class="nav-link nav-link-dropdown active" aria-haspopup="true" aria-expanded="false" id="home-nav-trigger">
+                    <a href="index.html" class="nav-link nav-link-dropdown active" aria-haspopup="true"
+                        aria-expanded="false" id="home-nav-trigger">
                         <span>Home</span>
-                        <svg class="dropdown-chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+                        <svg class="dropdown-chevron" width="12" height="12" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"
+                            aria-hidden="true">
+                            <path d="m6 9 6 6 6-6" />
+                        </svg>
                     </a>
 
                     <!-- Sekeco Minimalist Flyout Menu (No Header, No Footer, Pure Stroke Icons) -->
@@ -96,25 +101,49 @@
                         <div class="popover-grid popover-grid-minimal">
                             <!-- Item 1: We are San -->
                             <a href="#about" class="popover-item-min">
-                                <svg class="popover-min-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect width="16" height="20" x="4" y="2" rx="2" ry="2"/><path d="M9 22v-4h6v4"/><path d="M8 6h.01"/><path d="M16 6h.01"/><path d="M8 10h.01"/><path d="M16 10h.01"/><path d="M8 14h.01"/><path d="M16 14h.01"/></svg>
+                                <svg class="popover-min-icon" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                                    stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+                                    stroke-linejoin="round">
+                                    <rect width="16" height="20" x="4" y="2" rx="2" ry="2" />
+                                    <path d="M9 22v-4h6v4" />
+                                    <path d="M8 6h.01" />
+                                    <path d="M16 6h.01" />
+                                    <path d="M8 10h.01" />
+                                    <path d="M16 10h.01" />
+                                    <path d="M8 14h.01" />
+                                    <path d="M16 14h.01" />
+                                </svg>
                                 <div class="popover-min-text">
                                     <div class="popover-min-title">We are San</div>
-                                    <p class="popover-min-desc">Creative Director &amp; Multi-Disciplinary Visual Creator</p>
+                                    <p class="popover-min-desc">Creative Director &amp; Multi-Disciplinary Visual
+                                        Creator</p>
                                 </div>
                             </a>
 
                             <!-- Item 2: Our Services -->
                             <a href="#services" class="popover-item-min">
-                                <svg class="popover-min-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="14" x="2" y="7" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+                                <svg class="popover-min-icon" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                                    stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+                                    stroke-linejoin="round">
+                                    <rect width="20" height="14" x="2" y="7" rx="2" ry="2" />
+                                    <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" />
+                                </svg>
                                 <div class="popover-min-text">
                                     <div class="popover-min-title">Our Services</div>
-                                    <p class="popover-min-desc">Video Editing, 4K Drone, Retouch, UI/UX &amp; Brand Identity</p>
+                                    <p class="popover-min-desc">Video Editing, 4K Drone, Retouch, UI/UX &amp; Brand
+                                        Identity</p>
                                 </div>
                             </a>
 
                             <!-- Item 3: Our Projects -->
                             <a href="#work" class="popover-item-min">
-                                <svg class="popover-min-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m12 15 2 2 4-4"/><rect width="18" height="18" x="3" y="3" rx="2"/><path d="m3 9 2.45-1.96a2 2 0 0 1 2.5 0L12 10.5l4.05-3.46a2 2 0 0 1 2.5 0L21 9"/></svg>
+                                <svg class="popover-min-icon" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                                    stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+                                    stroke-linejoin="round">
+                                    <path d="m12 15 2 2 4-4" />
+                                    <rect width="18" height="18" x="3" y="3" rx="2" />
+                                    <path d="m3 9 2.45-1.96a2 2 0 0 1 2.5 0L12 10.5l4.05-3.46a2 2 0 0 1 2.5 0L21 9" />
+                                </svg>
                                 <div class="popover-min-text">
                                     <div class="popover-min-title">Our Projects</div>
                                     <p class="popover-min-desc">Commercial Reels, Drone Shorts &amp; Design Systems</p>
@@ -123,16 +152,28 @@
 
                             <!-- Item 4: Dual Concentration -->
                             <a href="#tracks" class="popover-item-min">
-                                <svg class="popover-min-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+                                <svg class="popover-min-icon" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                                    stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+                                    stroke-linejoin="round">
+                                    <polygon points="12 2 2 7 12 12 22 7 12 2" />
+                                    <polyline points="2 17 12 22 22 17" />
+                                    <polyline points="2 12 12 17 22 12" />
+                                </svg>
                                 <div class="popover-min-text">
                                     <div class="popover-min-title">Dual Concentration</div>
-                                    <p class="popover-min-desc">Cinema &amp; Media Track vs Graphic &amp; UI/UX Track</p>
+                                    <p class="popover-min-desc">Cinema &amp; Media Track vs Graphic &amp; UI/UX Track
+                                    </p>
                                 </div>
                             </a>
 
                             <!-- Item 5: Client Testimonials -->
                             <a href="#testimonials" class="popover-item-min">
-                                <svg class="popover-min-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                                <svg class="popover-min-icon" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                                    stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+                                    stroke-linejoin="round">
+                                    <polygon
+                                        points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                                </svg>
                                 <div class="popover-min-text">
                                     <div class="popover-min-title">Client Testimonials</div>
                                     <p class="popover-min-desc">What Clients Say About Our Creative Solutions</p>
@@ -141,10 +182,17 @@
 
                             <!-- Item 6: Creative Arsenal -->
                             <a href="#gear" class="popover-item-min">
-                                <svg class="popover-min-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"/><circle cx="12" cy="13" r="3"/></svg>
+                                <svg class="popover-min-icon" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                                    stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+                                    stroke-linejoin="round">
+                                    <path
+                                        d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z" />
+                                    <circle cx="12" cy="13" r="3" />
+                                </svg>
                                 <div class="popover-min-text">
                                     <div class="popover-min-title">Creative Arsenal</div>
-                                    <p class="popover-min-desc">Sony, DJI Drone, DaVinci, Premiere, Figma &amp; Photoshop</p>
+                                    <p class="popover-min-desc">Sony, DJI Drone, DaVinci, Premiere, Figma &amp;
+                                        Photoshop</p>
                                 </div>
                             </a>
                         </div>
@@ -153,15 +201,60 @@
 
                 <a href="cinema.html" class="nav-link">Cinema &amp; Media</a>
                 <a href="design.html" class="nav-link">Graphic &amp; UI/UX</a>
-                <a href="#work" class="nav-link">Works</a>
+                <!-- Works with Hover Popover (Interactive Flyout Mega-Menu) -->
+                <div class="nav-item-dropdown" id="works-dropdown-wrap">
+                    <a href="#work" class="nav-link nav-link-dropdown" aria-haspopup="true" aria-expanded="false" id="works-nav-trigger">
+                        <span>Works</span>
+                        <svg class="dropdown-chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+                    </a>
+
+                    <!-- Minimalist Flyout Menu (2 Tracks: Cinema & Media, Graphic & UI/UX) -->
+                    <div class="nav-popover nav-popover-minimal nav-popover-works" role="region" aria-label="Works Track Overview">
+                        <div class="popover-arrow" aria-hidden="true"></div>
+                        <div class="popover-grid popover-grid-works">
+                            <!-- Track 1: Cinema & Media -->
+                            <a href="cinema.html" class="popover-item-min">
+                                <svg class="popover-min-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m22 8-6 4 6 4V8Z"/><rect width="14" height="12" x="2" y="6" rx="2"/></svg>
+                                <div class="popover-min-text">
+                                    <div class="popover-min-title">Cinema &amp; Media</div>
+                                    <p class="popover-min-desc">Commercial Reels, Drone Videography &amp; Visual Production</p>
+                                </div>
+                            </a>
+
+                            <!-- Track 2: Graphic & UI/UX -->
+                            <a href="design.html" class="popover-item-min">
+                                <svg class="popover-min-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg>
+                                <div class="popover-min-text">
+                                    <div class="popover-min-title">Graphic &amp; UI/UX</div>
+                                    <p class="popover-min-desc">UI/UX Mobile Apps, Design Systems &amp; Visual Identity</p>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
                 <a href="#contact" class="nav-link">Contact</a>
             </nav>
             <span class="nav-capsule-sep" aria-hidden="true"></span>
-            
+
             <!-- Theme Toggle Button (Light / Dark Mode) -->
-            <button class="theme-toggle-btn" id="theme-toggle-btn" aria-label="Toggle Light/Dark Theme" title="Ganti Tema (Siang / Malam)">
-                <svg class="theme-icon-sun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>
-                <svg class="theme-icon-moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
+            <button class="theme-toggle-btn" id="theme-toggle-btn" aria-label="Toggle Light/Dark Theme"
+                title="Ganti Tema (Siang / Malam)">
+                <svg class="theme-icon-sun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="4" />
+                    <path d="M12 2v2" />
+                    <path d="M12 20v2" />
+                    <path d="m4.93 4.93 1.41 1.41" />
+                    <path d="m17.66 17.66 1.41 1.41" />
+                    <path d="M2 12h2" />
+                    <path d="M20 12h2" />
+                    <path d="m6.34 17.66-1.41 1.41" />
+                    <path d="m19.07 4.93-1.41 1.41" />
+                </svg>
+                <svg class="theme-icon-moon" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z" />
+                </svg>
             </button>
 
             <!-- CTA Button -->
@@ -194,7 +287,8 @@
                         <span class="title-serif text-accent">Emotion.</span>
                     </h1>
                     <p class="hero-sublead text-muted">
-                        Creative Enthusiast &amp; Visual Creator merangkai dua konsentrasi: videografi sinematik &amp; editing ritmis, serta desain grafis, carousel, dan antarmuka UI/UX.
+                        Creative Enthusiast &amp; Visual Creator merangkai dua konsentrasi: videografi sinematik &amp;
+                        editing ritmis, serta desain grafis, carousel, dan antarmuka UI/UX.
                     </p>
 
                 </div>
@@ -247,25 +341,27 @@
                             </g>
 
                             <!-- Concentric Arch Rings (Receding Spatial Stages) -->
-                            <path d="M 30,640 L 30,200 A 170,170 0 0,1 370,200 L 370,640"
-                                stroke="url(#archGrad)" stroke-width="1.2" fill="none" opacity="0.65" />
-                            <path d="M 65,640 L 65,235 A 135,135 0 0,1 335,235 L 335,640"
-                                stroke="url(#archGrad)" stroke-width="1" stroke-dasharray="4 6" fill="none" opacity="0.6" />
-                            <path d="M 105,640 L 105,275 A 95,95 0 0,1 295,275 L 295,640"
-                                stroke="url(#archGrad)" stroke-width="1" fill="none" opacity="0.55" />
-                            <path d="M 145,640 L 145,315 A 55,55 0 0,1 255,315 L 255,640"
-                                stroke="url(#archGrad)" stroke-width="1" stroke-dasharray="3 5" fill="none" opacity="0.7" />
-                            <path d="M 175,640 L 175,345 A 25,25 0 0,1 225,345 L 225,640"
-                                stroke="#60A5FA" stroke-width="1.4" fill="none" opacity="0.85" />
+                            <path d="M 30,640 L 30,200 A 170,170 0 0,1 370,200 L 370,640" stroke="url(#archGrad)"
+                                stroke-width="1.2" fill="none" opacity="0.65" />
+                            <path d="M 65,640 L 65,235 A 135,135 0 0,1 335,235 L 335,640" stroke="url(#archGrad)"
+                                stroke-width="1" stroke-dasharray="4 6" fill="none" opacity="0.6" />
+                            <path d="M 105,640 L 105,275 A 95,95 0 0,1 295,275 L 295,640" stroke="url(#archGrad)"
+                                stroke-width="1" fill="none" opacity="0.55" />
+                            <path d="M 145,640 L 145,315 A 55,55 0 0,1 255,315 L 255,640" stroke="url(#archGrad)"
+                                stroke-width="1" stroke-dasharray="3 5" fill="none" opacity="0.7" />
+                            <path d="M 175,640 L 175,345 A 25,25 0 0,1 225,345 L 225,640" stroke="#60A5FA"
+                                stroke-width="1.4" fill="none" opacity="0.85" />
 
                             <!-- Vanishing Focal Node & Aura -->
                             <circle cx="200" cy="340" r="48" fill="url(#tunnelCoreGlow)" />
-                            <circle cx="200" cy="340" r="32" stroke="rgba(147, 197, 253, 0.3)" stroke-width="1" stroke-dasharray="2 4" />
+                            <circle cx="200" cy="340" r="32" stroke="rgba(147, 197, 253, 0.3)" stroke-width="1"
+                                stroke-dasharray="2 4" />
                             <circle cx="200" cy="340" r="14" stroke="#60A5FA" stroke-width="1.2" opacity="0.75" />
                             <circle cx="200" cy="340" r="3" fill="#FFFFFF" opacity="0.95" />
 
                             <!-- Tech Coordinate Indicators -->
-                            <g class="tunnel-tech-markers" font-family="'JetBrains Mono', monospace" font-size="6.5" fill="rgba(147, 197, 253, 0.5)" letter-spacing="1.5">
+                            <g class="tunnel-tech-markers" font-family="'JetBrains Mono', monospace" font-size="6.5"
+                                fill="rgba(147, 197, 253, 0.5)" letter-spacing="1.5">
                                 <text x="200" y="20" text-anchor="middle">DEPTH ARCH · 01</text>
                                 <circle cx="200" cy="30" r="2.5" fill="#60A5FA" opacity="0.85" />
                                 <circle cx="140" cy="35" r="2" fill="#93C5FD" opacity="0.65" />
@@ -300,7 +396,8 @@
                             <span class="bio-location">JAKARTA · ID</span>
                         </div>
                         <p class="hero-bio-text mt-xs">
-                            Membantu brand, creator, dan agency menyampaikan cerita lewat video beritme dinamis, footage berkelas sinematik, serta visual design yang membekas di benak audiens.
+                            Membantu brand, creator, dan agency menyampaikan cerita lewat video beritme dinamis, footage
+                            berkelas sinematik, serta visual design yang membekas di benak audiens.
                         </p>
                         <div class="hero-meta-grid mt-md">
                             <div class="meta-item">
@@ -325,11 +422,13 @@
                         <span class="eyebrow-num">02 //</span>
                         <span class="eyebrow-text">ABOUT THE CREATOR</span>
                     </div>
-                    <h2 class="section-title">Driven by Visual Pacing &amp; <span class="title-serif text-accent">Cinematic Detail</span></h2>
+                    <h2 class="section-title">Driven by Visual Pacing &amp; <span
+                            class="title-serif text-accent">Cinematic Detail</span></h2>
                 </div>
                 <div class="section-header-right">
                     <p class="section-lead-desc text-muted">
-                        Menyatukan kepekaan audio-visual, ritme potongan presisi, dan arahan seni modern untuk melahirkan konten berdaya resonansi tinggi bagi audiens digital masa kini.
+                        Menyatukan kepekaan audio-visual, ritme potongan presisi, dan arahan seni modern untuk
+                        melahirkan konten berdaya resonansi tinggi bagi audiens digital masa kini.
                     </p>
                 </div>
             </div>
@@ -386,16 +485,18 @@
         </section>
 
         <!-- =========================================
-             DUAL CONCENTRATION PORTAL (Huda Muliya Architecture)
+             DUAL CONCENTRATION PORTAL 
              ========================================= -->
         <section id="tracks" class="container portal-tracks-section">
             <div class="portal-header text-center reveal">
                 <div class="section-eyebrow">
                     <span class="eyebrow-text">DISCIPLINES &amp; SPECIALIZATIONS</span>
                 </div>
-                <h2 class="section-title">Two Worlds. <span class="title-serif text-accent">One Creative Vision.</span></h2>
+                <h2 class="section-title">Two Worlds. <span class="title-serif text-accent">One Creative Vision.</span>
+                </h2>
                 <p class="section-lead-desc text-muted mx-auto max-w-lg mt-xs">
-                    Pilih konsentrasi keahlian yang sesuai dengan kebutuhan Anda — dari produksi visual bergerak hingga perancangan antarmuka &amp; identitas brand.
+                    Pilih konsentrasi keahlian yang sesuai dengan kebutuhan Anda — dari produksi visual bergerak hingga
+                    perancangan antarmuka &amp; identitas brand.
                 </p>
             </div>
 
@@ -412,7 +513,8 @@
                     </div>
                     <h3 class="portal-title mt-md">Cinema &amp; Visual Media</h3>
                     <p class="portal-desc text-muted mt-xs">
-                        Fokus pada videografi sinematik 4K, aerial drone, editing video pendek beritme cepat (Reels/TikTok), color retouching, dan sound design immersif.
+                        Fokus pada videografi sinematik 4K, aerial drone, editing video pendek beritme cepat
+                        (Reels/TikTok), color retouching, dan sound design immersif.
                     </p>
                     <div class="portal-pills flex flex-wrap gap-xs mt-md">
                         <span class="tech-badge">Videographer</span>
@@ -421,7 +523,8 @@
                         <span class="tech-badge">Photo Retoucher</span>
                     </div>
                     <div class="portal-card-footer mt-lg flex items-center justify-between">
-                        <span class="portal-meta font-mono font-xs text-muted">Premiere · DaVinci · CapCut · Lightroom</span>
+                        <span class="portal-meta font-mono font-xs text-muted">Premiere · DaVinci · CapCut ·
+                            Lightroom</span>
                         <a href="cinema.html" class="btn btn-primary rounded-pill portal-btn">
                             <span>Enter Cinema Track</span>
                             <span class="btn-arrow">↗</span>
@@ -441,7 +544,8 @@
                     </div>
                     <h3 class="portal-title mt-md">Graphic &amp; UI/UX Design</h3>
                     <p class="portal-desc text-muted mt-xs">
-                        Fokus pada perancangan antarmuka digital (UI/UX) web &amp; mobile, brand identity eksklusif, rangkaian carousel media sosial berslide edukatif, dan poster tipografi modern.
+                        Fokus pada perancangan antarmuka digital (UI/UX) web &amp; mobile, brand identity eksklusif,
+                        rangkaian carousel media sosial berslide edukatif, dan poster tipografi modern.
                     </p>
                     <div class="portal-pills flex flex-wrap gap-xs mt-md">
                         <span class="tech-badge">UI/UX Design</span>
@@ -450,7 +554,8 @@
                         <span class="tech-badge">Poster Design</span>
                     </div>
                     <div class="portal-card-footer mt-lg flex items-center justify-between">
-                        <span class="portal-meta font-mono font-xs text-muted">Figma · Photoshop · CorelDraw · Canva</span>
+                        <span class="portal-meta font-mono font-xs text-muted">Figma · Photoshop · CorelDraw ·
+                            Canva</span>
                         <a href="design.html" class="btn btn-secondary rounded-pill portal-btn">
                             <span>Enter Design Track</span>
                             <span class="btn-arrow">↗</span>
@@ -598,7 +703,8 @@
                     <span class="eyebrow-text">START A COLLABORATION</span>
                 </div>
                 <h2>Let's Build Something <span class="title-serif text-accent">Extraordinary</span> Together</h2>
-                <p class="text-muted max-w-md mt-sm">Siap mewujudkan ide video dan visual kreatif Anda menjadi karya berdaya jangkau tinggi yang memikat audiens?</p>
+                <p class="text-muted max-w-md mt-sm">Siap mewujudkan ide video dan visual kreatif Anda menjadi karya
+                    berdaya jangkau tinggi yang memikat audiens?</p>
                 <a href="#contact" class="btn cta-btn rounded-pill mt-md">
                     Start a Project <span class="btn-arrow">↗</span>
                 </a>
@@ -706,14 +812,17 @@
             <!-- Media Container: Video Player / Reels Player / Image Preview -->
             <div class="modal-media-wrapper" id="modal-media-wrapper">
                 <!-- HTML5 Native Video Element -->
-                <video id="modal-project-video" class="modal-video" controls playsinline preload="metadata" style="display: none;"></video>
-                
+                <video id="modal-project-video" class="modal-video" controls playsinline preload="metadata"
+                    style="display: none;"></video>
+
                 <!-- YouTube / Vimeo Video Embed Iframe -->
-                <iframe id="modal-project-iframe" class="modal-iframe" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="display: none;"></iframe>
-                
+                <iframe id="modal-project-iframe" class="modal-iframe" frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen style="display: none;"></iframe>
+
                 <!-- Static High-Res Image Preview -->
                 <img id="modal-project-img" src="" alt="" class="modal-image" style="display: none;">
-                
+
                 <!-- Interactive Media Badge -->
                 <div class="modal-media-badge" id="modal-media-badge">
                     <span class="badge-dot"></span>
@@ -728,9 +837,9 @@
                 </div>
 
                 <h2 id="modal-project-title" class="modal-title mt-xs"></h2>
-                
+
                 <div id="modal-project-tags" class="project-tags flex gap-sm flex-wrap mt-sm"></div>
-                
+
                 <p id="modal-project-desc" class="modal-desc text-muted mt-md"></p>
 
                 <!-- Project Specs Grid (Software, Format, Scope) -->
@@ -760,7 +869,8 @@
                             <line x1="10" y1="14" x2="21" y2="3"></line>
                         </svg>
                     </a>
-                    <button type="button" class="btn btn-secondary rounded-pill modal-contact-trigger" id="modal-inquire-btn">
+                    <button type="button" class="btn btn-secondary rounded-pill modal-contact-trigger"
+                        id="modal-inquire-btn">
                         Order Proyek Serupa ↗
                     </button>
                 </div>
@@ -893,7 +1003,7 @@
         </a>
     </div>
 
-    <script type="module" src="main.js?v=10.1"></script>
+    <script type="module" src="main.js?v=10.4"></script>
 </body>
 
 </html>
