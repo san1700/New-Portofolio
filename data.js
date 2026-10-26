@@ -15,8 +15,8 @@ export const cinemaServices = [
         </svg>`,
         badge: "SHORT FORM & REELS",
         color: "cyan",
-        title: "Video Editing & Motion Rhythms",
-        description: "Mengolah video mentah menjadi tontonan berdaya pikat tinggi. Meliputi pacing ritmis, kinetic motion graphic, sound design immersif, dan adaptasi format vertikal (9:16) maupun widescreen (16:9).",
+        title: "Video Editing & Motion",
+        description: "Precision-cut pacing, kinetic motion graphics, and multi-layer sound design engineered for high-retention commercial reels, brand films, and social campaigns.",
         category: "Video Editing",
         tools: ["Premiere Pro", "CapCut Pro", "After Effects"],
         link: "cinema.html#work"
@@ -31,10 +31,10 @@ export const cinemaServices = [
             <path d="M8 20h8"/>
             <circle cx="12" cy="10" r="2"/>
         </svg>`,
-        badge: "AERIAL & 4K FOOTAGE",
+        badge: "AERIAL & 4K PRODUCTION",
         color: "sky",
-        title: "Videography & Drone Cinematics",
-        description: "Pengambilan gambar video 4K berkelas sinematik untuk kebutuhan komersial, dokumenter, profil korporasi, hingga aerial cinematography spektakuler menggunakan drone.",
+        title: "Videography & Drone Filming",
+        description: "Cinematic 4K camera capture and licensed aerial drone operations delivering sweeping architectural scale, dynamic motion tracking, and broadcast-ready footage.",
         category: "Videography",
         tools: ["DJI Drone", "Sony 4K", "Gimbal Stabilizer"],
         link: "cinema.html#work"
@@ -45,10 +45,10 @@ export const cinemaServices = [
             <path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"/>
             <circle cx="12" cy="13" r="3"/>
         </svg>`,
-        badge: "PHOTO & RETOUCH",
+        badge: "COMMERCIAL & RETOUCH",
         color: "emerald",
-        title: "Photography & Creative Retouching",
-        description: "Mengabadikan momen, produk, dan portret dengan komposisi dramatis. Didukung color grading profesional dan retouching mendalam menggunakan Adobe Lightroom & Photoshop.",
+        title: "Photography & Retouching",
+        description: "Commercial product and portrait photography enhanced with advanced color grading, frequency separation, and precise tonal retouching for publication.",
         category: "Photography",
         tools: ["Adobe Lightroom", "Photoshop", "High-End Retouch"],
         link: "cinema.html#work"
@@ -63,7 +63,7 @@ export const cinemaServices = [
         badge: "FILMIC COLOR & SOUND",
         color: "purple",
         title: "Color Grading & Soundscapes",
-        description: "Menghidupkan atmosfer visual lewat palet warna terkalibrasi filmic (LUTs kustom, tone curve, skin-tone isolation) serta tata suara berlapis untuk memicu emosi penonton.",
+        description: "Calibrated filmic color palettes, custom LUT science, and layered acoustic design tailored to maximize audience resonance and emotional impact.",
         category: "Color & Sound",
         tools: ["DaVinci Resolve", "Color Science", "SFX Soundscapes"],
         link: "cinema.html#work"
@@ -81,7 +81,7 @@ export const designServices = [
         badge: "DIGITAL SYSTEMS",
         color: "indigo",
         title: "UI/UX & Interactive Design",
-        description: "Merancang pengalaman digital dan antarmuka web/mobile yang intuitif, estetis, dan fungsional. Meliputi wireframing, interactive prototyping, dan pembuatan design system berskala.",
+        description: "Human-centric digital interfaces and design systems engineered for web and mobile platforms, emphasizing intuitive flows and conversion efficiency.",
         category: "UI/UX Design",
         tools: ["Figma", "Design System", "Interactive Prototyping"],
         link: "design.html#work"
@@ -96,8 +96,8 @@ export const designServices = [
         </svg>`,
         badge: "BRAND ARCHITECTURE",
         color: "amber",
-        title: "Brand Identity & Visual Systems",
-        description: "Membangun identitas visual brand yang kokoh dari nol. Mulai dari logo craft, palet warna berkarakter, panduan tipografi, hingga brand guideline book siap pakai.",
+        title: "Graphic Design & Branding",
+        description: "Distinctive brand identities, precision typography, and marketing assets structured to establish immediate market authority and enduring visual cohesion.",
         category: "Brand Identity",
         tools: ["Illustrator", "Brand Guidelines", "Vector Craft"],
         link: "design.html#work"
@@ -114,7 +114,7 @@ export const designServices = [
         badge: "SEAMLESS CAROUSEL",
         color: "rose",
         title: "Social Media Carousel Content",
-        description: "Mendesain carousel edukatif dan promosi berslide banyak dengan visual hook kuat, alur baca terstruktur (*seamless swipe*), dan konversi tinggi bagi audiens Instagram & LinkedIn.",
+        description: "Structured multi-slide educational and promotional carousels with compelling hooks, seamless swipe architecture, and proven organic engagement.",
         category: "Social Carousel",
         tools: ["Photoshop", "Canva Pro", "Content Hooks"],
         link: "design.html#work"
@@ -130,14 +130,21 @@ export const designServices = [
         badge: "SWISS & MODERN POSTER",
         color: "teal",
         title: "Poster & Editorial Typography",
-        description: "Eksplorasi tata letak poster komersial dan eksperimental bergaya Neo-Brutalism, Swiss Typography, maupun modern cyberpunk untuk konser musik, exhibition, dan promosi event.",
+        description: "High-impact editorial poster design incorporating Swiss typographic discipline, Neo-Brutalist layouts, and striking visual hierarchy for events and commercial releases.",
         category: "Poster Design",
         tools: ["CorelDraw", "Photoshop", "Editorial Layout"],
         link: "design.html#work"
     }
 ];
 
-export const servicesData = [...cinemaServices, ...designServices];
+export const homeServices = [
+    cinemaServices[0], // Video Editing & Motion
+    cinemaServices[1], // Videography & Drone Filming
+    designServices[1], // Graphic Design & Branding
+    cinemaServices[2]  // Photography & Retouching
+];
+
+export const servicesData = homeServices;
 
 // =========================================================================
 // PROJECTS DATA (Cinema & Media Track vs Graphic & UI/UX Track)
