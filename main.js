@@ -89,23 +89,34 @@ document.addEventListener('DOMContentLoaded', () => {
     const themeToggleBtn = document.getElementById('theme-toggle-btn');
     const savedTheme = localStorage.getItem('portfolio_theme');
 
-    // If previously saved as light mode, apply immediately
+    function applyTheme(theme) {
+        if (theme === 'light') {
+            document.documentElement.setAttribute('data-theme', 'light');
+            if (themeToggleBtn) {
+                themeToggleBtn.setAttribute('title', 'Mode Siang Aktif — Klik untuk Beralih ke Mode Malam');
+                themeToggleBtn.setAttribute('aria-label', 'Beralih ke Mode Malam');
+            }
+        } else {
+            document.documentElement.removeAttribute('data-theme');
+            if (themeToggleBtn) {
+                themeToggleBtn.setAttribute('title', 'Mode Malam Aktif — Klik untuk Beralih ke Mode Siang');
+                themeToggleBtn.setAttribute('aria-label', 'Beralih ke Mode Siang');
+            }
+        }
+    }
+
     if (savedTheme === 'light') {
-        document.documentElement.setAttribute('data-theme', 'light');
+        applyTheme('light');
     } else {
-        document.documentElement.removeAttribute('data-theme');
+        applyTheme('dark');
     }
 
     if (themeToggleBtn) {
         themeToggleBtn.addEventListener('click', () => {
             const isLight = document.documentElement.getAttribute('data-theme') === 'light';
-            if (isLight) {
-                document.documentElement.removeAttribute('data-theme');
-                localStorage.setItem('portfolio_theme', 'dark');
-            } else {
-                document.documentElement.setAttribute('data-theme', 'light');
-                localStorage.setItem('portfolio_theme', 'light');
-            }
+            const targetTheme = isLight ? 'dark' : 'light';
+            applyTheme(targetTheme);
+            localStorage.setItem('portfolio_theme', targetTheme);
         });
     }
 
@@ -614,8 +625,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const gridEl = impactSection.querySelector('.impact-grid');
         if (gridEl) {
-            gridEl.style.borderTop = "1px solid rgba(255,255,255,0.08)";
-            gridEl.style.borderBottom = "1px solid rgba(255,255,255,0.08)";
+            gridEl.style.borderTop = "1px solid var(--border-default)";
+            gridEl.style.borderBottom = "1px solid var(--border-default)";
             gridEl.style.paddingBlock = "60px";
         }
     }
