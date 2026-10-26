@@ -320,9 +320,9 @@ document.addEventListener('DOMContentLoaded', () => {
     let currentTestimonials = testimonialsData;
     let filterConfigs = [];
 
-    let servicesEyebrow = "SERVICES &amp; EXPERTISE";
-    let servicesTitle = `Services &amp; <span class="title-serif text-accent">Expertise</span>`;
-    let servicesLead = `Comprehensive visual production and strategic brand engineering — delivering high-retention video editing, cinematic drone filming, and scalable visual identities built for performance.`;
+    let servicesEyebrow = "EXPERTISE &amp; CAPABILITIES";
+    let servicesTitle = `Creative <span class="title-serif text-accent">Services</span>`;
+    let servicesLead = `Layanan produksi visual terpadu — dari editing reels dinamis, pengambilan gambar drone sinematik, hingga identitas desain grafis berdaya saing global.`;
 
     let workEyebrow = "CURATED PORTFOLIO";
     let workTitle = `Selected <span class="title-serif text-accent">Works</span>`;
