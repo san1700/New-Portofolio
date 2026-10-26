@@ -162,41 +162,25 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // =========================================
-    // LINEAR & VERCEL SPOTLIGHT EFFECT (Optimized High-Performance RAF Tracking)
+    // LINEAR & VERCEL SPOTLIGHT EFFECT (High-Precision Direct Cursor Tracking)
     // =========================================
     const initSpotlightTracking = () => {
-        const cards = document.querySelectorAll('.spotlight-card, .project-card, .service-card, .hero-bio-card, .about-card, .testimonial-card, .portal-card, .arsenal-card');
+        const cards = document.querySelectorAll('.spotlight-card, .project-card, .service-card, .service-card-sekeco, .hero-bio-card, .about-card, .testimonial-card, .portal-card, .arsenal-card');
         cards.forEach(card => {
             if (!card.dataset.spotlightInit) {
                 card.dataset.spotlightInit = 'true';
-                let rect = null;
-                let ticking = false;
 
-                const setPos = (clientX, clientY) => {
-                    if (!rect) rect = card.getBoundingClientRect();
-                    const x = clientX - rect.left;
-                    const y = clientY - rect.top;
+                const updateCoords = (e) => {
+                    const rect = card.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
                     card.style.setProperty('--mouse-x', `${x.toFixed(1)}px`);
                     card.style.setProperty('--mouse-y', `${y.toFixed(1)}px`);
                 };
 
-                card.addEventListener('pointerenter', (e) => {
-                    rect = card.getBoundingClientRect();
-                    setPos(e.clientX, e.clientY);
-                }, { passive: true });
-
-                card.addEventListener('pointermove', (e) => {
-                    if (!ticking) {
-                        ticking = true;
-                        requestAnimationFrame(() => {
-                            setPos(e.clientX, e.clientY);
-                            ticking = false;
-                        });
-                    }
-                }, { passive: true });
-
+                card.addEventListener('pointerenter', updateCoords, { passive: true });
+                card.addEventListener('pointermove', updateCoords, { passive: true });
                 card.addEventListener('pointerleave', () => {
-                    rect = null;
                     card.style.setProperty('--mouse-x', `-500px`);
                     card.style.setProperty('--mouse-y', `-500px`);
                 }, { passive: true });
@@ -567,6 +551,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 // Re-observe newly injected .reveal elements and spotlight tracking
                 observeRevealElements();
+                initSpotlightTracking();
 
                 // Fade in
                 projectsContainer.style.opacity = 1;

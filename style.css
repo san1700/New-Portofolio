@@ -370,8 +370,33 @@
 :root[data-theme="light"] .project-card:hover,
 :root[data-theme="light"] .portal-card:hover,
 :root[data-theme="light"] .testimonial-card:hover {
-  border-color: rgba(79, 70, 229, 0.3);
-  box-shadow: 0 16px 40px -4px rgba(15, 23, 42, 0.1);
+  border-color: rgba(79, 70, 229, 0.25);
+  box-shadow: 0 16px 40px -4px rgba(15, 23, 42, 0.08);
+}
+
+:root[data-theme="light"] .spotlight-card::before,
+:root[data-theme="light"] .project-card::before,
+:root[data-theme="light"] .service-card-sekeco::before,
+:root[data-theme="light"] .arsenal-card::before {
+  background: radial-gradient(
+    380px circle at var(--mouse-x, -500px) var(--mouse-y, -500px),
+    rgba(79, 70, 229, 0.85) 0%,
+    rgba(99, 102, 241, 0.5) 30%,
+    rgba(147, 197, 253, 0.2) 60%,
+    transparent 80%
+  );
+}
+
+:root[data-theme="light"] .spotlight-card::after,
+:root[data-theme="light"] .project-card::after,
+:root[data-theme="light"] .service-card-sekeco::after,
+:root[data-theme="light"] .arsenal-card::after {
+  background: radial-gradient(
+    480px circle at var(--mouse-x, -500px) var(--mouse-y, -500px),
+    rgba(99, 102, 241, 0.12) 0%,
+    rgba(199, 210, 254, 0.18) 35%,
+    transparent 70%
+  );
 }
 
 :root[data-theme="light"] .service-heading {
@@ -2261,14 +2286,16 @@ ol {
 
 /* =========================================
    LINEAR & VERCEL SPOTLIGHT SURFACE SYSTEM
-   Dual-Layer: Dynamic Illuminated Border Beam + Soft Ambient Surface Fill
+   Dual-Layer: Dynamic Illuminated Border Beam + Luminous Surface Fill
    ========================================= */
 .spotlight-card,
 .project-card,
 .service-card,
+.service-card-sekeco,
 .hero-bio-card,
 .about-card,
-.testimonial-card {
+.testimonial-card,
+.arsenal-card {
   position: relative;
   --mouse-x: -500px;
   --mouse-y: -500px;
@@ -2278,9 +2305,11 @@ ol {
 .spotlight-card > *,
 .project-card > *,
 .service-card > *,
+.service-card-sekeco > *,
 .hero-bio-card > *,
 .about-card > *,
-.testimonial-card > * {
+.testimonial-card > *,
+.arsenal-card > * {
   position: relative;
   z-index: 2;
 }
@@ -2289,20 +2318,22 @@ ol {
 .spotlight-card::before,
 .project-card::before,
 .service-card::before,
+.service-card-sekeco::before,
 .hero-bio-card::before,
 .about-card::before,
-.testimonial-card::before {
+.testimonial-card::before,
+.arsenal-card::before {
   content: '';
   position: absolute;
-  inset: -1px;
+  inset: 0;
   border-radius: inherit;
   padding: 1.5px;
   background: radial-gradient(
     380px circle at var(--mouse-x, -500px) var(--mouse-y, -500px),
-    rgba(96, 165, 250, 0.9) 0%,
-    rgba(37, 99, 235, 0.5) 30%,
-    rgba(255, 255, 255, 0.12) 65%,
-    transparent 85%
+    rgba(147, 197, 253, 0.95) 0%,
+    rgba(94, 106, 210, 0.75) 30%,
+    rgba(59, 130, 246, 0.3) 60%,
+    transparent 80%
   );
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
@@ -2311,25 +2342,27 @@ ol {
   pointer-events: none;
   opacity: 0;
   transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-  z-index: 6;
+  z-index: 5;
 }
 
-/* 2. Soft Ambient Surface Spotlight Wash (Linear Core Fill) */
+/* 2. Soft Ambient Surface Spotlight Wash (Luminous Dynamic Core Fill) */
 .spotlight-card::after,
 .project-card::after,
 .service-card::after,
+.service-card-sekeco::after,
 .hero-bio-card::after,
 .about-card::after,
-.testimonial-card::after {
+.testimonial-card::after,
+.arsenal-card::after {
   content: '';
   position: absolute;
   inset: 0;
   border-radius: inherit;
   background: radial-gradient(
-    500px circle at var(--mouse-x, -500px) var(--mouse-y, -500px),
-    rgba(37, 99, 235, 0.12) 0%,
-    rgba(94, 106, 210, 0.05) 45%,
-    transparent 75%
+    480px circle at var(--mouse-x, -500px) var(--mouse-y, -500px),
+    rgba(94, 106, 210, 0.22) 0%,
+    rgba(56, 189, 248, 0.10) 35%,
+    transparent 70%
   );
   pointer-events: none;
   opacity: 0;
@@ -2341,15 +2374,19 @@ ol {
 .spotlight-card:hover::before,
 .project-card:hover::before,
 .service-card:hover::before,
+.service-card-sekeco:hover::before,
 .hero-bio-card:hover::before,
 .about-card:hover::before,
 .testimonial-card:hover::before,
+.arsenal-card:hover::before,
 .spotlight-card:hover::after,
 .project-card:hover::after,
 .service-card:hover::after,
+.service-card-sekeco:hover::after,
 .hero-bio-card:hover::after,
 .about-card:hover::after,
-.testimonial-card:hover::after {
+.testimonial-card:hover::after,
+.arsenal-card:hover::after {
   opacity: 1;
 }
 
@@ -2758,8 +2795,8 @@ ol {
 .project-card:hover {
   transform: translateY(-4px);
   background: var(--surface-hover);
-  border-color: var(--border-accent);
-  box-shadow: 0 16px 36px -8px rgba(0, 0, 0, 0.65), 0 0 24px var(--accent-glow);
+  border-color: rgba(255, 255, 255, 0.16);
+  box-shadow: 0 16px 36px -8px rgba(0, 0, 0, 0.5);
 }
 
 .project-card-inner {
