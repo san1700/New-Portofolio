@@ -383,12 +383,12 @@
 }
 
 :root[data-theme="light"] .service-pill-tag,
-:root[data-theme="light"] .project-tag,
 :root[data-theme="light"] .tech-badge,
 :root[data-theme="light"] .portal-tag {
   background: #f1f5f9;
-  border-color: rgba(15, 23, 42, 0.08);
-  color: #475569;
+  border-color: rgba(15, 23, 42, 0.12);
+  color: #1e293b;
+  font-weight: 500;
 }
 
 :root[data-theme="light"] .service-action-link {
@@ -408,8 +408,48 @@
   color: #4f46e5 !important;
 }
 
+:root[data-theme="light"] .project-category {
+  color: #4f46e5 !important;
+  font-weight: 700;
+}
+
+:root[data-theme="light"] .project-year {
+  color: #64748b !important;
+  font-weight: 600;
+}
+
 :root[data-theme="light"] .project-short-desc {
-  color: #475569;
+  color: #334155 !important;
+  line-height: 1.65;
+}
+
+:root[data-theme="light"] .project-badge-tag {
+  background: rgba(15, 23, 42, 0.85) !important;
+  color: #ffffff !important;
+  border: 1px solid rgba(255, 255, 255, 0.22) !important;
+}
+
+:root[data-theme="light"] .project-software-badge {
+  background: rgba(15, 23, 42, 0.85) !important;
+  color: #ffffff !important;
+  border: 1px solid rgba(255, 255, 255, 0.22) !important;
+}
+
+:root[data-theme="light"] .project-software-badge .software-format {
+  color: #cbd5e1 !important;
+}
+
+:root[data-theme="light"] .project-tag {
+  background: #f1f5f9 !important;
+  border-color: rgba(15, 23, 42, 0.12) !important;
+  color: #1e293b !important;
+  font-weight: 600;
+}
+
+:root[data-theme="light"] .project-card:hover .project-tag {
+  background: rgba(79, 70, 229, 0.08) !important;
+  border-color: rgba(79, 70, 229, 0.3) !important;
+  color: #4338ca !important;
 }
 
 :root[data-theme="light"] .portal-title {
@@ -2749,8 +2789,8 @@ ol {
   background: rgba(10, 10, 12, 0.88);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
-  color: var(--foreground);
-  border: 1px solid var(--border-default);
+  color: #FFFFFF;
+  border: 1px solid rgba(255, 255, 255, 0.16);
   font-family: var(--font-mono);
   font-size: 0.68rem;
   font-weight: 600;
@@ -2776,11 +2816,11 @@ ol {
   background: rgba(10, 12, 18, 0.85);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.16);
   font-family: var(--font-mono);
   font-size: 0.68rem;
   font-weight: 500;
-  color: var(--foreground);
+  color: #FFFFFF;
   box-shadow: 0 4px 14px rgba(0, 0, 0, 0.6);
   pointer-events: none;
   transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.25s ease;
@@ -2805,7 +2845,7 @@ ol {
 }
 
 .software-format {
-  color: var(--foreground-muted);
+  color: rgba(255, 255, 255, 0.78);
 }
 
 /* Linear Floating Trigger on Image */
