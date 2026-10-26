@@ -48,10 +48,12 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // =========================================
-    // 1. MOBILE MENU TOGGLE
+    // 1. MOBILE MENU TOGGLE & SEKECO DROPDOWN
     // =========================================
     const mobileBtn = document.querySelector('.mobile-menu-btn');
     const navLinks = document.querySelector('.nav-links');
+    const homeDropdown = document.getElementById('home-dropdown-wrap');
+    const homeTrigger = document.getElementById('home-nav-trigger');
 
     if (mobileBtn && navLinks) {
         mobileBtn.addEventListener('click', () => {
@@ -59,13 +61,26 @@ document.addEventListener('DOMContentLoaded', () => {
             navLinks.classList.toggle('active');
         });
 
-        // Close mobile drawer when clicking a navigation link
-        navLinks.querySelectorAll('.nav-link').forEach(link => {
+        // Close mobile drawer when clicking regular navigation links
+        navLinks.querySelectorAll('.nav-link:not(.nav-link-dropdown), .popover-item, .popover-footer-cta').forEach(link => {
             link.addEventListener('click', () => {
                 mobileBtn.classList.remove('active');
                 navLinks.classList.remove('active');
+                if (homeDropdown) homeDropdown.classList.remove('is-open');
             });
         });
+
+        // Mobile accordion toggle for Home dropdown
+        if (homeTrigger && homeDropdown) {
+            homeTrigger.addEventListener('click', (e) => {
+                if (window.innerWidth <= 900) {
+                    e.preventDefault();
+                    homeDropdown.classList.toggle('is-open');
+                    const expanded = homeDropdown.classList.contains('is-open');
+                    homeTrigger.setAttribute('aria-expanded', expanded ? 'true' : 'false');
+                }
+            });
+        }
     }
 
     // Clean up any lingering atmosphere attribute
@@ -331,7 +346,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // =========================================
-    // 2. RENDER SERVICES SECTION
+    // 2. RENDER SERVICES SECTION (Sekeco Style)
     // =========================================
     const servicesSection = document.getElementById('services');
     if (servicesSection) {
@@ -347,28 +362,44 @@ document.addEventListener('DOMContentLoaded', () => {
                     <p class="section-lead-desc text-muted">${servicesLead}</p>
                 </div>
             </div>
-            <div class="grid grid-cols-2 gap-md services-grid mt-lg">
+            <div class="services-grid-sekeco mt-lg">
         `;
 
         currentServices.forEach((service, i) => {
             const indexStr = String(i + 1).padStart(2, '0');
+            const toolsHTML = (service.tools || []).map(t => `<span class="service-tool-tag">${t}</span>`).join('');
             servicesHTML += `
-                <div class="service-card reveal reveal-delay-${(i % 4) + 1} bg-card rounded-card">
-                    <div class="service-top-bar flex items-center justify-between">
-                        <div class="service-icon">${service.icon || '✦'}</div>
-                        <span class="service-index">// ${indexStr}</span>
+                <div class="service-card-sekeco spotlight-card reveal reveal-delay-${(i % 4) + 1} rounded-card group" data-color="${service.color || 'cyan'}">
+                    <div class="service-card-top flex items-center justify-between">
+                        <div class="service-badge-icon color-${service.color || 'cyan'}">
+                            ${service.icon || '✦'}
+                        </div>
+                        <span class="service-pill-tag">${service.badge || service.category}</span>
                     </div>
-                    <h3 class="service-title">${service.title}</h3>
-                    <p class="service-desc text-muted">${service.description}</p>
-                    <a href="${service.link}" target="_blank" rel="noopener" class="service-link text-accent">
-                        Lihat Portofolio <span class="link-arrow">↗</span>
-                    </a>
+                    
+                    <div class="service-body mt-md">
+                        <h3 class="service-heading">${service.title}</h3>
+                        <p class="service-desc text-muted mt-xs">${service.description}</p>
+                    </div>
+
+                    <div class="service-tools-row flex flex-wrap gap-xs mt-md">
+                        ${toolsHTML}
+                    </div>
+
+                    <div class="service-card-footer mt-md flex items-center justify-between">
+                        <a href="${service.link || '#work'}" class="service-action-link">
+                            <span>Explore Repertoire</span>
+                            <span class="action-arrow">↗</span>
+                        </a>
+                        <span class="service-number font-mono">// ${indexStr}</span>
+                    </div>
                 </div>
             `;
         });
 
         servicesHTML += `</div>`;
         servicesSection.innerHTML = servicesHTML;
+        initSpotlightTracking();
     }
 
     // =========================================
@@ -441,8 +472,8 @@ document.addEventListener('DOMContentLoaded', () => {
         }, { passive: true });
 
         const renderProjects = (filterCategory, filterKey) => {
-            // Immediate responsive transition
-            projectsContainer.style.opacity = 0.3;
+            // Immediate snappy transition
+            projectsContainer.style.opacity = 0.4;
 
             setTimeout(() => {
                 let filteredData = currentProjects;
@@ -454,8 +485,12 @@ document.addEventListener('DOMContentLoaded', () => {
                     });
                 }
 
-                projectsContainer.innerHTML = filteredData.map((project, i) => `
-                    <div class="project-card reveal reveal-delay-${(i % 4) + 1} rounded-card" data-id="${project.id}" style="cursor: pointer;">
+                projectsContainer.innerHTML = filteredData.map((project, i) => {
+                    const formatLabel = project.aspectRatio === '9/16' ? '9:16 Vertical Reel' : (project.videoType === 'youtube' ? '16:9 Cinema 4K' : (project.specs && project.specs.format ? project.specs.format.split(' ')[0] : 'Visual Design'));
+                    const primarySoftware = (project.specs && project.specs.software) ? project.specs.software.split(' & ')[0] : (project.tags ? project.tags[0] : 'Creative Suite');
+
+                    return `
+                    <div class="project-card spotlight-card reveal reveal-delay-${(i % 4) + 1} rounded-card group" data-id="${project.id}" style="cursor: pointer;">
                         <div class="project-image-wrapper">
                             <img src="${project.image}" alt="${project.title}" class="project-image" loading="lazy" onerror="this.style.opacity='0';">
                             <span class="project-badge-tag">${project.tag || project.category}</span>
@@ -463,9 +498,9 @@ document.addEventListener('DOMContentLoaded', () => {
                             <!-- Software Tool & Format Pill -->
                             <div class="project-software-badge">
                                 <span class="software-dot"></span>
-                                <span class="software-name">${(project.specs && project.specs.software) ? project.specs.software.split(' & ')[0] : (project.tags ? project.tags[0] : 'Premiere')}</span>
+                                <span class="software-name">${primarySoftware}</span>
                                 <span class="software-sep">·</span>
-                                <span class="software-format">${project.aspectRatio === '9/16' ? '9:16 Reel' : (project.videoType === 'youtube' ? '16:9 Cinema' : (project.specs && project.specs.format ? project.specs.format.split(' ')[0] : 'Visual'))}</span>
+                                <span class="software-format">${formatLabel}</span>
                             </div>
 
                             <div class="project-overlay-trigger">
@@ -477,7 +512,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         <div class="project-content">
                             <div class="project-meta-row flex items-center justify-between">
                                 <span class="project-category text-accent">${project.category}</span>
-                                <span class="project-year">// 2026</span>
+                                <span class="project-year font-mono">// 2026</span>
                             </div>
                             <h3 class="project-title flex items-center justify-between">
                                 <span>${project.title}</span>
@@ -489,14 +524,15 @@ document.addEventListener('DOMContentLoaded', () => {
                             </div>
                         </div>
                     </div>
-                `).join('');
+                    `;
+                }).join('');
 
-                // Re-observe newly injected .reveal elements
+                // Re-observe newly injected .reveal elements and spotlight tracking
                 observeRevealElements();
 
                 // Fade in
                 projectsContainer.style.opacity = 1;
-            }, 300);
+            }, 50);
         };
 
         // Render awal semua projek

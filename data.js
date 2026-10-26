@@ -7,20 +7,23 @@
 export const cinemaServices = [
     {
         id: "cs1",
-        icon: `<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+        icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
             <rect x="2" y="6" width="14" height="12" rx="2"/>
             <path d="m22 8-4 4 4 4V8z"/>
             <line x1="6" y1="10" x2="6" y2="14"/>
             <line x1="9" y1="10" x2="9" y2="14"/>
         </svg>`,
+        badge: "SHORT FORM & REELS",
+        color: "cyan",
         title: "Video Editing & Motion Rhythms",
         description: "Mengolah video mentah menjadi tontonan berdaya pikat tinggi. Meliputi pacing ritmis, kinetic motion graphic, sound design immersif, dan adaptasi format vertikal (9:16) maupun widescreen (16:9).",
         category: "Video Editing",
-        link: "https://www.instagram.com/san_mhmd17/"
+        tools: ["Premiere Pro", "CapCut Pro", "After Effects"],
+        link: "cinema.html#work"
     },
     {
         id: "cs2",
-        icon: `<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+        icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
             <path d="M12 2a4 4 0 0 1 4 4"/>
             <path d="M8 6a4 4 0 0 1 4-4"/>
             <path d="M6.5 10A5.5 5.5 0 0 0 12 15.5 5.5 5.5 0 0 0 17.5 10"/>
@@ -28,88 +31,109 @@ export const cinemaServices = [
             <path d="M8 20h8"/>
             <circle cx="12" cy="10" r="2"/>
         </svg>`,
+        badge: "AERIAL & 4K FOOTAGE",
+        color: "sky",
         title: "Videography & Drone Cinematics",
         description: "Pengambilan gambar video 4K berkelas sinematik untuk kebutuhan komersial, dokumenter, profil korporasi, hingga aerial cinematography spektakuler menggunakan drone.",
         category: "Videography",
-        link: "https://www.instagram.com/san_mhmd17/"
+        tools: ["DJI Drone", "Sony 4K", "Gimbal Stabilizer"],
+        link: "cinema.html#work"
     },
     {
         id: "cs3",
-        icon: `<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+        icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
             <path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"/>
             <circle cx="12" cy="13" r="3"/>
         </svg>`,
+        badge: "PHOTO & RETOUCH",
+        color: "emerald",
         title: "Photography & Creative Retouching",
         description: "Mengabadikan momen, produk, dan portret dengan komposisi dramatis. Didukung color grading profesional dan retouching mendalam menggunakan Adobe Lightroom & Photoshop.",
         category: "Photography",
-        link: "https://www.instagram.com/san_mhmd17/"
+        tools: ["Adobe Lightroom", "Photoshop", "High-End Retouch"],
+        link: "cinema.html#work"
     },
     {
         id: "cs4",
-        icon: `<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+        icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
             <circle cx="12" cy="12" r="10"/>
             <path d="M12 2a7 7 0 0 0 7 7c0 5-7 13-7 13S5 14 5 9a7 7 0 0 0 7-7z"/>
             <circle cx="12" cy="9" r="2.5"/>
         </svg>`,
+        badge: "FILMIC COLOR & SOUND",
+        color: "purple",
         title: "Color Grading & Soundscapes",
         description: "Menghidupkan atmosfer visual lewat palet warna terkalibrasi filmic (LUTs kustom, tone curve, skin-tone isolation) serta tata suara berlapis untuk memicu emosi penonton.",
         category: "Color & Sound",
-        link: "https://www.instagram.com/san_mhmd17/"
+        tools: ["DaVinci Resolve", "Color Science", "SFX Soundscapes"],
+        link: "cinema.html#work"
     }
 ];
 
 export const designServices = [
     {
         id: "ds1",
-        icon: `<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+        icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
             <rect x="3" y="3" width="18" height="18" rx="2"/>
             <path d="M3 9h18"/>
             <path d="M9 21V9"/>
         </svg>`,
+        badge: "DIGITAL SYSTEMS",
+        color: "indigo",
         title: "UI/UX & Interactive Design",
         description: "Merancang pengalaman digital dan antarmuka web/mobile yang intuitif, estetis, dan fungsional. Meliputi wireframing, interactive prototyping, dan pembuatan design system berskala.",
         category: "UI/UX Design",
-        link: "https://www.instagram.com/san_mhmd17/"
+        tools: ["Figma", "Design System", "Interactive Prototyping"],
+        link: "design.html#work"
     },
     {
         id: "ds2",
-        icon: `<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+        icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
             <path d="m12 19 7-7 3 3-7 7-3-3z"/>
             <path d="m18 13-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/>
             <path d="m2 2 7.586 7.586"/>
             <circle cx="11" cy="11" r="2"/>
         </svg>`,
+        badge: "BRAND ARCHITECTURE",
+        color: "amber",
         title: "Brand Identity & Visual Systems",
         description: "Membangun identitas visual brand yang kokoh dari nol. Mulai dari logo craft, palet warna berkarakter, panduan tipografi, hingga brand guideline book siap pakai.",
         category: "Brand Identity",
-        link: "https://www.instagram.com/san_mhmd17/"
+        tools: ["Illustrator", "Brand Guidelines", "Vector Craft"],
+        link: "design.html#work"
     },
     {
         id: "ds3",
-        icon: `<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+        icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
             <rect x="2" y="3" width="20" height="14" rx="2"/>
             <line x1="8" y1="21" x2="16" y2="21"/>
             <line x1="12" y1="17" x2="12" y2="21"/>
             <circle cx="8" cy="8" r="1.5"/>
             <path d="M14 13l-3-3-5 5"/>
         </svg>`,
+        badge: "SEAMLESS CAROUSEL",
+        color: "rose",
         title: "Social Media Carousel Content",
         description: "Mendesain carousel edukatif dan promosi berslide banyak dengan visual hook kuat, alur baca terstruktur (*seamless swipe*), dan konversi tinggi bagi audiens Instagram & LinkedIn.",
         category: "Social Carousel",
-        link: "https://www.instagram.com/san_mhmd17/"
+        tools: ["Photoshop", "Canva Pro", "Content Hooks"],
+        link: "design.html#work"
     },
     {
         id: "ds4",
-        icon: `<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+        icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
             <path d="M4 4h16v16H4z"/>
             <path d="M4 12h16"/>
             <path d="M12 4v16"/>
             <circle cx="8" cy="8" r="1.5"/>
         </svg>`,
+        badge: "SWISS & MODERN POSTER",
+        color: "teal",
         title: "Poster & Editorial Typography",
         description: "Eksplorasi tata letak poster komersial dan eksperimental bergaya Neo-Brutalism, Swiss Typography, maupun modern cyberpunk untuk konser musik, exhibition, dan promosi event.",
         category: "Poster Design",
-        link: "https://www.instagram.com/san_mhmd17/"
+        tools: ["CorelDraw", "Photoshop", "Editorial Layout"],
+        link: "design.html#work"
     }
 ];
 
