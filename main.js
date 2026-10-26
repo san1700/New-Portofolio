@@ -62,7 +62,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         // Close mobile drawer when clicking regular navigation links
-        navLinks.querySelectorAll('.nav-link:not(.nav-link-dropdown), .popover-item, .popover-footer-cta').forEach(link => {
+        navLinks.querySelectorAll('.nav-link:not(.nav-link-dropdown), .popover-item, .popover-item-min, .popover-footer-cta').forEach(link => {
             link.addEventListener('click', () => {
                 mobileBtn.classList.remove('active');
                 navLinks.classList.remove('active');
@@ -81,6 +81,32 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             });
         }
+    }
+
+    // =========================================
+    // 1.2 THEME TOGGLE (LIGHT / DARK MODE - SIANG & MALAM)
+    // =========================================
+    const themeToggleBtn = document.getElementById('theme-toggle-btn');
+    const savedTheme = localStorage.getItem('portfolio_theme');
+
+    // If previously saved as light mode, apply immediately
+    if (savedTheme === 'light') {
+        document.documentElement.setAttribute('data-theme', 'light');
+    } else {
+        document.documentElement.removeAttribute('data-theme');
+    }
+
+    if (themeToggleBtn) {
+        themeToggleBtn.addEventListener('click', () => {
+            const isLight = document.documentElement.getAttribute('data-theme') === 'light';
+            if (isLight) {
+                document.documentElement.removeAttribute('data-theme');
+                localStorage.setItem('portfolio_theme', 'dark');
+            } else {
+                document.documentElement.setAttribute('data-theme', 'light');
+                localStorage.setItem('portfolio_theme', 'light');
+            }
+        });
     }
 
     // Clean up any lingering atmosphere attribute
