@@ -24,19 +24,41 @@ export const cinemaServices = [
     {
         id: "cs2",
         icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M12 2a4 4 0 0 1 4 4"/>
-            <path d="M8 6a4 4 0 0 1 4-4"/>
-            <path d="M6.5 10A5.5 5.5 0 0 0 12 15.5 5.5 5.5 0 0 0 17.5 10"/>
-            <path d="M12 15.5V20"/>
-            <path d="M8 20h8"/>
-            <circle cx="12" cy="10" r="2"/>
+            <circle cx="7" cy="6" r="3"/>
+            <circle cx="15" cy="6" r="3"/>
+            <rect x="3" y="10" width="14" height="10" rx="2"/>
+            <path d="m17 13 5-3v8l-5-3"/>
+            <circle cx="7" cy="6" r="1"/>
+            <circle cx="15" cy="6" r="1"/>
         </svg>`,
-        badge: "AERIAL & 4K FOOTAGE",
+        badge: "COMMERCIAL & 4K",
         color: "sky",
-        title: "Videography & Drone Cinematics",
-        description: "Pengambilan gambar video 4K berkelas sinematik untuk kebutuhan komersial, dokumenter, profil korporasi, hingga aerial cinematography spektakuler menggunakan drone.",
+        title: "Commercial Videography",
+        description: "Pengambilan gambar video 4K berkelas sinematik untuk kebutuhan komersial, dokumenter, profil korporasi, dan visual branding dengan komposisi terarah serta pencahayaan presisi.",
         category: "Videography",
-        tools: ["DJI Drone", "Sony 4K", "Gimbal Stabilizer"],
+        tools: ["Sony 4K", "Cinema Rig", "Gimbal Stabilizer"],
+        link: "cinema.html#work"
+    },
+    {
+        id: "cs-drone",
+        icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="9" y="9" width="6" height="6" rx="1.5"/>
+            <circle cx="12" cy="12" r="1.2"/>
+            <line x1="9.5" y1="9.5" x2="6.5" y2="6.5"/>
+            <line x1="14.5" y1="9.5" x2="17.5" y2="6.5"/>
+            <line x1="9.5" y1="14.5" x2="6.5" y2="17.5"/>
+            <line x1="14.5" y1="14.5" x2="17.5" y2="17.5"/>
+            <circle cx="5.5" cy="5.5" r="2.8"/>
+            <circle cx="18.5" cy="5.5" r="2.8"/>
+            <circle cx="5.5" cy="18.5" r="2.8"/>
+            <circle cx="18.5" cy="18.5" r="2.8"/>
+        </svg>`,
+        badge: "AERIAL & 4K DRONE",
+        color: "blue",
+        title: "Drone Pilot",
+        description: "Perekaman visual udara (aerial cinematography) dengan pergerakan kamera dinamis, lanskap spektakuler, dan resolusi 4K untuk perspektif sinematik yang megah dan berdaya pikat.",
+        category: "Videography",
+        tools: ["DJI Drone", "4K Aerial", "Flight Certified"],
         link: "cinema.html#work"
     },
     {
@@ -114,7 +136,7 @@ export const designServices = [
         badge: "SEAMLESS CAROUSEL",
         color: "rose",
         title: "Social Media Carousel Content",
-        description: "Mendesain carousel edukatif dan promosi berslide banyak dengan visual hook kuat, alur baca terstruktur (*seamless swipe*), dan konversi tinggi bagi audiens Instagram & LinkedIn.",
+        description: "Mendesain carousel edukatif dan promosi berslide banyak dengan visual hook kuat, alur baca terstruktur (seamless swipe), dan konversi tinggi bagi audiens Instagram & LinkedIn.",
         category: "Social Carousel",
         tools: ["Photoshop", "Canva Pro", "Content Hooks"],
         link: "design.html#work"
@@ -167,66 +189,66 @@ export const cinemaProjects = [
     },
     {
         id: 2,
-        title: "Dokumentasi Sinematik & Drone Kotagede",
+        title: "Elevating Your Perspective",
         category: "Videography",
         subCategory: "Videography & Drone",
-        tag: "COMMERCIAL / DRONE",
-        client: "Dinas Pariwisata & Budaya",
-        image: "images/project-drone.jpg",
+        tag: "DRONE SHOWREEL",
+        client: "SANS DRONE (Sewa Drone Jogja)",
+        image: "images/project-sans-drone.jpg",
         videoType: "youtube",
-        youtubeId: "5qap5aO4i9A",
+        youtubeId: "n2xrFxwtfW0",
         aspectRatio: "16/9",
-        description: "Pengambilan video udara menggunakan drone 4K dan color grading sinematik untuk proyek kultural warisan arsitektur kuno Kotagede.",
-        tags: ["DJI Drone", "Videography", "DaVinci Resolve", "4K Footage"],
+        description: "Highlight showreel sinematik visual udara untuk Sans Drone — penyedia jasa sewa drone profesional di Yogyakarta. Menampilkan sudut pandang lanskap megah, pergerakan kamera halus, dan grading warna filmis.",
+        tags: ["DJI Drone", "Videography", "DaVinci Resolve", "CapCut Pro", "4K Footage"],
         specs: {
-            software: "DaVinci Resolve & Premiere",
+            software: "DaVinci Resolve & CapCut Pro",
             format: "16:9 Widescreen (4K UHD)",
-            scope: "Aerial Drone & Color Grade"
+            scope: "Aerial Drone, Editing & Color Grade"
         },
-        link: "https://www.youtube.com/watch?v=5qap5aO4i9A",
-        liveUrl: "https://www.youtube.com/watch?v=5qap5aO4i9A"
+        link: "https://www.youtube.com/watch?v=n2xrFxwtfW0",
+        liveUrl: "https://www.youtube.com/watch?v=n2xrFxwtfW0"
     },
     {
         id: 3,
-        title: "Commercial Product Reels - Fashion Streetwear",
+        title: "Sharing Bisnis Buat Perintis",
         category: "Video Editing",
-        subCategory: "Commercial & Fashion",
-        tag: "COMMERCIAL REELS",
-        client: "Urban Pulse Apparel",
-        image: "images/project-fashion.jpg",
+        subCategory: "Reels & Short Form",
+        tag: "EVENT REELS",
+        client: "Angkik.DY",
+        image: "images/project-sharing-bisnis.jpg",
         videoType: "video",
-        videoUrl: "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4",
+        videoUrl: "videos/project-sharing-bisnis.mp4",
         aspectRatio: "9/16",
-        description: "Video promosi produk fashion streetwear dengan transisi speed-ramp dinamis, typography kinetic, dan beat sync yang adiktif.",
-        tags: ["Premiere Pro", "Beat Sync", "Commercial", "Streetwear"],
+        description: "Dokumentasi dan editing video vertikal (Reels) acara talkshow & sharing session 'Sharing Bisnis Buat Perintis' bersama Angkik.DY. Menghadirkan cuplikan insight bernas, alur dinamis, sound beat-sync yang engaging, serta visual storytelling yang menginspirasi para perintis usaha.",
+        tags: ["CapCut Pro", "Event Highlight", "Reels", "Talkshow", "Short Form"],
         specs: {
-            software: "Adobe Premiere Pro",
-            format: "9:16 Vertical Reel",
-            scope: "Speed Ramp & Kinetic Type"
+            software: "CapCut Pro",
+            format: "9:16 Vertical Reel (1080x1920)",
+            scope: "Event Documentation, Beat-Sync & Reels Cut"
         },
-        link: "https://www.instagram.com/san_mhmd17/",
-        liveUrl: "https://www.instagram.com/san_mhmd17/"
+        link: "https://www.instagram.com/reel/DYKNPsivjqj/",
+        liveUrl: "https://www.instagram.com/reel/DYKNPsivjqj/"
     },
     {
         id: 4,
-        title: "Company Profile & Event Highlight Batik Heritage",
+        title: "Dokumentasi Sinematik: Persidangan Semu",
         category: "Videography",
         subCategory: "Videography & Drone",
-        tag: "COMPANY PROFILE",
-        client: "Yayasan Batik Nusantara",
-        image: "images/project-event.jpg",
-        videoType: "youtube",
-        youtubeId: "5qap5aO4i9A",
+        tag: "MOOT COURT DOCUMENTARY",
+        client: "Mahasiswa UAD (Lex Vindicata)",
+        image: "images/project-persidangan-semu.jpg",
+        videoType: "video",
+        videoUrl: "videos/project-persidangan-semu.mp4",
         aspectRatio: "16/9",
-        description: "Liputan video sinematik pameran kebudayaan dan profil workshop batik dengan wawancara narasumber serta aerial b-roll berkelas.",
-        tags: ["Videography", "Cinematic", "Event Highlight", "Color Grade"],
+        description: "Dokumentasi video sinematik dan aftermovie kompetisi peradilan semu (Civil Procedure Moot Court Delegation) delegasi Lex Vindicata mahasiswa Universitas Ahmad Dahlan. Mengabadikan ketegangan ruang sidang dan momen berharga dengan transisi dinamis serta tata warna filmis.",
+        tags: ["Premiere Pro", "DaVinci Resolve", "CapCut", "Event Highlight", "Cinematography"],
         specs: {
-            software: "Premiere Pro & After Effects",
-            format: "16:9 Cinematic (4K UHD)",
-            scope: "Full Production & Interview"
+            software: "Premiere Pro, DaVinci & CapCut",
+            format: "16:9 Widescreen Cinematic",
+            scope: "Full Event Coverage & Aftermovie"
         },
-        link: "https://www.youtube.com/watch?v=5qap5aO4i9A",
-        liveUrl: "https://www.youtube.com/watch?v=5qap5aO4i9A"
+        link: "https://www.instagram.com/reel/Db4Q0M2T7qT/",
+        liveUrl: "https://www.instagram.com/reel/Db4Q0M2T7qT/"
     },
     {
         id: 5,
@@ -395,11 +417,11 @@ export const designProjects = [
 
 // Curated 6 projects for Gateway Landing Page
 export const projectsData = [
-    cinemaProjects[0], // Falisha Laundry (Video Reels)
+    cinemaProjects[1], // Elevating Your Perspective (Sans Drone)
     designProjects[0], // Maslahah App UI/UX
-    cinemaProjects[1], // Kotagede Drone & Cinematic
+    cinemaProjects[2], // Sharing Bisnis Buat Perintis (Angkik.DY)
     designProjects[1], // Kopi Senja Brand Identity
-    cinemaProjects[2], // Fashion Commercial Reels
+    cinemaProjects[3], // Persidangan Semu: Lex Vindicata (Event Cinematic)
     designProjects[2]  // Social Media Carousel
 ];
 

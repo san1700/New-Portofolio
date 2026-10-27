@@ -401,34 +401,17 @@ document.addEventListener('DOMContentLoaded', () => {
         `;
 
         currentServices.forEach((service, i) => {
-            const indexStr = String(i + 1).padStart(2, '0');
-            const toolsHTML = (service.tools || []).map(t => `<span class="service-tool-tag">${t}</span>`).join('');
             servicesHTML += `
-                <div class="service-card-sekeco spotlight-card reveal reveal-delay-${(i % 4) + 1} rounded-card group" data-color="${service.color || 'cyan'}">
-                    <div class="service-card-top flex items-center justify-between">
-                        <div class="service-badge-icon color-${service.color || 'cyan'}">
-                            ${service.icon || '✦'}
-                        </div>
-                        <span class="service-pill-tag">${service.badge || service.category}</span>
+                <a href="${service.link || '#work'}" class="service-card-sekeco spotlight-card reveal reveal-delay-${(i % 3) + 1} rounded-card group" data-color="${service.color || 'cyan'}">
+                    <div class="service-badge-icon color-${service.color || 'cyan'}" aria-hidden="true">
+                        ${service.icon || '✦'}
                     </div>
                     
-                    <div class="service-body mt-md">
+                    <div class="service-body">
                         <h3 class="service-heading">${service.title}</h3>
-                        <p class="service-desc text-muted mt-xs">${service.description}</p>
+                        <p class="service-desc text-muted">${service.description}</p>
                     </div>
-
-                    <div class="service-tools-row flex flex-wrap gap-xs mt-md">
-                        ${toolsHTML}
-                    </div>
-
-                    <div class="service-card-footer mt-md flex items-center justify-between">
-                        <a href="${service.link || '#work'}" class="service-action-link">
-                            <span>Explore Repertoire</span>
-                            <span class="action-arrow">↗</span>
-                        </a>
-                        <span class="service-number font-mono">// ${indexStr}</span>
-                    </div>
-                </div>
+                </a>
             `;
         });
 
@@ -710,14 +693,20 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!modalEl) return;
         modalEl.classList.add('active');
         modalEl.setAttribute('aria-hidden', 'false');
+        document.body.classList.add('modal-open');
+        document.documentElement.classList.add('modal-open');
         document.body.style.overflow = 'hidden';
+        document.documentElement.style.overflow = 'hidden';
     };
 
     const closeModal = (modalEl) => {
         if (!modalEl) return;
         modalEl.classList.remove('active');
         modalEl.setAttribute('aria-hidden', 'true');
+        document.body.classList.remove('modal-open');
+        document.documentElement.classList.remove('modal-open');
         document.body.style.overflow = '';
+        document.documentElement.style.overflow = '';
     };
 
     // --- 1. Project Detail Modal ---
@@ -730,6 +719,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const modalMediaBadge = document.getElementById('modal-media-badge');
     const modalMediaBadgeText = document.getElementById('modal-media-badge-text');
     const modalProjectCategory = document.getElementById('modal-project-category');
+    const modalProjectUrlBadge = document.getElementById('modal-project-url-badge');
     const modalProjectClient = document.getElementById('modal-project-client');
     const modalProjectTitle = document.getElementById('modal-project-title');
     const modalProjectTags = document.getElementById('modal-project-tags');
@@ -739,6 +729,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const specSoftware = document.getElementById('spec-software');
     const specFormat = document.getElementById('spec-format');
     const specScope = document.getElementById('spec-scope');
+    const modalProjectReelLink = document.getElementById('modal-project-reel-link');
+    const modalReelPoster = document.getElementById('modal-reel-poster');
+    const modalReelCtaPlatform = document.getElementById('modal-reel-cta-platform');
 
     // Menghentikan playback & membersihkan resource saat modal ditutup
     const closeProjectDetailModal = () => {
@@ -756,6 +749,15 @@ document.addEventListener('DOMContentLoaded', () => {
         if (modalProjectIframe) {
             modalProjectIframe.src = '';
             modalProjectIframe.style.display = 'none';
+        }
+
+        if (modalProjectReelLink) {
+            modalProjectReelLink.style.display = 'none';
+            modalProjectReelLink.href = '#';
+        }
+
+        if (modalReelPoster) {
+            modalReelPoster.src = '';
         }
 
         if (modalProjectImg) {
@@ -779,152 +781,321 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // Reusable function untuk membuka modal detail proyek berdasarkan ID
+    const openProjectById = (projectId) => {
+        if (!projectModal) return;
+        const allAvailableProjects = [...cinemaProjects, ...designProjects, ...projectsData];
+        const project = allAvailableProjects.find(p => String(p.id) === String(projectId));
+        if (!project) return;
+
+        // Reset media state
+        if (modalProjectVideo) {
+            modalProjectVideo.pause();
+            modalProjectVideo.currentTime = 0;
+            modalProjectVideo.removeAttribute('src');
+            modalProjectVideo.style.display = 'none';
+        }
+        if (modalProjectIframe) {
+            modalProjectIframe.src = '';
+            modalProjectIframe.style.display = 'none';
+        }
+        if (modalProjectReelLink) {
+            modalProjectReelLink.style.display = 'none';
+            modalProjectReelLink.href = '#';
+        }
+        if (modalProjectImg) {
+            modalProjectImg.style.display = 'none';
+        }
+        if (modalMediaWrapper) {
+            modalMediaWrapper.classList.remove('aspect-9-16', 'aspect-16-9', 'aspect-image');
+        }
+
+        // Deteksi platform dan format tautan
+        const targetLink = project.link || project.liveUrl || '';
+        let platform = 'default';
+        if (targetLink.includes('instagram.com')) {
+            platform = 'instagram';
+        } else if (targetLink.includes('tiktok.com')) {
+            platform = 'tiktok';
+        } else if (project.youtubeId || targetLink.includes('youtube.com') || targetLink.includes('youtu.be')) {
+            platform = 'youtube';
+        } else if (project.category === 'UI/UX Design' || (targetLink && targetLink.includes('figma.com'))) {
+            platform = 'design';
+        }
+
+        const isVerticalReel = project.aspectRatio === '9/16';
+        const ratioClass = isVerticalReel ? 'aspect-9-16' : 'aspect-16-9';
+        const videoType = project.videoType || (project.videoUrl ? 'video' : (project.youtubeId ? 'youtube' : ((platform === 'instagram' || platform === 'tiktok') ? 'reel' : 'image')));
+
+        if (modalMediaWrapper) {
+            if (videoType === 'image') {
+                modalMediaWrapper.classList.add('aspect-image');
+            } else {
+                modalMediaWrapper.classList.add(ratioClass);
+            }
+        }
+
+        // Tampilkan media sesuai prioritas kebersihan & kualitas visual (zero external iframe chrome)
+        if (videoType === 'video' && project.videoUrl) {
+            if (modalProjectVideo) {
+                modalProjectVideo.src = project.videoUrl;
+                modalProjectVideo.poster = project.image || '';
+                modalProjectVideo.style.display = 'block';
+                modalProjectVideo.currentTime = 0;
+                const playPromise = modalProjectVideo.play();
+                if (playPromise !== undefined) {
+                    playPromise.catch(() => {
+                        // If browser policy requires mute for autoplay, mute and continue playing smoothly
+                        modalProjectVideo.muted = true;
+                        modalProjectVideo.play().catch(() => {});
+                    });
+                }
+            }
+            if (modalMediaBadgeText) {
+                modalMediaBadgeText.textContent = isVerticalReel ? 'REELS PREVIEW (9:16)' : 'VIDEO PREVIEW (16:9)';
+            }
+        } else if (videoType === 'youtube' && project.youtubeId) {
+            if (modalProjectIframe) {
+                modalProjectIframe.src = `https://www.youtube-nocookie.com/embed/${project.youtubeId}?autoplay=1&mute=0&rel=0`;
+                modalProjectIframe.style.display = 'block';
+            }
+            if (modalMediaBadgeText) {
+                modalMediaBadgeText.textContent = 'YOUTUBE 4K (16:9)';
+            }
+        } else if (platform === 'instagram' || platform === 'tiktok' || videoType === 'reel') {
+            // Clean Cinematic Reel Frame — Pure 9:16 / 16:9 frame, high-res poster, custom play pulse button, no third-party white bars
+            if (modalProjectReelLink) {
+                modalProjectReelLink.style.display = 'block';
+                modalProjectReelLink.href = targetLink || '#';
+            }
+            if (modalReelPoster) {
+                modalReelPoster.src = project.image || '';
+                modalReelPoster.alt = project.title || 'Video Showcase';
+            }
+            if (modalReelCtaPlatform) {
+                if (platform === 'tiktok') {
+                    modalReelCtaPlatform.innerHTML = `
+                        <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64c.298-.002.595.042.88.13V9.4a6.33 6.33 0 0 0-1-.08A6.34 6.34 0 0 0 3 15.66a6.34 6.34 0 0 0 10.82 4.49 6.27 6.27 0 0 0 1.89-4.49V8.62a8.27 8.27 0 0 0 4.88 1.57V6.74a4.88 4.88 0 0 1-1-.05z"/>
+                        </svg>
+                        <span>Tonton di TikTok</span>
+                    `;
+                } else {
+                    modalReelCtaPlatform.innerHTML = `
+                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                        </svg>
+                        <span>Tonton di Instagram Reel</span>
+                    `;
+                }
+            }
+            if (modalMediaBadgeText) {
+                modalMediaBadgeText.textContent = platform === 'tiktok' ? 'TIKTOK VIDEO (9:16)' : (isVerticalReel ? 'INSTAGRAM REEL (9:16)' : 'INSTAGRAM (16:9)');
+            }
+        } else {
+            // Static Design / Photography Image Showcase
+            if (modalProjectImg) {
+                modalProjectImg.src = project.image || '';
+                modalProjectImg.alt = project.title || 'Project Preview';
+                modalProjectImg.style.display = 'block';
+            }
+            if (modalMediaBadgeText) {
+                modalMediaBadgeText.textContent = project.category === 'UI/UX Design' ? 'UI/UX PREVIEW' : 'DESIGN SHOWCASE';
+            }
+        }
+
+        // Isi konten teks & meta
+        if (modalProjectCategory) modalProjectCategory.textContent = project.category || 'Portfolio';
+        if (modalProjectClient) modalProjectClient.textContent = project.client ? `Client: ${project.client}` : '';
+        if (modalProjectTitle) modalProjectTitle.textContent = project.title || 'Judul Proyek';
+        if (modalProjectDesc) modalProjectDesc.textContent = project.description || 'Proyek portofolio unggulan dengan arsitektur visual modern dan presisi tinggi.';
+
+        // Technical Specs Grid
+        if (project.specs) {
+            if (specSoftware) specSoftware.textContent = project.specs.software || 'Premiere Pro';
+            if (specFormat) specFormat.textContent = project.specs.format || (isVerticalReel ? '9:16 Vertical Reel' : '16:9 Widescreen');
+            if (specScope) specScope.textContent = project.specs.scope || 'Full Production & Edit';
+        } else {
+            if (specSoftware) specSoftware.textContent = 'Premiere & After Effects';
+            if (specFormat) specFormat.textContent = isVerticalReel ? '9:16 Vertical Reel' : '16:9 Widescreen';
+            if (specScope) specScope.textContent = 'Full Edit & Color Grading';
+        }
+
+        // Render tombol tawaran platform langsung ("Tonton di Instagram / TikTok / YouTube")
+        if (modalProjectUrl) {
+            modalProjectUrl.classList.remove('btn-platform-instagram', 'btn-platform-tiktok', 'btn-platform-youtube');
+
+            if (targetLink && targetLink !== '#') {
+                modalProjectUrl.style.display = 'inline-flex';
+                modalProjectUrl.href = targetLink;
+                modalProjectUrl.target = '_blank';
+                modalProjectUrl.rel = 'noopener noreferrer';
+
+                let btnIconSvg = '';
+                let btnText = 'Lihat Postingan Klien';
+
+                if (platform === 'instagram') {
+                    modalProjectUrl.classList.add('btn-platform-instagram');
+                    btnText = 'Tonton di Instagram';
+                    btnIconSvg = `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                        <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                        <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                    </svg>`;
+                } else if (platform === 'tiktok') {
+                    modalProjectUrl.classList.add('btn-platform-tiktok');
+                    btnText = 'Tonton di TikTok';
+                    btnIconSvg = `<svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64c.298-.002.595.042.88.13V9.4a6.33 6.33 0 0 0-1-.08A6.34 6.34 0 0 0 3 15.66a6.34 6.34 0 0 0 10.82 4.49 6.27 6.27 0 0 0 1.89-4.49V8.62a8.27 8.27 0 0 0 4.88 1.57V6.74a4.88 4.88 0 0 1-1-.05z"/>
+                    </svg>`;
+                } else if (platform === 'youtube') {
+                    modalProjectUrl.classList.add('btn-platform-youtube');
+                    btnText = 'Tonton di YouTube';
+                    btnIconSvg = `<svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                    </svg>`;
+                } else if (platform === 'design') {
+                    btnText = 'Buka Prototipe & Desain';
+                    btnIconSvg = `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="3" y="3" width="18" height="18" rx="2"></rect>
+                        <path d="M3 9h18"></path>
+                        <path d="M9 21V9"></path>
+                    </svg>`;
+                } else {
+                    btnText = 'Lihat Proyek Asli';
+                    btnIconSvg = `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <line x1="2" y1="12" x2="22" y2="12"></line>
+                        <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+                    </svg>`;
+                }
+
+                modalProjectUrl.innerHTML = `
+                    <span class="platform-icon-wrap">${btnIconSvg}</span>
+                    <span>${btnText}</span>
+                    <svg class="external-arrow" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-left: 4px;">
+                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                        <polyline points="15 3 21 3 21 9"></polyline>
+                        <line x1="10" y1="14" x2="21" y2="3"></line>
+                    </svg>
+                `;
+            } else {
+                modalProjectUrl.style.display = 'none';
+            }
+        }
+
+        // Render Tombol Tautan Platform Sejajar Kategori (Header Badge)
+        if (modalProjectUrlBadge) {
+            modalProjectUrlBadge.classList.remove('btn-platform-instagram', 'btn-platform-tiktok', 'btn-platform-youtube', 'btn-platform-default');
+            if (targetLink && targetLink !== '#') {
+                modalProjectUrlBadge.style.display = 'inline-flex';
+                modalProjectUrlBadge.href = targetLink;
+                modalProjectUrlBadge.target = '_blank';
+                modalProjectUrlBadge.rel = 'noopener noreferrer';
+
+                let badgeIcon = '';
+                let badgeText = 'Buka Tautan';
+
+                if (platform === 'instagram') {
+                    modalProjectUrlBadge.classList.add('btn-platform-instagram');
+                    badgeText = 'Tonton di Instagram';
+                    badgeIcon = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                        <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                        <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                    </svg>`;
+                } else if (platform === 'tiktok') {
+                    modalProjectUrlBadge.classList.add('btn-platform-tiktok');
+                    badgeText = 'Tonton di TikTok';
+                    badgeIcon = `<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64c.298-.002.595.042.88.13V9.4a6.33 6.33 0 0 0-1-.08A6.34 6.34 0 0 0 3 15.66a6.34 6.34 0 0 0 10.82 4.49 6.27 6.27 0 0 0 1.89-4.49V8.62a8.27 8.27 0 0 0 4.88 1.57V6.74a4.88 4.88 0 0 1-1-.05z"/>
+                    </svg>`;
+                } else if (platform === 'youtube') {
+                    modalProjectUrlBadge.classList.add('btn-platform-youtube');
+                    badgeText = 'Tonton di YouTube';
+                    badgeIcon = `<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                    </svg>`;
+                } else if (platform === 'design') {
+                    modalProjectUrlBadge.classList.add('btn-platform-default');
+                    badgeText = 'Buka Desain';
+                    badgeIcon = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="3" y="3" width="18" height="18" rx="2"></rect>
+                        <path d="M3 9h18"></path>
+                        <path d="M9 21V9"></path>
+                    </svg>`;
+                } else {
+                    modalProjectUrlBadge.classList.add('btn-platform-default');
+                    badgeText = 'Lihat Proyek';
+                    badgeIcon = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <line x1="2" y1="12" x2="22" y2="12"></line>
+                        <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+                    </svg>`;
+                }
+
+                modalProjectUrlBadge.innerHTML = `
+                    <span class="platform-badge-icon">${badgeIcon}</span>
+                    <span class="platform-badge-text">${badgeText}</span>
+                    <svg class="external-arrow" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                        <polyline points="15 3 21 3 21 9"></polyline>
+                        <line x1="10" y1="14" x2="21" y2="3"></line>
+                    </svg>
+                `;
+            } else {
+                modalProjectUrlBadge.style.display = 'none';
+            }
+        }
+
+        // Quick Inquire Action: Auto-prefill contact modal
+        if (modalInquireBtn) {
+            modalInquireBtn.onclick = () => {
+                closeProjectDetailModal();
+                const contactModalEl = document.getElementById('contact-modal');
+                if (contactModalEl) {
+                    openModal(contactModalEl);
+                    const msgInput = document.getElementById('contact-message');
+                    if (msgInput) {
+                        msgInput.value = `Halo Mohammad Ikhsan! Saya tertarik memesan proyek serupa dengan: "${project.title}" (${project.category}). Mohon info estimasi biaya dan timeline pengerjaannya.`;
+                        msgInput.focus();
+                    }
+                }
+            };
+        }
+
+        // Tags
+        if (modalProjectTags) {
+            modalProjectTags.innerHTML = (project.tags || [])
+                .map(tag => `<span class="project-tag">${tag}</span>`)
+                .join('');
+        }
+
+        openModal(projectModal);
+    };
+
     // Event Delegation: Ketika .project-card diklik
     const workElem = document.getElementById('work');
     if (workElem && projectModal) {
         workElem.addEventListener('click', (e) => {
             const card = e.target.closest('.project-card');
             if (!card) return;
-
-            const projectId = card.dataset.id;
-            const allAvailableProjects = [...cinemaProjects, ...designProjects, ...projectsData];
-            const project = allAvailableProjects.find(p => String(p.id) === String(projectId));
-            if (!project) return;
-
-            // Reset media state
-            if (modalProjectVideo) {
-                modalProjectVideo.pause();
-                modalProjectVideo.currentTime = 0;
-                modalProjectVideo.removeAttribute('src');
-                modalProjectVideo.style.display = 'none';
-            }
-            if (modalProjectIframe) {
-                modalProjectIframe.src = '';
-                modalProjectIframe.style.display = 'none';
-            }
-            if (modalProjectImg) {
-                modalProjectImg.style.display = 'none';
-            }
-            if (modalMediaWrapper) {
-                modalMediaWrapper.classList.remove('aspect-9-16', 'aspect-16-9', 'aspect-image');
-            }
-
-            // Tentukan rasio & tipe media
-            const isVerticalReel = project.aspectRatio === '9/16';
-            const ratioClass = isVerticalReel ? 'aspect-9-16' : 'aspect-16-9';
-            const videoType = project.videoType || (project.videoUrl ? 'video' : (project.youtubeId ? 'youtube' : 'image'));
-
-            if (modalMediaWrapper) {
-                modalMediaWrapper.classList.add(videoType === 'image' ? 'aspect-image' : ratioClass);
-            }
-
-            if (videoType === 'video' && project.videoUrl) {
-                if (modalProjectVideo) {
-                    modalProjectVideo.src = project.videoUrl;
-                    modalProjectVideo.poster = project.image || '';
-                    modalProjectVideo.style.display = 'block';
-                }
-                if (modalMediaBadgeText) {
-                    modalMediaBadgeText.textContent = isVerticalReel ? 'REELS PREVIEW (9:16)' : 'VIDEO PREVIEW (16:9)';
-                }
-            } else if (videoType === 'youtube' && project.youtubeId) {
-                if (modalProjectIframe) {
-                    modalProjectIframe.src = `https://www.youtube-nocookie.com/embed/${project.youtubeId}?autoplay=1&mute=0&rel=0`;
-                    modalProjectIframe.style.display = 'block';
-                }
-                if (modalMediaBadgeText) {
-                    modalMediaBadgeText.textContent = 'YOUTUBE EMBED';
-                }
-            } else {
-                if (modalProjectImg) {
-                    modalProjectImg.src = project.image || '';
-                    modalProjectImg.alt = project.title || 'Project Preview';
-                    modalProjectImg.style.display = 'block';
-                }
-                if (modalMediaBadgeText) {
-                    modalMediaBadgeText.textContent = 'IMAGE SHOWCASE';
-                }
-            }
-
-            // Isi konten teks & meta
-            if (modalProjectCategory) modalProjectCategory.textContent = project.category || 'Portfolio';
-            if (modalProjectClient) modalProjectClient.textContent = project.client ? `Client: ${project.client}` : '';
-            if (modalProjectTitle) modalProjectTitle.textContent = project.title || 'Judul Proyek';
-            if (modalProjectDesc) modalProjectDesc.textContent = project.description || 'Proyek portofolio unggulan dengan arsitektur visual modern dan presisi tinggi.';
-
-            // Technical Specs Grid
-            if (project.specs) {
-                if (specSoftware) specSoftware.textContent = project.specs.software || 'Premiere Pro';
-                if (specFormat) specFormat.textContent = project.specs.format || (isVerticalReel ? '9:16 Vertical Reel' : '16:9 Widescreen');
-                if (specScope) specScope.textContent = project.specs.scope || 'Full Production & Edit';
-            } else {
-                if (specSoftware) specSoftware.textContent = 'Premiere & After Effects';
-                if (specFormat) specFormat.textContent = isVerticalReel ? '9:16 Vertical Reel' : '16:9 Widescreen';
-                if (specScope) specScope.textContent = 'Full Edit & Color Grading';
-            }
-
-            // Render dinamis tombol tautan eksternal ("Lihat Postingan Klien")
-            const targetLink = project.link || project.liveUrl || '';
-            if (modalProjectUrl) {
-                if (targetLink && targetLink !== '#') {
-                    modalProjectUrl.style.display = 'inline-flex';
-                    modalProjectUrl.href = targetLink;
-                    modalProjectUrl.target = '_blank';
-                    modalProjectUrl.rel = 'noopener noreferrer';
-
-                    let btnLabel = 'Lihat Postingan Klien';
-                    if (project.linkLabel) {
-                        btnLabel = project.linkLabel;
-                    } else if (targetLink.includes('instagram.com/reel') || targetLink.includes('tiktok.com')) {
-                        btnLabel = 'Tonton di Instagram Reels';
-                    } else if (targetLink.includes('youtube.com') || targetLink.includes('youtu.be')) {
-                        btnLabel = 'Tonton di YouTube';
-                    } else if (targetLink.includes('instagram.com')) {
-                        btnLabel = 'Lihat di Instagram';
-                    } else {
-                        btnLabel = 'Lihat Postingan Klien';
-                    }
-
-                    modalProjectUrl.innerHTML = `
-                        <span>${btnLabel}</span>
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-left: 8px;">
-                            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
-                            <polyline points="15 3 21 3 21 9"></polyline>
-                            <line x1="10" y1="14" x2="21" y2="3"></line>
-                        </svg>
-                    `;
-                } else {
-                    modalProjectUrl.style.display = 'none';
-                }
-            }
-
-            // Quick Inquire Action: Auto-prefill contact modal
-            if (modalInquireBtn) {
-                modalInquireBtn.onclick = () => {
-                    closeProjectDetailModal();
-                    const contactModalEl = document.getElementById('contact-modal');
-                    if (contactModalEl) {
-                        openModal(contactModalEl);
-                        const msgInput = document.getElementById('contact-message');
-                        if (msgInput) {
-                            msgInput.value = `Halo Mohammad Ikhsan! Saya tertarik memesan proyek serupa dengan: "${project.title}" (${project.category}). Mohon info estimasi biaya dan timeline pengerjaannya.`;
-                            msgInput.focus();
-                        }
-                    }
-                };
-            }
-
-            // Tags
-            if (modalProjectTags) {
-                modalProjectTags.innerHTML = (project.tags || [])
-                    .map(tag => `<span class="project-tag">${tag}</span>`)
-                    .join('');
-            }
-
-            openModal(projectModal);
+            openProjectById(card.dataset.id);
         });
     }
+
+    // Event Delegation: Buka modal dari tombol atau media lain dengan [data-open-project-id]
+    document.addEventListener('click', (e) => {
+        const trigger = e.target.closest('[data-open-project-id]');
+        if (trigger) {
+            e.preventDefault();
+            openProjectById(trigger.dataset.openProjectId);
+        }
+    });
 
     // --- 2. Contact Modal ("Let's Talk") ---
     const contactModal = document.getElementById('contact-modal');

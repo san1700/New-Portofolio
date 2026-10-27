@@ -434,6 +434,21 @@
             <div class="modal-media-wrapper" id="modal-media-wrapper">
                 <video id="modal-project-video" class="modal-video" controls playsinline preload="metadata" style="display: none;"></video>
                 <iframe id="modal-project-iframe" class="modal-iframe" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="display: none;"></iframe>
+                <!-- Interactive Clean Reel / Video Showcase (Zero External Chrome) -->
+                <a id="modal-project-reel-link" class="modal-reel-frame" href="#" target="_blank" rel="noopener noreferrer" style="display: none;">
+                    <img id="modal-reel-poster" src="" alt="" class="modal-reel-img">
+                    <div class="modal-reel-overlay">
+                        <div class="modal-reel-play-btn" aria-label="Play video">
+                            <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor">
+                                <polygon points="6 3 20 12 6 21 6 3"></polygon>
+                            </svg>
+                        </div>
+                        <div class="modal-reel-cta">
+                            <span class="modal-reel-cta-platform" id="modal-reel-cta-platform">Tonton di Instagram</span>
+                            <span class="modal-reel-cta-sub">Klik untuk tonton resolusi asli ↗</span>
+                        </div>
+                    </div>
+                </a>
                 <img id="modal-project-img" src="" alt="" class="modal-image" style="display: none;">
                 <div class="modal-media-badge" id="modal-media-badge">
                     <span class="badge-dot"></span>
@@ -442,8 +457,21 @@
             </div>
 
             <div class="modal-body">
-                <div class="modal-header-meta flex items-center justify-between">
-                    <span id="modal-project-category" class="project-category text-accent"></span>
+                <div class="modal-header-meta flex items-center justify-between gap-sm flex-wrap">
+                    <div class="modal-meta-left flex items-center gap-sm flex-wrap">
+                        <span id="modal-project-category" class="project-category text-accent"></span>
+                        <a id="modal-project-url-badge" href="#" target="_blank" rel="noopener noreferrer"
+                            class="btn-platform-badge" style="display: none;">
+                            <span class="platform-badge-icon"></span>
+                            <span class="platform-badge-text">Tonton di Instagram</span>
+                            <svg class="external-arrow" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                                <polyline points="15 3 21 3 21 9"></polyline>
+                                <line x1="10" y1="14" x2="21" y2="3"></line>
+                            </svg>
+                        </a>
+                    </div>
                     <span id="modal-project-client" class="project-client text-muted font-mono font-xs"></span>
                 </div>
                 <h2 id="modal-project-title" class="modal-title mt-xs"></h2>
