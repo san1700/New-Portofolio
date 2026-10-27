@@ -173,9 +173,8 @@ export const cinemaProjects = [
         subCategory: "Reels & Short Form",
         tag: "SHORT FORM CONTENT",
         client: "Falisha Laundry & Care",
-        image: "images/project-laundry.jpg",
-        videoType: "video",
-        videoUrl: "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4",
+        image: "images/project-laundry.webp",
+        videoType: "reel",
         aspectRatio: "9/16",
         description: "Editing video vertikal ritmis cepat dengan motion grafik kinetik dan sound design punchy untuk kampanye media sosial klien.",
         tags: ["CapCut Pro", "Premiere Pro", "Sound Design", "Reels"],
@@ -194,7 +193,7 @@ export const cinemaProjects = [
         subCategory: "Videography & Drone",
         tag: "DRONE SHOWREEL",
         client: "SANS DRONE (Sewa Drone Jogja)",
-        image: "images/project-sans-drone.jpg",
+        image: "images/project-sans-drone.webp",
         videoType: "youtube",
         youtubeId: "n2xrFxwtfW0",
         aspectRatio: "16/9",
@@ -215,7 +214,7 @@ export const cinemaProjects = [
         subCategory: "Reels & Short Form",
         tag: "EVENT REELS",
         client: "Angkik.DY",
-        image: "images/project-sharing-bisnis.jpg",
+        image: "images/project-sharing-bisnis.webp",
         videoType: "video",
         videoUrl: "videos/project-sharing-bisnis.mp4",
         aspectRatio: "9/16",
@@ -236,7 +235,7 @@ export const cinemaProjects = [
         subCategory: "Videography & Drone",
         tag: "MOOT COURT DOCUMENTARY",
         client: "Mahasiswa UAD (Lex Vindicata)",
-        image: "images/project-persidangan-semu.jpg",
+        image: "images/project-persidangan-semu.webp",
         videoType: "video",
         videoUrl: "videos/project-persidangan-semu.mp4",
         aspectRatio: "16/9",
@@ -251,13 +250,33 @@ export const cinemaProjects = [
         liveUrl: "https://www.instagram.com/reel/Db4Q0M2T7qT/"
     },
     {
+        id: 7,
+        title: "Dirgahayu Republik Indonesia ke-81",
+        category: "Video Editing",
+        subCategory: "Reels & Short Form",
+        tag: "PATRIOTIC REELS",
+        client: "Konten Pribadi",
+        image: "images/project-dirgahayu-81.webp",
+        videoType: "reel",
+        aspectRatio: "9/16",
+        description: "Video vertikal sinematik (Reels) memperingati Dirgahayu Kemerdekaan Republik Indonesia ke-81. Menyatukan color grading filmis bernuansa patriotik, dynamic pacing, dan sinkronisasi audio-visual yang mengobarkan semangat nasionalisme.",
+        tags: ["DaVinci Resolve", "CapCut", "Reels", "Videography", "Cinematic Cut", "Dirgahayu RI"],
+        specs: {
+            software: "DaVinci Resolve & CapCut",
+            format: "9:16 Vertical Reel (1080x1920)",
+            scope: "Color Grading, Sound Design & Dynamic Reels Cut"
+        },
+        link: "https://www.instagram.com/reel/Db8Z06nT6u_/?vrfl=MzRlODBiNWFlZA==&srtk=MzRlODBiNWFlZA==",
+        liveUrl: "https://www.instagram.com/reel/Db8Z06nT6u_/?vrfl=MzRlODBiNWFlZA==&srtk=MzRlODBiNWFlZA=="
+    },
+    {
         id: 5,
         title: "Dokumentasi Landscape & Human Interest",
         category: "Photography",
         subCategory: "Photography & Retouch",
         tag: "PHOTO STORY",
         client: "Editorial Cultural Project",
-        image: "images/project-photography.jpg",
+        image: "images/project-photography.webp",
         videoType: "image",
         aspectRatio: "16/9",
         description: "Sesi foto lanskap pesisir dan potret aktivitas pengrajin lokal dengan color retouching hangat dan berkarakter menggunakan Lightroom.",
@@ -277,7 +296,7 @@ export const cinemaProjects = [
         subCategory: "Photography & Retouch",
         tag: "COLOR RETOUCH",
         client: "Personal Editorial Series",
-        image: "images/project-branding.jpg",
+        image: "images/project-branding.webp",
         videoType: "image",
         aspectRatio: "16/9",
         description: "Eksplorasi fotografi malam kota dengan penekanan pada neon reflections, moody contrast curves, dan koreksi warna kulit natural.",
@@ -289,6 +308,86 @@ export const cinemaProjects = [
         },
         link: "https://www.instagram.com/san_mhmd17/",
         liveUrl: "https://www.instagram.com/san_mhmd17/"
+    },
+    {
+        id: 8,
+        title: "Dokumentasi Event DPP IMABA",
+        category: "Photography",
+        subCategory: "Photography & Retouch",
+        tag: "EVENT RECAP & CAROUSEL",
+        client: "DPP IMABA",
+        image: "images/project-imaba.webp",
+        videoType: "image",
+        aspectRatio: "16/9",
+        description: "Dokumentasi fotografi dan kurasi visual feed Instagram untuk kegiatan Kaderisasi Lanjut Mahasiswa Bata-Bata (KLMB) oleh DPP IMABA. Mengabadikan jalannya seminar, interaksi narasumber, serta presentasi materi secara profesional.",
+        tags: ["Photoshop", "Lightroom", "Canva", "Event Photography", "Human Interest", "Carousel"],
+        specs: {
+            software: "Photoshop, Lightroom & Canva",
+            format: "16:9 Showcase & Multi-Slide Feed",
+            scope: "Event Documentation, Photo Retouch & Editorial Design"
+        },
+        link: "https://www.instagram.com/dppimaba.official/",
+        liveUrl: "https://www.instagram.com/dppimaba.official/"
+    },
+    {
+        id: 9,
+        title: "Grand Final Puteri Pendidikan 2025",
+        category: "Photography",
+        subCategory: "Photography & Retouch",
+        tag: "PAGEANT & CAROUSEL",
+        client: "Angkik.DY",
+        image: "images/project-puteri-pendidikan.jpg",
+        videoType: "image",
+        aspectRatio: "16/9",
+        description: "Dokumentasi fotografi panggung dan kurasi visual carousel Instagram untuk penampilan Angkik.DY di panggung Grand Final Puteri Pendidikan 2025. Mengabadikan keanggunan busana, gestur percaya diri, serta ekspresi panggung lewat tata warna retouching yang dramatis dan terkalibrasi.",
+        tags: ["Photoshop", "Lightroom", "Stage Photography", "Color Retouch", "Carousel", "Pageant"],
+        specs: {
+            software: "Adobe Photoshop & Lightroom",
+            format: "High-Res Stage Photo & Carousel Feed",
+            scope: "Stage Coverage, Lighting Retouch & Feed Curation"
+        },
+        link: "https://www.instagram.com/p/DNu_y5CXnrk/?rpxt=MzRlODBiNWFlZA==&srtk=MzRlODBiNWFlZA==",
+        liveUrl: "https://www.instagram.com/p/DNu_y5CXnrk/?rpxt=MzRlODBiNWFlZA==&srtk=MzRlODBiNWFlZA=="
+    },
+    {
+        id: 10,
+        title: "Kelas Motivasi Mahasiswa Baru",
+        category: "Photography",
+        subCategory: "Photography & Retouch",
+        tag: "MOTIVATION & TALKSHOW",
+        client: "Angkik.DY",
+        image: "images/project-kelas-motivasi.jpg",
+        videoType: "image",
+        aspectRatio: "16/9",
+        description: "Dokumentasi fotografi sesi seminar dan kurasi visual carousel Instagram pada acara Kelas Motivasi Mahasiswa Baru bersama Angkik.DY. Mengabadikan antusiasme audiens dan interaksi panggung lewat tata warna retouching yang hangat, tajam, dan inspiratif.",
+        tags: ["Photoshop", "Lightroom", "Event Photography", "Color Retouch", "Carousel", "Public Speaking"],
+        specs: {
+            software: "Adobe Photoshop & Lightroom",
+            format: "High-Res Event Photo & Carousel Feed",
+            scope: "Seminar Coverage, Lighting Retouch & Feed Curation"
+        },
+        link: "https://www.instagram.com/p/DONF8-UD42U/?vrfl=MzRlODBiNWFlZA==&srtk=MzRlODBiNWFlZA==",
+        liveUrl: "https://www.instagram.com/p/DONF8-UD42U/?vrfl=MzRlODBiNWFlZA==&srtk=MzRlODBiNWFlZA=="
+    },
+    {
+        id: 11,
+        title: "Cakap Ngurus Bisnis",
+        category: "Photography",
+        subCategory: "Photography & Retouch",
+        tag: "BUSINESS TALKSHOW & CAROUSEL",
+        client: "Angkik.DY",
+        image: "images/project-cakap-ngurus-bisnis.jpg",
+        videoType: "image",
+        aspectRatio: "16/9",
+        description: "Dokumentasi fotografi sesi seminar dan kurasi visual carousel Instagram untuk event 'Cakap Ngurus Bisnis' (Kolaborasi Kledo x ADY Foundation) bersama Angkik.DY. Mengabadikan insight praktisi manajemen bisnis lewat komposisi visual panggung yang profesional dan berkarakter.",
+        tags: ["Photoshop", "Lightroom", "Event Photography", "Business Talkshow", "Color Retouch", "Carousel"],
+        specs: {
+            software: "Adobe Photoshop & Lightroom",
+            format: "High-Res Event Photo & Carousel Feed",
+            scope: "Seminar Coverage, Lighting Retouch & Feed Curation"
+        },
+        link: "https://www.instagram.com/p/DUsk_QNj9dD/?mdxt=MzRlODBiNWFlZA==&srtk=MzRlODBiNWFlZA==",
+        liveUrl: "https://www.instagram.com/p/DUsk_QNj9dD/?mdxt=MzRlODBiNWFlZA==&srtk=MzRlODBiNWFlZA=="
     }
 ];
 
@@ -300,7 +399,7 @@ export const designProjects = [
         subCategory: "UI/UX Design",
         tag: "MOBILE APP / PRODUCT",
         client: "Maslahah Financial Tech",
-        image: "images/Mockup maslahah.png",
+        image: "images/mockup-maslahah.webp",
         videoType: "image",
         aspectRatio: "16/9",
         description: "Perancangan UI/UX aplikasi keuangan berbasis syariah yang bersih dan inklusif. Dilengkapi design system komprehensif, arsitektur informasi teruji, dan prototipe interaktif.",
@@ -320,7 +419,7 @@ export const designProjects = [
         subCategory: "Brand Identity",
         tag: "BRAND IDENTITY",
         client: "Kopi Senja Artisan Cafe",
-        image: "images/project-branding.jpg",
+        image: "images/project-branding.webp",
         videoType: "image",
         aspectRatio: "16/9",
         description: "Desain identitas brand visual, feed Instagram aesthetic, banner promosi, dan packaging ramah lingkungan untuk kedai kopi artisan modern.",
@@ -340,7 +439,7 @@ export const designProjects = [
         subCategory: "Social Media Carousel",
         tag: "CAROUSEL DESIGN",
         client: "Digital Growth Academy",
-        image: "images/project-fashion.jpg",
+        image: "images/project-fashion.webp",
         videoType: "image",
         aspectRatio: "9/16",
         description: "Rangkaian carousel 7-slide dengan micro-copywriting menarik, tipografi tebal terstruktur, dan ilustrasi modern yang menaikkan save & share hingga 300%.",
@@ -360,7 +459,7 @@ export const designProjects = [
         subCategory: "Poster & Editorial",
         tag: "POSTER DESIGN",
         client: "Indie Soundwave Festival",
-        image: "images/project-event.jpg",
+        image: "images/project-event.webp",
         videoType: "image",
         aspectRatio: "9/16",
         description: "Eksplorasi poster bergaya Neo-Brutalism dengan kontras tinggi, grid asimetris, dan kombinasi font sans-serif & serif modern untuk promosi konser musik.",
@@ -380,7 +479,7 @@ export const designProjects = [
         subCategory: "Brand Identity",
         tag: "BRAND IDENTITY",
         client: "Studio Arch Atelier",
-        image: "images/project-drone.jpg",
+        image: "images/project-drone.webp",
         videoType: "image",
         aspectRatio: "16/9",
         description: "Pembuatan sistem identitas visual minimalis untuk biro arsitektur terkemuka: logo mark geometris, kartu nama eksklusif, kop surat, dan company deck.",
@@ -400,7 +499,7 @@ export const designProjects = [
         subCategory: "UI/UX Design",
         tag: "UI/UX / WEB APP",
         client: "Luxe Retail Store",
-        image: "images/project-laundry.jpg",
+        image: "images/project-laundry.webp",
         videoType: "image",
         aspectRatio: "16/9",
         description: "Redesain alur checkout dan product detail page untuk brand ritel guna mereduksi cart abandonment dan menyajikan pengalaman belanja mewah.",
@@ -412,17 +511,119 @@ export const designProjects = [
         },
         link: "https://www.instagram.com/san_mhmd17/",
         liveUrl: "https://www.instagram.com/san_mhmd17/"
+    },
+    {
+        id: 107,
+        title: "Dokumentasi Event & Carousel DPP IMABA",
+        category: "Social Carousel",
+        subCategory: "Social Media Carousel",
+        tag: "CAROUSEL & FEED DESIGN",
+        client: "DPP IMABA",
+        image: "images/project-imaba.webp",
+        videoType: "image",
+        aspectRatio: "16/9",
+        description: "Perancangan carousel feed dan tata letak grafis multi-slide untuk kegiatan Kaderisasi Lanjut Mahasiswa Bata-Bata (KLMB). Memadukan fotografi acara dengan tipografi editorial yang terstruktur dan menarik perhatian di media sosial.",
+        tags: ["Photoshop", "Lightroom", "Canva", "Carousel Design", "Event Branding", "Typography"],
+        specs: {
+            software: "Photoshop, Lightroom & Canva",
+            format: "Multi-Slide Feed Carousel",
+            scope: "Layout Design, Typography & Visual Identity"
+        },
+        link: "https://www.instagram.com/dppimaba.official/",
+        liveUrl: "https://www.instagram.com/dppimaba.official/"
+    },
+    {
+        id: 108,
+        title: "Grand Final Puteri Pendidikan 2025",
+        category: "Social Carousel",
+        subCategory: "Social Media Carousel",
+        tag: "CAROUSEL & STORYTELLING",
+        client: "Angkik.DY",
+        image: "images/project-puteri-pendidikan.jpg",
+        videoType: "image",
+        aspectRatio: "16/9",
+        description: "Kurasi visual storytelling dan carousel multi-slide Instagram untuk kilas balik perjalanan Angkik.DY pada Grand Final Puteri Pendidikan 2025. Menggabungkan pemilihan foto berdaya emosional kuat, pacing visual, dan tata warna terkalibrasi.",
+        tags: ["Photoshop", "Lightroom", "Carousel Design", "Visual Storytelling", "Pageant", "Social Media"],
+        specs: {
+            software: "Adobe Photoshop & Lightroom",
+            format: "Instagram Feed & Carousel (1080x1080)",
+            scope: "Visual Curation, Photo Retouch & Carousel Sequencing"
+        },
+        link: "https://www.instagram.com/p/DNu_y5CXnrk/?rpxt=MzRlODBiNWFlZA==&srtk=MzRlODBiNWFlZA==",
+        liveUrl: "https://www.instagram.com/p/DNu_y5CXnrk/?rpxt=MzRlODBiNWFlZA==&srtk=MzRlODBiNWFlZA=="
+    },
+    {
+        id: 109,
+        title: "Kelas Motivasi Mahasiswa Baru",
+        category: "Social Carousel",
+        subCategory: "Social Media Carousel",
+        tag: "CAROUSEL & TALKSHOW",
+        client: "Angkik.DY",
+        image: "images/project-kelas-motivasi.jpg",
+        videoType: "image",
+        aspectRatio: "16/9",
+        description: "Perancangan carousel visual feed Instagram dan kurasi alur foto bercerita untuk Kelas Motivasi Mahasiswa Baru bersama Angkik.DY. Menghadirkan cuplikan momen motivatif dengan tipografi quote yang kuat dan tata letak multi-slide engaging.",
+        tags: ["Photoshop", "Lightroom", "Carousel Design", "Visual Storytelling", "Motivation", "Social Media"],
+        specs: {
+            software: "Adobe Photoshop & Lightroom",
+            format: "Instagram Feed & Carousel (1080x1080)",
+            scope: "Visual Curation, Photo Retouch & Carousel Sequencing"
+        },
+        link: "https://www.instagram.com/p/DONF8-UD42U/?vrfl=MzRlODBiNWFlZA==&srtk=MzRlODBiNWFlZA==",
+        liveUrl: "https://www.instagram.com/p/DONF8-UD42U/?vrfl=MzRlODBiNWFlZA==&srtk=MzRlODBiNWFlZA=="
+    },
+    {
+        id: 110,
+        title: "Cakap Ngurus Bisnis",
+        category: "Social Carousel",
+        subCategory: "Social Media Carousel",
+        tag: "CAROUSEL & BUSINESS",
+        client: "Angkik.DY",
+        image: "images/project-cakap-ngurus-bisnis.jpg",
+        videoType: "image",
+        aspectRatio: "16/9",
+        description: "Perancangan carousel visual feed Instagram dan kurasi alur foto bercerita untuk event 'Cakap Ngurus Bisnis' bersama Angkik.DY (Kledo x ADY Foundation). Menghadirkan materi edukasi manajemen bisnis dan arus kas dengan tipografi editorial yang lugas dan berdaya pikat.",
+        tags: ["Photoshop", "Lightroom", "Carousel Design", "Visual Storytelling", "Business Management", "Social Media"],
+        specs: {
+            software: "Adobe Photoshop & Lightroom",
+            format: "Instagram Feed & Carousel (1080x1080)",
+            scope: "Visual Curation, Photo Retouch & Carousel Sequencing"
+        },
+        link: "https://www.instagram.com/p/DUsk_QNj9dD/?mdxt=MzRlODBiNWFlZA==&srtk=MzRlODBiNWFlZA==",
+        liveUrl: "https://www.instagram.com/p/DUsk_QNj9dD/?mdxt=MzRlODBiNWFlZA==&srtk=MzRlODBiNWFlZA=="
+    },
+    {
+        id: 111,
+        title: "Dokumentasi Event & Poster DPP IMABA",
+        category: "Poster Design",
+        subCategory: "Poster & Editorial",
+        tag: "EVENT POSTER & CAMPAIGN",
+        client: "DPP IMABA",
+        image: "images/project-poster-imaba.jpg",
+        videoType: "image",
+        aspectRatio: "16/9",
+        description: "Perancangan desain poster visual publikasi resmi untuk kegiatan Kaderisasi Lanjut Mahasiswa Bata-Bata (KLMB) 2026 oleh DPP IMABA. Mengusung konsep kepemimpinan santri masa kini dengan hierarki tipografi tegas, tata letak informasi terstruktur, dan elemen grafis representatif.",
+        tags: ["Photoshop", "Canva", "Poster Design", "Event Campaign", "Typography", "DPP IMABA"],
+        specs: {
+            software: "Adobe Photoshop & Canva",
+            format: "Digital Feed Poster & Social Campaign (1080x1080)",
+            scope: "Key Visual, Typography Hierarchy & Social Media Campaign"
+        },
+        link: "https://www.instagram.com/p/DZ6yG_xk7d_/?rpxt=MzRlODBiNWFlZA==&srtk=MzRlODBiNWFlZA==",
+        liveUrl: "https://www.instagram.com/p/DZ6yG_xk7d_/?rpxt=MzRlODBiNWFlZA==&srtk=MzRlODBiNWFlZA=="
     }
 ];
 
-// Curated 6 projects for Gateway Landing Page
+// Curated projects for Gateway Landing Page
 export const projectsData = [
     cinemaProjects[1], // Elevating Your Perspective (Sans Drone)
     designProjects[0], // Maslahah App UI/UX
-    cinemaProjects[2], // Sharing Bisnis Buat Perintis (Angkik.DY)
+    cinemaProjects[4], // Dirgahayu Republik Indonesia ke-81 (Patriotic Reel)
+    designProjects[6], // Dokumentasi Event & Carousel DPP IMABA
+    designProjects[7], // Grand Final Puteri Pendidikan 2025 (Angkik.DY)
     designProjects[1], // Kopi Senja Brand Identity
     cinemaProjects[3], // Persidangan Semu: Lex Vindicata (Event Cinematic)
-    designProjects[2]  // Social Media Carousel
+    cinemaProjects[2]  // Sharing Bisnis Buat Perintis (Angkik.DY)
 ];
 
 // =========================================================================

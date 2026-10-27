@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 
 <head>
     <meta charset="UTF-8">
@@ -12,6 +12,7 @@
     <meta name="author" content="Mohammad Ikhsan (SANMHMD)">
     <meta name="robots" content="index, follow">
     <meta name="theme-color" content="#0D0F14">
+    <link rel="canonical" href="https://san1700.github.io/New-Portofolio/design.html">
 
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
@@ -21,7 +22,7 @@
     <meta property="og:title" content="Graphic & UI/UX Design Track | Mohammad Ikhsan">
     <meta property="og:description"
         content="Eksplorasi portofolio UI/UX mobile apps, identitas brand, carousel edukatif, dan poster tipografi oleh Mohammad Ikhsan.">
-    <meta property="og:image" content="images/Mockup maslahah.png">
+    <meta property="og:image" content="images/mockup-maslahah.png">
 
     <!-- Google Fonts: Inter & JetBrains Mono -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -49,7 +50,7 @@
         })();
     </script>
 
-    <link rel="stylesheet" href="style.css?v=10.11">
+    <link rel="stylesheet" href="style.css?v=10.21">
 </head>
 
 <body data-page="design">
@@ -234,16 +235,16 @@
 
                 <!-- Design Visual Showcase -->
                 <div class="hero-subpage-visual reveal reveal-delay-2">
-                    <div class="subpage-visual-card rounded-card">
+                    <div class="subpage-visual-card rounded-card" data-open-project-id="101" role="button" tabindex="0" title="Klik untuk lihat detail Maslahah UI/UX" style="cursor: pointer;">
                         <div class="visual-card-glow design-glow"></div>
-                        <img src="images/Mockup maslahah.png" alt="Maslahah UI/UX Design Mockup" class="subpage-hero-img">
+                        <img src="images/mockup-maslahah.webp" alt="Maslahah UI/UX Design Mockup" class="subpage-hero-img">
                         <div class="subpage-visual-overlay">
                             <div class="playback-indicator">
                                 <span class="rec-dot" style="background: #10B981;"></span> FIGMA · PROTOTYPE READY
                             </div>
                             <div class="footage-meta">
                                 <span class="footage-title">Maslahah Financial Mobile UI/UX</span>
-                                <span class="footage-sub">End-to-End Design System &amp; Flows</span>
+                                <span class="footage-sub">End-to-End Design System &amp; Flows (Klik untuk buka detail ↗)</span>
                             </div>
                         </div>
                     </div>
@@ -269,17 +270,17 @@
 
             <div class="grid grid-cols-4 gap-md mt-lg arsenal-grid">
                 <div class="arsenal-card rounded-card bg-card reveal">
-                    <img src="images/logo-photoshop.png" alt="Adobe Photoshop" class="arsenal-logo">
+                    <img src="images/logo-photoshop.webp" alt="Adobe Photoshop" class="arsenal-logo" loading="lazy">
                     <h3 class="arsenal-title">Adobe Photoshop</h3>
                     <p class="arsenal-desc text-muted">Manipulasi grafis, compositing poster, tekstur artistik, dan mockup presentasi berkelas.</p>
                 </div>
                 <div class="arsenal-card rounded-card bg-card reveal reveal-delay-1">
-                    <img src="images/logo-coreldraw.png" alt="CorelDraw" class="arsenal-logo">
+                    <img src="images/logo-coreldraw.webp" alt="CorelDraw" class="arsenal-logo" loading="lazy">
                     <h3 class="arsenal-title">CorelDraw</h3>
                     <p class="arsenal-desc text-muted">Eksekusi logo vektor presisi tinggi, format cetak skala besar, dan packaging produk.</p>
                 </div>
                 <div class="arsenal-card rounded-card bg-card reveal reveal-delay-2">
-                    <img src="images/logo-canva.png" alt="Canva Pro" class="arsenal-logo">
+                    <img src="images/logo-canva.webp" alt="Canva Pro" class="arsenal-logo" loading="lazy">
                     <h3 class="arsenal-title">Canva Pro</h3>
                     <p class="arsenal-desc text-muted">Pembuatan template sosial media yang mudah diedit oleh klien dan tim marketing.</p>
                 </div>
@@ -317,9 +318,15 @@
                 </div>
                 <h2>Elevate Your Brand with <span class="title-serif text-accent">Strategic Visual Design</span></h2>
                 <p class="text-muted max-w-md mt-sm">Siap membangun identitas visual baru, menyusun carousel edukatif yang menarik banyak engagement, atau mendesain antarmuka aplikasi Anda?</p>
-                <a href="#contact" class="btn cta-btn rounded-pill mt-md">
-                    Start Design Project <span class="btn-arrow">↗</span>
-                </a>
+                <div class="flex items-center justify-center gap-sm flex-wrap mt-md">
+                    <a href="#contact" class="btn cta-btn rounded-pill">
+                        Start Design Project <span class="btn-arrow">↗</span>
+                    </a>
+                    <a href="https://wa.me/6281807882493?text=Halo%20Ikhsan,%20boleh%20minta%20Rate%20Card%20dan%20daftar%20paket%20jasa%20desain%20terbaru?"
+                        target="_blank" rel="noopener noreferrer" class="btn btn-secondary rounded-pill">
+                        Request Rate Card (PDF) ↗
+                    </a>
+                </div>
             </div>
         </section>
 
@@ -350,14 +357,18 @@
                             </div>
                         </div>
                     </div>
-                    <form class="contact-form flex flex-col gap-sm" onsubmit="event.preventDefault(); alert('Terima kasih! Pesan Anda telah terkirim.');">
+                    <form id="design-contact-form" class="contact-form flex flex-col gap-sm">
                         <div class="form-group">
                             <label for="design-name" class="form-label font-mono font-xs">Nama Lengkap</label>
-                            <input type="text" id="design-name" class="form-input" placeholder="Nama Anda atau Brand" required>
+                            <input type="text" id="design-name" name="name" class="form-input" placeholder="Nama Anda atau Brand" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="design-email" class="form-label font-mono font-xs">Email / No. WhatsApp</label>
+                            <input type="text" id="design-email" name="email" class="form-input" placeholder="email@anda.com atau 0812xxxx" required>
                         </div>
                         <div class="form-group">
                             <label for="design-service" class="form-label font-mono font-xs">Kategori Desain</label>
-                            <select id="design-service" class="form-input">
+                            <select id="design-service" name="service" class="form-input">
                                 <option>UI/UX Design (Web &amp; Mobile App)</option>
                                 <option>Brand Identity &amp; Logo System</option>
                                 <option>Social Media Carousel Series</option>
@@ -367,10 +378,10 @@
                         </div>
                         <div class="form-group">
                             <label for="design-msg" class="form-label font-mono font-xs">Brief Desain</label>
-                            <textarea id="design-msg" rows="4" class="form-input" placeholder="Jelaskan kebutuhan desain, tujuan brand, atau referensi visual Anda..." required></textarea>
+                            <textarea id="design-msg" name="message" rows="4" class="form-input" placeholder="Jelaskan kebutuhan desain, tujuan brand, atau referensi visual Anda..." required></textarea>
                         </div>
-                        <button type="submit" class="btn btn-primary rounded-pill mt-xs">
-                            Kirim Pesan Desain ↗
+                        <button type="submit" id="design-submit-btn" class="btn btn-primary rounded-pill mt-xs">
+                            <span>Kirim Pesan Desain ↗</span>
                         </button>
                     </form>
                 </div>
@@ -503,7 +514,32 @@
         </div>
     </div>
 
-    <script type="module" src="main.js?v=10.11"></script>
+    <!-- =========================================
+         FLOATING ACTION BUTTONS (WhatsApp & Back to Top)
+         ========================================= -->
+    <div class="floating-actions-container">
+        <!-- Back to Top Button -->
+        <button class="back-to-top" id="back-to-top" aria-label="Kembali ke atas" title="Kembali ke atas">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                stroke-linecap="round" stroke-linejoin="round">
+                <line x1="12" y1="19" x2="12" y2="5"></line>
+                <polyline points="5 12 12 5 19 12"></polyline>
+            </svg>
+        </button>
+
+        <!-- Floating WhatsApp Button -->
+        <a href="https://wa.me/6281807882493?text=Halo%20Ikhsan,%20saya%20tertarik%20untuk%20mendiskusikan%20proyek%20desain%20bersama%20Anda."
+            target="_blank" rel="noopener noreferrer" class="floating-whatsapp" aria-label="Chat WhatsApp"
+            title="Chat via WhatsApp">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor">
+                <path
+                    d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-5.46-4.45-9.92-9.91-9.92zM12.04 20.15c-1.48 0-2.93-.4-4.2-1.15l-.3-.18-3.12.82.83-3.04-.2-.31c-.82-1.31-1.26-2.83-1.26-4.38 0-4.54 3.7-8.24 8.25-8.24 4.54 0 8.24 3.7 8.24 8.24 0 4.54-3.7 8.24-8.24 8.24zm4.52-6.17c-.25-.12-1.47-.72-1.7-.81-.23-.08-.39-.12-.56.12-.17.25-.64.81-.79.97-.14.17-.29.19-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.02-.38.11-.51.11-.11.25-.29.37-.43.12-.15.17-.25.25-.42.08-.17.04-.31-.02-.44-.06-.12-.56-1.35-.77-1.85-.2-.49-.41-.42-.56-.43h-.48c-.17 0-.44.06-.67.31-.23.25-.88.86-.88 2.1 0 1.24.9 2.44 1.03 2.61.12.17 1.78 2.71 4.3 3.8.6.26 1.07.41 1.44.53.61.19 1.16.17 1.6.1.49-.07 1.47-.6 1.68-1.18.21-.58.21-1.07.15-1.18-.06-.12-.22-.19-.47-.32z" />
+            </svg>
+            <span class="floating-tooltip">Chat via WhatsApp</span>
+        </a>
+    </div>
+
+    <script type="module" src="main.js?v=10.21"></script>
 </body>
 
 </html>

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 
 <head>
     <meta charset="UTF-8">
@@ -12,6 +12,7 @@
     <meta name="author" content="Mohammad Ikhsan (SANMHMD)">
     <meta name="robots" content="index, follow">
     <meta name="theme-color" content="#0D0F14">
+    <link rel="canonical" href="https://san1700.github.io/New-Portofolio/">
 
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
@@ -22,8 +23,7 @@
     <meta property="og:title" content="SANMHMD | Mohammad Ikhsan - Video Editor & Visual Creator">
     <meta property="og:description"
         content="Portofolio resmi Mohammad Ikhsan (SANMHMD) — Creative Enthusiast, Video Editor, Videographer, dan Visual Creator. Spesialis Video Reels, Videografi Sinematik, dan Brand Identity.">
-    <meta property="og:image"
-        content="https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?auto=format&fit=crop&q=80&w=1200">
+    <meta property="og:image" content="images/project-sans-drone.jpg">
     <meta property="og:image:alt" content="SANMHMD Creative Portfolio Preview">
 
     <!-- Twitter Cards -->
@@ -32,8 +32,7 @@
     <meta name="twitter:title" content="SANMHMD | Mohammad Ikhsan - Video Editor & Visual Creator">
     <meta name="twitter:description"
         content="Portofolio resmi Mohammad Ikhsan (SANMHMD) — Creative Enthusiast, Video Editor, Videographer, dan Visual Creator.">
-    <meta name="twitter:image"
-        content="https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?auto=format&fit=crop&q=80&w=1200">
+    <meta name="twitter:image" content="images/project-sans-drone.jpg">
 
     <!-- Google Fonts: Inter & JetBrains Mono (Linear / Modern Standard) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -50,6 +49,28 @@
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
 
+    <!-- JSON-LD Structured Data (Schema.org for Google Rich Results) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Mohammad Ikhsan",
+      "alternateName": "SANMHMD",
+      "url": "https://san1700.github.io/New-Portofolio/",
+      "image": "https://san1700.github.io/New-Portofolio/assets/images/photo-profile-bust.png",
+      "jobTitle": "Video Editor & Visual Creator",
+      "description": "Portofolio resmi Mohammad Ikhsan (SANMHMD) — Creative Enthusiast, Video Editor, Videographer, dan Visual Creator. Spesialis Video Reels, Videografi Sinematik, dan Brand Identity.",
+      "sameAs": [
+        "https://www.instagram.com/san_mhmd17/"
+      ],
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Yogyakarta",
+        "addressCountry": "ID"
+      }
+    }
+    </script>
+
     <!-- Prevent Theme Flash -->
     <script>
         (function () {
@@ -61,7 +82,7 @@
         })();
     </script>
 
-    <link rel="stylesheet" href="style.css?v=10.11">
+    <link rel="stylesheet" href="style.css?v=10.21">
 </head>
 
 <body data-page="home">
@@ -306,12 +327,12 @@
 
                 <!-- Kolom Tengah: Foto Profil dengan 3D Depth, Backlight Aura, dan Portal Arch Backdrop -->
                 <div class="hero-col hero-center flex items-end justify-center reveal reveal-delay-2">
-                    <!-- Big Outline Watermark Layer 
+                    <!-- Big Outline Watermark Layer (Efek Huda Muliya) -->
                     <div class="hero-outline-watermark" aria-hidden="true">
                         <span>CREATIVE</span>
                     </div>
 
-                    <!-- Cosmic Perspective Depth Grid / Radial Tunnel (-->
+                    <!-- Cosmic Perspective Depth Grid / Radial Tunnel -->
                     <div class="hero-perspective-tunnel" aria-hidden="true">
                         <svg class="tunnel-svg" viewBox="0 0 400 640" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <defs>
@@ -390,8 +411,12 @@
                     <div class="backlight-aura-sphere" aria-hidden="true"></div>
 
                     <!-- Cutout Subject Photo (DI ATAS KOTAK, Berdiri Megah & Menancap di Bawah) -->
-                    <img src="assets/images/photo-profile-bust.png" alt="Mohammad Ikhsan" class="hero-framed-img"
-                        loading="eager">
+                    <picture style="display: contents;">
+                        <source srcset="assets/images/photo-profile-bust.webp" type="image/webp">
+                        <img src="assets/images/photo-profile-bust.png?v=10.14"
+                            alt="Mohammad Ikhsan - Video Editor & Visual Creator" class="hero-framed-img"
+                            loading="eager" fetchpriority="high">
+                    </picture>
 
 
                 </div>
@@ -416,6 +441,17 @@
                                 <span class="meta-num">25<span class="meta-accent">+</span></span>
                                 <span class="meta-label">Delivered Projects</span>
                             </div>
+                        </div>
+                        <div class="bio-card-action">
+                            <a href="https://wa.me/6281807882493?text=Halo%20Ikhsan,%20saya%20tertarik%20bekerja%20sama%20dan%20ingin%20meminta%20Rate%20Card%20/%20Katalog%20Layanan%20terbaru." 
+                               target="_blank" rel="noopener noreferrer" class="bio-rate-link" title="Minta Rate Card & Paket Kolaborasi">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                                    <polyline points="7 10 12 15 17 10"/>
+                                    <line x1="12" y1="15" x2="12" y2="3"/>
+                                </svg>
+                                <span>Request Rate Card / PDF ↗</span>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -516,8 +552,10 @@
                         <span class="portal-tag">TRACK 01 // AUDIO-VISUAL</span>
                         <span class="portal-badge cinema-badge">4K · Drone Pilot · Motion</span>
                     </div>
-                    <div class="portal-card-media mt-md cursor-pointer group" data-open-project-id="2" title="Tonton Video: Elevating Your Perspective (SANS DRONE)">
-                        <img src="images/project-sans-drone.jpg" alt="Elevating Your Perspective - SANS DRONE" class="portal-preview-img">
+                    <div class="portal-card-media mt-md cursor-pointer group" data-open-project-id="2"
+                        title="Tonton Video: Elevating Your Perspective (SANS DRONE)">
+                        <img src="images/project-sans-drone.webp" alt="Elevating Your Perspective - SANS DRONE"
+                            class="portal-preview-img" loading="lazy">
                         <div class="portal-media-overlay">
                             <div class="portal-media-top flex items-center justify-between">
                                 <span class="playback-indicator"><span class="rec-dot"></span> REC · 4K UHD</span>
@@ -532,7 +570,8 @@
                             </div>
                             <div class="portal-media-bottom">
                                 <span class="portal-footage-title font-mono font-xs">Elevating Your Perspective</span>
-                                <span class="portal-footage-client font-xs text-muted">SANS DRONE · Sewa Drone Jogja</span>
+                                <span class="portal-footage-client font-xs text-muted">SANS DRONE · Sewa Drone
+                                    Jogja</span>
                             </div>
                         </div>
                     </div>
@@ -546,9 +585,11 @@
                         <span class="tech-badge">Videographer</span>
                         <span class="tech-badge">Video Editor</span>
                         <span class="tech-badge">Colorist</span>
+                        <a href="cinema.html#color-grading" class="tech-badge" style="border-color: rgba(0,240,255,0.4); color: #00F0FF; text-decoration: none;" title="Buka Interactive Color Grading Studio">Grading Studio ↗</a>
                     </div>
                     <div class="portal-card-footer mt-lg flex items-center justify-between">
-                        <span class="portal-meta font-mono font-xs text-muted">DaVinci Resolve · CapCut Pro · DJI Drone · Sony 4K</span>
+                        <span class="portal-meta font-mono font-xs text-muted">DaVinci Resolve · CapCut Pro · DJI Drone
+                            · Sony 4K</span>
                         <a href="cinema.html" class="btn btn-primary rounded-pill portal-btn">
                             <span>Enter Cinema Track</span>
                             <span class="btn-arrow">↗</span>
@@ -564,7 +605,8 @@
                         <span class="portal-badge design-badge">Figma · Vector · System</span>
                     </div>
                     <div class="portal-card-media mt-md">
-                        <img src="images/Mockup maslahah.png" alt="Graphic & UI/UX Design" class="portal-preview-img">
+                        <img src="images/mockup-maslahah.webp" alt="Graphic & UI/UX Design" class="portal-preview-img"
+                            loading="lazy">
                     </div>
                     <h3 class="portal-title mt-md">Graphic &amp; UI/UX Design</h3>
                     <p class="portal-desc text-muted mt-xs">
@@ -611,7 +653,7 @@
                     <!-- 1. Premiere Pro -->
                     <div class="skill-card" data-tooltip="Adobe Premiere Pro" title="Adobe Premiere Pro">
                         <div class="skill-icon-wrapper">
-                            <img src="images/logo-premiere.png" alt="Adobe Premiere Pro" class="skill-app-img"
+                            <img src="images/logo-premiere.webp" alt="Adobe Premiere Pro" class="skill-app-img"
                                 loading="lazy">
                         </div>
                         <span class="skill-name">Premiere Pro</span>
@@ -620,7 +662,7 @@
                     <!-- 2. CapCut Pro -->
                     <div class="skill-card" data-tooltip="CapCut Pro" title="CapCut Pro">
                         <div class="skill-icon-wrapper">
-                            <img src="images/logo-capcut.png" alt="CapCut Pro" class="skill-app-img" loading="lazy">
+                            <img src="images/logo-capcut.webp" alt="CapCut Pro" class="skill-app-img" loading="lazy">
                         </div>
                         <span class="skill-name">CapCut Pro</span>
                     </div>
@@ -923,7 +965,8 @@
                     allowfullscreen style="display: none;"></iframe>
 
                 <!-- Interactive Clean Reel / Video Showcase (Zero External Chrome) -->
-                <a id="modal-project-reel-link" class="modal-reel-frame" href="#" target="_blank" rel="noopener noreferrer" style="display: none;">
+                <a id="modal-project-reel-link" class="modal-reel-frame" href="#" target="_blank"
+                    rel="noopener noreferrer" style="display: none;">
                     <img id="modal-reel-poster" src="" alt="" class="modal-reel-img">
                     <div class="modal-reel-overlay">
                         <div class="modal-reel-play-btn" aria-label="Play video">
@@ -932,7 +975,8 @@
                             </svg>
                         </div>
                         <div class="modal-reel-cta">
-                            <span class="modal-reel-cta-platform" id="modal-reel-cta-platform">Tonton di Instagram</span>
+                            <span class="modal-reel-cta-platform" id="modal-reel-cta-platform">Tonton di
+                                Instagram</span>
                             <span class="modal-reel-cta-sub">Klik untuk tonton resolusi asli ↗</span>
                         </div>
                     </div>
@@ -956,8 +1000,8 @@
                             class="btn-platform-badge" style="display: none;">
                             <span class="platform-badge-icon"></span>
                             <span class="platform-badge-text">Tonton di Instagram</span>
-                            <svg class="external-arrow" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                            <svg class="external-arrow" width="13" height="13" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
                                 <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
                                 <polyline points="15 3 21 3 21 9"></polyline>
                                 <line x1="10" y1="14" x2="21" y2="3"></line>
@@ -1078,9 +1122,8 @@
             </button>
             <div class="showreel-video-wrapper">
                 <video id="showreel-video" class="showreel-video" controls playsinline preload="metadata"
-                    poster="https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?auto=format&fit=crop&q=80&w=1200">
-                    <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4"
-                        type="video/mp4">
+                    poster="images/project-persidangan-semu.webp">
+                    <source src="videos/project-persidangan-semu.mp4" type="video/mp4">
                     Browser Anda tidak mendukung pemutar video HTML5.
                 </video>
             </div>
@@ -1134,7 +1177,7 @@
         </a>
     </div>
 
-    <script type="module" src="main.js?v=10.11"></script>
+    <script type="module" src="main.js?v=10.21"></script>
 </body>
 
 </html>

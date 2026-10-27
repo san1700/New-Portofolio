@@ -139,29 +139,6 @@ document.addEventListener('DOMContentLoaded', () => {
     try { localStorage.removeItem('portfolio_atmosphere'); } catch (e) {}
 
     // =========================================
-    // 1.5 TOOLS TICKER INTERACTION (Pause on Hover & Touch)
-    // =========================================
-    const tickerWrapper = document.getElementById('ticker-wrapper');
-    const tickerTrack = document.getElementById('ticker-track');
-    if (tickerWrapper && tickerTrack) {
-        tickerWrapper.addEventListener('mouseenter', () => {
-            tickerTrack.style.animationPlayState = 'paused';
-        });
-
-        tickerWrapper.addEventListener('mouseleave', () => {
-            tickerTrack.style.animationPlayState = 'running';
-        });
-
-        tickerWrapper.addEventListener('touchstart', () => {
-            tickerTrack.style.animationPlayState = 'paused';
-        }, { passive: true });
-
-        tickerWrapper.addEventListener('touchend', () => {
-            tickerTrack.style.animationPlayState = 'running';
-        }, { passive: true });
-    }
-
-    // =========================================
     // LINEAR & VERCEL SPOTLIGHT EFFECT (High-Precision Direct Cursor Tracking)
     // =========================================
     const initSpotlightTracking = () => {
@@ -1134,78 +1111,93 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Pengiriman form kontak ke email iechantwiranata@gmail.com
-    if (contactForm && contactSubmitBtn) {
-        contactForm.addEventListener('submit', async (e) => {
+    // Pengiriman form kontak ke email iechantwiranata@gmail.com (Universal untuk Modal & Subpages)
+    const initContactFormHandler = (formId, btnId, nameId, contactInfoId, msgId, serviceId = null, modalEl = null) => {
+        const formEl = document.getElementById(formId);
+        const submitBtn = document.getElementById(btnId);
+        if (!formEl || !submitBtn) return;
+
+        formEl.addEventListener('submit', async (e) => {
             e.preventDefault();
 
-            const nameInput = document.getElementById('contact-name');
-            const emailInput = document.getElementById('contact-email');
-            const messageInput = document.getElementById('contact-message');
+            const nameInput = document.getElementById(nameId);
+            const contactInput = document.getElementById(contactInfoId);
+            const msgInput = document.getElementById(msgId);
+            const serviceInput = serviceId ? document.getElementById(serviceId) : null;
 
-            const name = nameInput.value.trim();
-            const email = emailInput.value.trim();
-            const message = messageInput.value.trim();
+            const name = nameInput ? nameInput.value.trim() : '';
+            const contactInfo = contactInput ? contactInput.value.trim() : '';
+            const message = msgInput ? msgInput.value.trim() : '';
+            const service = serviceInput ? serviceInput.value : '';
 
-            if (!name || !email || !message) return;
+            if (!name || !contactInfo || !message) return;
 
-            // Ubah state tombol ke proses pengiriman
-            const originalText = contactSubmitBtn.innerHTML;
-            contactSubmitBtn.disabled = true;
-            contactSubmitBtn.innerHTML = '<span>Sending Message...</span>';
+            const originalBtnHTML = submitBtn.innerHTML;
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<span>Mengirim Pesan...</span>';
+
+            const payload = {
+                name: name,
+                contact: contactInfo,
+                message: message,
+                _subject: `New Portfolio Message from ${name}${service ? ` (${service})` : ''}`,
+                _template: 'table'
+            };
+            if (service) payload.service = service;
 
             try {
-                // Kirim langsung ke email via FormSubmit API (tanpa perlu backend)
                 const response = await fetch('https://formsubmit.co/ajax/iechantwiranata@gmail.com', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
                         'Accept': 'application/json'
                     },
-                    body: JSON.stringify({
-                        name: name,
-                        email: email,
-                        message: message,
-                        _subject: `New Portfolio Message from ${name}`,
-                        _template: 'table'
-                    })
+                    body: JSON.stringify(payload)
                 });
 
                 const data = await response.json();
 
                 if (response.ok || data.success === 'true' || data.success === true) {
-                    contactSubmitBtn.classList.add('success-state');
-                    contactSubmitBtn.innerHTML = '<span>✓ Message Sent Successfully!</span>';
+                    submitBtn.classList.add('success-state');
+                    submitBtn.innerHTML = '<span>✓ Pesan Terkirim Sukses!</span>';
 
                     setTimeout(() => {
-                        closeModal(contactModal);
-                        contactForm.reset();
-                        contactSubmitBtn.classList.remove('success-state');
-                        contactSubmitBtn.innerHTML = originalText;
-                        contactSubmitBtn.disabled = false;
+                        if (modalEl) closeModal(modalEl);
+                        formEl.reset();
+                        submitBtn.classList.remove('success-state');
+                        submitBtn.innerHTML = originalBtnHTML;
+                        submitBtn.disabled = false;
                     }, 2000);
                 } else {
                     throw new Error('Service response not ok');
                 }
             } catch (err) {
-                // Fallback: Jika offline atau diblokir adblocker, buka mailto client langsung
                 console.warn('FormSubmit API fallback triggered:', err);
-                contactSubmitBtn.classList.add('success-state');
-                contactSubmitBtn.innerHTML = '<span>Opening Mail Client...</span>';
+                submitBtn.classList.add('success-state');
+                submitBtn.innerHTML = '<span>Membuka Email Client...</span>';
 
-                const mailtoUrl = `mailto:iechantwiranata@gmail.com?subject=${encodeURIComponent('Portfolio Inquiry from ' + name)}&body=${encodeURIComponent('Nama: ' + name + '\nEmail: ' + email + '\n\nPesan:\n' + message)}`;
+                const mailtoUrl = `mailto:iechantwiranata@gmail.com?subject=${encodeURIComponent('Portfolio Inquiry from ' + name + (service ? ' [' + service + ']' : ''))}&body=${encodeURIComponent('Nama: ' + name + '\nKontak (Email/WA): ' + contactInfo + (service ? '\nLayanan: ' + service : '') + '\n\nPesan:\n' + message)}`;
                 window.location.href = mailtoUrl;
 
                 setTimeout(() => {
-                    closeModal(contactModal);
-                    contactForm.reset();
-                    contactSubmitBtn.classList.remove('success-state');
-                    contactSubmitBtn.innerHTML = originalText;
-                    contactSubmitBtn.disabled = false;
+                    if (modalEl) closeModal(modalEl);
+                    formEl.reset();
+                    submitBtn.classList.remove('success-state');
+                    submitBtn.innerHTML = originalBtnHTML;
+                    submitBtn.disabled = false;
                 }, 1800);
             }
         });
-    }
+    };
+
+    // 1. Home Contact Modal Form
+    initContactFormHandler('contact-form', 'contact-submit-btn', 'contact-name', 'contact-email', 'contact-message', null, contactModal);
+
+    // 2. Cinema Subpage Contact Form
+    initContactFormHandler('cinema-contact-form', 'cinema-submit-btn', 'cinema-name', 'cinema-email', 'cinema-msg', 'cinema-service', null);
+
+    // 3. Design Subpage Contact Form
+    initContactFormHandler('design-contact-form', 'design-submit-btn', 'design-name', 'design-email', 'design-msg', 'design-service', null);
 
     // --- 3. Showreel Video Modal ---
     const showreelModal = document.getElementById('showreel-modal');
@@ -1247,6 +1239,113 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
     });
+
+    // =========================================
+    // 7.5 INTERACTIVE BEFORE & AFTER COLOR GRADING SLIDER
+    // =========================================
+    const initColorGradingSlider = () => {
+        const stage = document.getElementById('comparison-stage');
+        const handle = document.getElementById('comparison-slider-handle');
+        const imgBefore = document.getElementById('comparison-img-before');
+        const imgAfter = document.getElementById('comparison-img-after');
+        const tabBtns = document.querySelectorAll('.grading-tab-btn');
+
+        if (!stage || !handle || !imgBefore || !imgAfter) return;
+
+        let isDragging = false;
+        let currentPos = 50;
+
+        const sceneData = {
+            drone: {
+                raw: 'images/grade-sans-drone-raw.webp',
+                graded: 'images/grade-sans-drone-graded.webp'
+            },
+            court: {
+                raw: 'images/grade-court-raw.webp',
+                graded: 'images/grade-court-graded.webp'
+            },
+            urban: {
+                raw: 'images/grade-urban-raw.webp',
+                graded: 'images/grade-urban-graded.webp'
+            }
+        };
+
+        const updateSliderPosition = (percent) => {
+            const clamped = Math.max(0, Math.min(100, percent));
+            currentPos = clamped;
+            stage.style.setProperty('--split-pos', `${clamped}%`);
+            handle.setAttribute('aria-valuenow', Math.round(clamped));
+        };
+
+        const handlePointerMove = (clientX) => {
+            const rect = stage.getBoundingClientRect();
+            if (rect.width <= 0) return;
+            const relativeX = clientX - rect.left;
+            const percent = (relativeX / rect.width) * 100;
+            updateSliderPosition(percent);
+        };
+
+        stage.addEventListener('mousedown', (e) => {
+            isDragging = true;
+            handlePointerMove(e.clientX);
+        });
+
+        window.addEventListener('mousemove', (e) => {
+            if (!isDragging) return;
+            handlePointerMove(e.clientX);
+        });
+
+        window.addEventListener('mouseup', () => {
+            isDragging = false;
+        });
+
+        stage.addEventListener('touchstart', (e) => {
+            if (e.touches && e.touches.length > 0) {
+                isDragging = true;
+                handlePointerMove(e.touches[0].clientX);
+            }
+        }, { passive: true });
+
+        window.addEventListener('touchmove', (e) => {
+            if (!isDragging || !e.touches || e.touches.length === 0) return;
+            handlePointerMove(e.touches[0].clientX);
+        }, { passive: true });
+
+        window.addEventListener('touchend', () => {
+            isDragging = false;
+        });
+
+        handle.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowLeft') {
+                e.preventDefault();
+                updateSliderPosition(currentPos - 4);
+            } else if (e.key === 'ArrowRight') {
+                e.preventDefault();
+                updateSliderPosition(currentPos + 4);
+            }
+        });
+
+        tabBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const sceneKey = btn.dataset.scene;
+                if (!sceneData[sceneKey]) return;
+
+                tabBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+
+                stage.style.opacity = '0.4';
+                setTimeout(() => {
+                    imgBefore.src = sceneData[sceneKey].raw;
+                    imgAfter.src = sceneData[sceneKey].graded;
+                    stage.style.opacity = '1';
+                }, 80);
+            });
+        });
+
+        updateSliderPosition(50);
+    };
+
+    initColorGradingSlider();
 
     // =========================================
     // 8. BACK TO TOP BUTTON
