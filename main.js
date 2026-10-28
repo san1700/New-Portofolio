@@ -709,6 +709,71 @@ document.addEventListener('DOMContentLoaded', () => {
     const modalProjectReelLink = document.getElementById('modal-project-reel-link');
     const modalReelPoster = document.getElementById('modal-reel-poster');
     const modalReelCtaPlatform = document.getElementById('modal-reel-cta-platform');
+    const modalCarouselSlider = document.getElementById('modal-carousel-slider');
+    const modalCarouselTrack = document.getElementById('modal-carousel-track');
+    const carouselPrevBtn = document.getElementById('carousel-prev-btn');
+    const carouselNextBtn = document.getElementById('carousel-next-btn');
+    const carouselCounter = document.getElementById('carousel-counter');
+    const carouselCurrentIndex = document.getElementById('carousel-current-index');
+    const carouselTotalSlides = document.getElementById('carousel-total-slides');
+    const carouselDots = document.getElementById('carousel-dots');
+    const modalImageFrame = document.getElementById('modal-image-frame');
+
+    let currentCarouselIndex = 0;
+    let currentCarouselSlides = [];
+
+    const updateCarouselPosition = (index) => {
+        if (!modalCarouselTrack || currentCarouselSlides.length === 0) return;
+        currentCarouselIndex = (index + currentCarouselSlides.length) % currentCarouselSlides.length;
+        modalCarouselTrack.style.transform = `translateX(-${currentCarouselIndex * 100}%)`;
+        if (carouselCurrentIndex) carouselCurrentIndex.textContent = String(currentCarouselIndex + 1);
+        if (carouselDots) {
+            const dots = carouselDots.querySelectorAll('.carousel-dot');
+            dots.forEach((dot, idx) => {
+                dot.classList.toggle('active', idx === currentCarouselIndex);
+            });
+        }
+    };
+
+    if (carouselPrevBtn) {
+        carouselPrevBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            updateCarouselPosition(currentCarouselIndex - 1);
+        });
+    }
+    if (carouselNextBtn) {
+        carouselNextBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            updateCarouselPosition(currentCarouselIndex + 1);
+        });
+    }
+    if (carouselDots) {
+        carouselDots.addEventListener('click', (e) => {
+            const dot = e.target.closest('.carousel-dot');
+            if (dot && dot.dataset.gotoSlide !== undefined) {
+                e.stopPropagation();
+                updateCarouselPosition(parseInt(dot.dataset.gotoSlide, 10));
+            }
+        });
+    }
+    if (modalCarouselSlider) {
+        let touchStartX = 0;
+        let touchEndX = 0;
+        modalCarouselSlider.addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+        }, { passive: true });
+        modalCarouselSlider.addEventListener('touchend', (e) => {
+            touchEndX = e.changedTouches[0].screenX;
+            const diffX = touchEndX - touchStartX;
+            if (Math.abs(diffX) > 40 && currentCarouselSlides.length > 1) {
+                if (diffX < 0) {
+                    updateCarouselPosition(currentCarouselIndex + 1);
+                } else {
+                    updateCarouselPosition(currentCarouselIndex - 1);
+                }
+            }
+        }, { passive: true });
+    }
 
     // Menghentikan playback & membersihkan resource saat modal ditutup
     const closeProjectDetailModal = () => {
@@ -742,8 +807,24 @@ document.addEventListener('DOMContentLoaded', () => {
             modalProjectImg.style.display = 'none';
         }
 
+        if (modalImageFrame) {
+            modalImageFrame.style.display = 'none';
+        }
+
+        if (modalCarouselSlider) {
+            modalCarouselSlider.style.display = 'none';
+        }
+
+        if (modalCarouselTrack) {
+            modalCarouselTrack.innerHTML = '';
+            modalCarouselTrack.style.transform = 'translateX(0%)';
+        }
+
+        currentCarouselSlides = [];
+        currentCarouselIndex = 0;
+
         if (modalMediaWrapper) {
-            modalMediaWrapper.classList.remove('aspect-9-16', 'aspect-16-9', 'aspect-image');
+            modalMediaWrapper.classList.remove('aspect-9-16', 'aspect-16-9', 'aspect-image', 'aspect-portrait');
         }
     };
 
@@ -780,11 +861,27 @@ document.addEventListener('DOMContentLoaded', () => {
             modalProjectReelLink.style.display = 'none';
             modalProjectReelLink.href = '#';
         }
+        if (modalReelPoster) {
+            modalReelPoster.src = '';
+        }
         if (modalProjectImg) {
+            modalProjectImg.src = '';
             modalProjectImg.style.display = 'none';
         }
+        if (modalImageFrame) {
+            modalImageFrame.style.display = 'none';
+        }
+        if (modalCarouselSlider) {
+            modalCarouselSlider.style.display = 'none';
+        }
+        if (modalCarouselTrack) {
+            modalCarouselTrack.innerHTML = '';
+            modalCarouselTrack.style.transform = 'translateX(0%)';
+        }
+        currentCarouselSlides = [];
+        currentCarouselIndex = 0;
         if (modalMediaWrapper) {
-            modalMediaWrapper.classList.remove('aspect-9-16', 'aspect-16-9', 'aspect-image');
+            modalMediaWrapper.classList.remove('aspect-9-16', 'aspect-16-9', 'aspect-image', 'aspect-portrait');
         }
 
         // Deteksi platform dan format tautan
@@ -800,20 +897,86 @@ document.addEventListener('DOMContentLoaded', () => {
             platform = 'design';
         }
 
-        const isVerticalReel = project.aspectRatio === '9/16';
-        const ratioClass = isVerticalReel ? 'aspect-9-16' : 'aspect-16-9';
-        const videoType = project.videoType || (project.videoUrl ? 'video' : (project.youtubeId ? 'youtube' : ((platform === 'instagram' || platform === 'tiktok') ? 'reel' : 'image')));
+        const isCarousel = project.videoType === 'carousel' || project.category === 'Social Carousel' || (Array.isArray(project.slides) && project.slides.length > 0);
+        const isVisualDesignOrPhoto = !isCarousel && (project.videoType === 'image' || project.category === 'Photography' || project.category === 'Poster Design' || project.category === 'UI/UX Design' || project.category === 'Brand Identity');
+        const isNativeVideo = !isCarousel && !isVisualDesignOrPhoto && Boolean(project.videoUrl) && (project.videoType === 'video' || !project.videoType);
+        const isYouTube = !isCarousel && !isVisualDesignOrPhoto && project.videoType === 'youtube' && Boolean(project.youtubeId);
+        const isVideoReel = !isCarousel && !isVisualDesignOrPhoto && !isNativeVideo && !isYouTube && (project.videoType === 'reel' || platform === 'tiktok' || (platform === 'instagram' && (project.category === 'Video Editing' || project.category === 'Videography')));
+        const isVerticalReel = isVideoReel || project.aspectRatio === '9/16';
+        const isPortraitFeed = project.aspectRatio === '3/4' || project.category === 'Social Carousel' || project.category === 'Poster Design' || project.category === 'Photography';
 
         if (modalMediaWrapper) {
-            if (videoType === 'image') {
-                modalMediaWrapper.classList.add('aspect-image');
+            if (isCarousel || (isVisualDesignOrPhoto && isPortraitFeed)) {
+                modalMediaWrapper.classList.add('aspect-portrait');
+            } else if (isVideoReel || isVerticalReel) {
+                modalMediaWrapper.classList.add('aspect-9-16');
+            } else if (isNativeVideo || isYouTube || project.category === 'UI/UX Design') {
+                modalMediaWrapper.classList.add('aspect-16-9');
             } else {
-                modalMediaWrapper.classList.add(ratioClass);
+                modalMediaWrapper.classList.add('aspect-image');
             }
         }
 
         // Tampilkan media sesuai prioritas kebersihan & kualitas visual (zero external iframe chrome)
-        if (videoType === 'video' && project.videoUrl) {
+        if (isCarousel) {
+            // Multi-Slide Instagram / Design Carousel Slider (No Play Button)
+            currentCarouselSlides = Array.isArray(project.slides) && project.slides.length > 0 ? project.slides : [project.image];
+            currentCarouselIndex = 0;
+
+            if (modalCarouselTrack) {
+                modalCarouselTrack.innerHTML = currentCarouselSlides.map((slideSrc, idx) => `
+                    <div class="carousel-slide" data-slide-index="${idx}">
+                        <img src="${slideSrc}" alt="${project.title || 'Slide'} - Slide ${idx + 1}" loading="lazy">
+                    </div>
+                `).join('');
+                modalCarouselTrack.style.transform = 'translateX(0%)';
+            }
+
+            if (carouselTotalSlides) carouselTotalSlides.textContent = String(currentCarouselSlides.length);
+            if (carouselCurrentIndex) carouselCurrentIndex.textContent = '1';
+
+            if (carouselDots) {
+                if (currentCarouselSlides.length > 1) {
+                    carouselDots.style.display = 'flex';
+                    carouselDots.innerHTML = currentCarouselSlides.map((_, idx) => `
+                        <button type="button" class="carousel-dot ${idx === 0 ? 'active' : ''}" data-goto-slide="${idx}" aria-label="Buka slide ${idx + 1}"></button>
+                    `).join('');
+                } else {
+                    carouselDots.style.display = 'none';
+                }
+            }
+
+            if (carouselPrevBtn) carouselPrevBtn.style.display = currentCarouselSlides.length > 1 ? 'flex' : 'none';
+            if (carouselNextBtn) carouselNextBtn.style.display = currentCarouselSlides.length > 1 ? 'flex' : 'none';
+            if (carouselCounter) carouselCounter.style.display = currentCarouselSlides.length > 1 ? 'flex' : 'none';
+            if (modalCarouselSlider) modalCarouselSlider.style.display = 'block';
+
+            if (modalMediaBadgeText) {
+                modalMediaBadgeText.textContent = `INSTAGRAM CAROUSEL (1080×1440 · ${currentCarouselSlides.length} SLIDES)`;
+            }
+        } else if (isVisualDesignOrPhoto) {
+            // Static Design / Photography / Poster Showcase (Framed 1080x1440, NO PLAY BUTTON)
+            if (modalProjectImg) {
+                modalProjectImg.src = project.image || '';
+                modalProjectImg.alt = project.title || 'Project Preview';
+                modalProjectImg.style.display = 'block';
+            }
+            if (modalImageFrame) {
+                modalImageFrame.style.display = 'flex';
+            }
+            if (modalMediaBadgeText) {
+                if (project.category === 'Poster Design') {
+                    modalMediaBadgeText.textContent = 'POSTER DESIGN (1080×1440)';
+                } else if (project.category === 'Photography') {
+                    modalMediaBadgeText.textContent = 'PHOTOGRAPHY (1080×1440)';
+                } else if (project.category === 'UI/UX Design') {
+                    modalMediaBadgeText.textContent = 'UI/UX PREVIEW';
+                } else {
+                    modalMediaBadgeText.textContent = 'DESIGN SHOWCASE';
+                }
+            }
+        } else if (isNativeVideo) {
+            // Native HTML5 Video
             if (modalProjectVideo) {
                 modalProjectVideo.src = project.videoUrl;
                 modalProjectVideo.poster = project.image || '';
@@ -822,7 +985,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 const playPromise = modalProjectVideo.play();
                 if (playPromise !== undefined) {
                     playPromise.catch(() => {
-                        // If browser policy requires mute for autoplay, mute and continue playing smoothly
                         modalProjectVideo.muted = true;
                         modalProjectVideo.play().catch(() => {});
                     });
@@ -831,7 +993,8 @@ document.addEventListener('DOMContentLoaded', () => {
             if (modalMediaBadgeText) {
                 modalMediaBadgeText.textContent = isVerticalReel ? 'REELS PREVIEW (9:16)' : 'VIDEO PREVIEW (16:9)';
             }
-        } else if (videoType === 'youtube' && project.youtubeId) {
+        } else if (isYouTube) {
+            // YouTube Embed
             if (modalProjectIframe) {
                 modalProjectIframe.src = `https://www.youtube-nocookie.com/embed/${project.youtubeId}?autoplay=1&mute=0&rel=0`;
                 modalProjectIframe.style.display = 'block';
@@ -839,8 +1002,8 @@ document.addEventListener('DOMContentLoaded', () => {
             if (modalMediaBadgeText) {
                 modalMediaBadgeText.textContent = 'YOUTUBE 4K (16:9)';
             }
-        } else if (platform === 'instagram' || platform === 'tiktok' || videoType === 'reel') {
-            // Clean Cinematic Reel Frame — Pure 9:16 / 16:9 frame, high-res poster, custom play pulse button, no third-party white bars
+        } else if (isVideoReel) {
+            // Clean Cinematic Reel Frame (Play Button for real video reels)
             if (modalProjectReelLink) {
                 modalProjectReelLink.style.display = 'block';
                 modalProjectReelLink.href = targetLink || '#';
@@ -870,16 +1033,6 @@ document.addEventListener('DOMContentLoaded', () => {
             }
             if (modalMediaBadgeText) {
                 modalMediaBadgeText.textContent = platform === 'tiktok' ? 'TIKTOK VIDEO (9:16)' : (isVerticalReel ? 'INSTAGRAM REEL (9:16)' : 'INSTAGRAM (16:9)');
-            }
-        } else {
-            // Static Design / Photography Image Showcase
-            if (modalProjectImg) {
-                modalProjectImg.src = project.image || '';
-                modalProjectImg.alt = project.title || 'Project Preview';
-                modalProjectImg.style.display = 'block';
-            }
-            if (modalMediaBadgeText) {
-                modalMediaBadgeText.textContent = project.category === 'UI/UX Design' ? 'UI/UX PREVIEW' : 'DESIGN SHOWCASE';
             }
         }
 
@@ -915,7 +1068,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 if (platform === 'instagram') {
                     modalProjectUrl.classList.add('btn-platform-instagram');
-                    btnText = 'Tonton di Instagram';
+                    btnText = isCarousel ? 'Lihat Carousel di Instagram' : (isVisualDesignOrPhoto ? 'Lihat di Instagram' : 'Tonton di Instagram Reel');
                     btnIconSvg = `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
                         <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
@@ -978,7 +1131,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 if (platform === 'instagram') {
                     modalProjectUrlBadge.classList.add('btn-platform-instagram');
-                    badgeText = 'Tonton di Instagram';
+                    badgeText = isCarousel ? 'Lihat Carousel di IG' : (isVisualDesignOrPhoto ? 'Lihat di Instagram' : 'Tonton di Instagram');
                     badgeIcon = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
                         <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
@@ -1372,7 +1525,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // --- Global: Tutup modal ketika tombol 'Escape' ditekan ---
+    // --- Global: Tutup modal ketika tombol 'Escape' ditekan & navigasi slide carousel ---
     document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape' || e.key === 'Esc') {
             if (projectModal && projectModal.classList.contains('active')) {
@@ -1383,6 +1536,14 @@ document.addEventListener('DOMContentLoaded', () => {
             }
             if (showreelModal && showreelModal.classList.contains('active')) {
                 closeShowreel();
+            }
+        } else if (projectModal && projectModal.classList.contains('active') && currentCarouselSlides.length > 1) {
+            if (e.key === 'ArrowLeft') {
+                e.preventDefault();
+                updateCarouselPosition(currentCarouselIndex - 1);
+            } else if (e.key === 'ArrowRight') {
+                e.preventDefault();
+                updateCarouselPosition(currentCarouselIndex + 1);
             }
         }
     });

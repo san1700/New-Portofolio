@@ -50,7 +50,7 @@
         })();
     </script>
 
-    <link rel="stylesheet" href="style.css?v=10.21">
+    <link rel="stylesheet" href="style.css?v=10.26">
 </head>
 
 <body data-page="design">
@@ -235,16 +235,16 @@
 
                 <!-- Design Visual Showcase -->
                 <div class="hero-subpage-visual reveal reveal-delay-2">
-                    <div class="subpage-visual-card rounded-card" data-open-project-id="101" role="button" tabindex="0" title="Klik untuk lihat detail Maslahah UI/UX" style="cursor: pointer;">
+                    <div class="subpage-visual-card rounded-card" data-open-project-id="111" role="button" tabindex="0" title="Klik untuk lihat detail Desain Poster Event DPP IMABA" style="cursor: pointer;">
                         <div class="visual-card-glow design-glow"></div>
-                        <img src="images/mockup-maslahah.webp" alt="Maslahah UI/UX Design Mockup" class="subpage-hero-img">
+                        <img src="images/project-poster-imaba.jpg?v=2" alt="Poster Desain Event DPP IMABA" class="subpage-hero-img">
                         <div class="subpage-visual-overlay">
                             <div class="playback-indicator">
-                                <span class="rec-dot" style="background: #10B981;"></span> FIGMA · PROTOTYPE READY
+                                <span class="rec-dot" style="background: #10B981;"></span> OFFICIAL POSTER &amp; CAMPAIGN
                             </div>
                             <div class="footage-meta">
-                                <span class="footage-title">Maslahah Financial Mobile UI/UX</span>
-                                <span class="footage-sub">End-to-End Design System &amp; Flows (Klik untuk buka detail ↗)</span>
+                                <span class="footage-title">Dokumentasi Event &amp; Poster DPP IMABA</span>
+                                <span class="footage-sub">Key Visual, Typography Hierarchy &amp; Social Campaign (Klik untuk buka detail ↗)</span>
                             </div>
                         </div>
                     </div>
@@ -460,7 +460,27 @@
                         </div>
                     </div>
                 </a>
-                <img id="modal-project-img" src="" alt="" class="modal-image" style="display: none;">
+                <!-- Interactive Multi-Slide Carousel for Social Posts & Designs -->
+                <div id="modal-carousel-slider" class="modal-carousel-slider" style="display: none;">
+                    <div class="carousel-track-container">
+                        <div id="modal-carousel-track" class="carousel-track"></div>
+                    </div>
+                    <button type="button" id="carousel-prev-btn" class="carousel-nav-btn prev-btn" aria-label="Slide sebelumnya">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+                    </button>
+                    <button type="button" id="carousel-next-btn" class="carousel-nav-btn next-btn" aria-label="Slide berikutnya">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                    </button>
+                    <div class="carousel-counter" id="carousel-counter">
+                        <span id="carousel-current-index">1</span> / <span id="carousel-total-slides">1</span>
+                    </div>
+                    <div class="carousel-dots" id="carousel-dots"></div>
+                </div>
+
+                <!-- High-Res Framed Static Image Preview (No Play Button) -->
+                <div id="modal-image-frame" class="modal-image-frame" style="display: none;">
+                    <img id="modal-project-img" src="" alt="" class="modal-image">
+                </div>
                 <div class="modal-media-badge" id="modal-media-badge">
                     <span class="badge-dot"></span>
                     <span id="modal-media-badge-text">DESIGN PREVIEW</span>
@@ -539,7 +559,7 @@
         </a>
     </div>
 
-    <script type="module" src="main.js?v=10.21"></script>
+    <script type="module" src="main.js?v=10.26"></script>
 </body>
 
 </html>

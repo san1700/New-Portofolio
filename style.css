@@ -871,6 +871,10 @@ h1, h2, h3, h4, h5, h6 {
   color: var(--foreground);
 }
 
+section[id] {
+  scroll-margin-top: 85px;
+}
+
 h1, .hero-title, .section-title, .cta-box h2 {
   background: linear-gradient(180deg, #FFFFFF 0%, rgba(255, 255, 255, 0.96) 40%, rgba(255, 255, 255, 0.65) 100%);
   -webkit-background-clip: text;
@@ -3783,43 +3787,80 @@ ol {
 
 @media (max-width: 768px) {
   .skills-stack-section {
-    padding: 70px 0 60px;
+    padding: 60px 0 45px;
+    scroll-margin-top: 80px;
   }
   .skills-header {
-    margin-bottom: 36px;
+    margin-bottom: 28px;
   }
   .skills-grid {
-    grid-template-columns: repeat(3, 1fr);
-    gap: 12px;
-  }
-  .skill-card {
-    min-height: 114px;
-    padding: 16px 10px;
-  }
-}
-
-@media (max-width: 480px) {
-  .skills-grid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     gap: 10px;
   }
   .skill-card {
-    min-height: 104px;
-    padding: 14px 8px;
-    border-radius: 14px;
+    min-height: 88px;
+    padding: 12px 8px;
+  }
+}
+
+@media (max-width: 560px) {
+  .skills-stack-section {
+    padding: 44px 0 32px;
+    scroll-margin-top: 75px;
+  }
+  .skills-header {
+    margin-bottom: 20px;
+  }
+  .skills-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+  }
+  .skill-card {
+    min-height: 72px;
+    padding: 10px 4px 8px;
+    border-radius: 12px;
   }
   .skill-icon-wrapper {
-    width: 40px;
-    height: 40px;
-    margin-bottom: 6px;
+    width: 28px;
+    height: 28px;
+    margin-bottom: 4px;
   }
   .skill-app-img,
   .skill-app-svg {
-    width: 36px;
-    height: 36px;
+    width: 24px;
+    height: 24px;
+    border-radius: 6px;
   }
   .skill-name {
-    font-size: 0.78rem;
+    font-size: 0.72rem;
+    font-weight: 500;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+  }
+}
+
+@media (max-width: 360px) {
+  .skills-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 6px;
+  }
+  .skill-card {
+    min-height: 64px;
+    padding: 8px 2px 6px;
+    border-radius: 10px;
+  }
+  .skill-icon-wrapper {
+    width: 24px;
+    height: 24px;
+    margin-bottom: 3px;
+  }
+  .skill-app-img,
+  .skill-app-svg {
+    width: 20px;
+    height: 20px;
+  }
+  .skill-name {
+    font-size: 0.65rem;
   }
 }
 
@@ -4368,6 +4409,185 @@ html.modal-open {
   box-shadow: 0 26px 65px rgba(0, 0, 0, 0.95), 0 0 0 1px rgba(255, 255, 255, 0.3), 0 0 45px rgba(37, 99, 235, 0.38);
 }
 
+/* =========================================================================
+   INSTAGRAM PORTRAIT (1080x1440 / 3:4) & MULTI-SLIDE CAROUSEL STYLES
+   ========================================================================= */
+
+.modal-media-wrapper.aspect-portrait {
+  padding: 26px 16px;
+  background: radial-gradient(ellipse at center, rgba(37, 99, 235, 0.12) 0%, #06080d 80%);
+  min-height: 480px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* High-Res Framed Image (No Play Button) */
+.modal-image-frame {
+  width: 100%;
+  max-width: 400px;
+  max-height: 540px;
+  aspect-ratio: 3 / 4;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.85), 0 0 0 1px rgba(255, 255, 255, 0.14), 0 0 35px rgba(37, 99, 235, 0.2);
+  background: #040507;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-image-frame .modal-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  background: #040507;
+  display: block;
+}
+
+/* Interactive Carousel Slider */
+.modal-carousel-slider {
+  position: relative;
+  width: 100%;
+  max-width: 400px;
+  max-height: 540px;
+  aspect-ratio: 3 / 4;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.85), 0 0 0 1px rgba(255, 255, 255, 0.14), 0 0 40px rgba(37, 99, 235, 0.22);
+  background: #040507;
+  user-select: none;
+  touch-action: pan-y;
+}
+
+.carousel-track-container {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+.carousel-track {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.38s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform;
+}
+
+.carousel-slide {
+  flex: 0 0 100%;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #040507;
+}
+
+.carousel-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+/* Carousel Nav Buttons */
+.carousel-nav-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(10, 10, 16, 0.75);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 12;
+  transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.6);
+}
+
+.carousel-nav-btn:hover {
+  background: rgba(37, 99, 235, 0.9);
+  border-color: rgba(255, 255, 255, 0.5);
+  transform: translateY(-50%) scale(1.1);
+  box-shadow: 0 6px 20px rgba(37, 99, 235, 0.45);
+}
+
+.carousel-nav-btn.prev-btn {
+  left: 12px;
+}
+
+.carousel-nav-btn.next-btn {
+  right: 12px;
+}
+
+/* Carousel Slide Counter */
+.carousel-counter {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  padding: 4px 10px;
+  border-radius: 9999px;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  color: #fff;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  z-index: 12;
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+/* Carousel Dots Indicator */
+.carousel-dots {
+  position: absolute;
+  bottom: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  z-index: 12;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  padding: 4px 10px;
+  border-radius: 9999px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.carousel-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.35);
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.carousel-dot.active {
+  width: 18px;
+  border-radius: 4px;
+  background: #3b82f6;
+  box-shadow: 0 0 10px rgba(59, 130, 246, 0.7);
+}
+
 .modal-reel-img {
   width: 100%;
   height: 100%;
@@ -4710,6 +4930,22 @@ html.modal-open {
     width: 220px;
     height: 391px;
   }
+  .modal-media-wrapper.aspect-portrait {
+    padding: 16px 8px;
+    min-height: 380px;
+  }
+  .modal-image-frame,
+  .modal-carousel-slider {
+    max-width: 280px;
+    max-height: 380px;
+    border-radius: 14px;
+  }
+  .carousel-nav-btn {
+    width: 32px;
+    height: 32px;
+  }
+  .carousel-nav-btn.prev-btn { left: 6px; }
+  .carousel-nav-btn.next-btn { right: 6px; }
 }
 
 /* Showreel Modal Layout */
@@ -5746,7 +5982,30 @@ select.form-input {
 
 @media (max-width: 640px) {
   .arsenal-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+
+  .arsenal-card {
+    padding: 16px 12px;
+    border-radius: 12px;
+  }
+
+  .arsenal-logo,
+  .arsenal-icon-box {
+    width: 36px;
+    height: 36px;
+    margin-bottom: 10px;
+  }
+
+  .arsenal-title {
+    font-size: 0.92rem;
+    margin-bottom: 4px;
+  }
+
+  .arsenal-desc {
+    font-size: 0.74rem;
+    line-height: 1.4;
   }
 
   .portal-card {
@@ -5785,6 +6044,5 @@ select.form-input {
   .grading-tab-btn {
     font-size: 0.74rem;
     padding: 7px 14px;
-  }
   }
 }
