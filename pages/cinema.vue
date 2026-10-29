@@ -83,3 +83,4 @@ const filteredCinemaProjects = computed(() => {
 
   </div>
 </template>
+

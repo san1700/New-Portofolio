@@ -76,3 +76,4 @@ const { openModal } = useProjectModal()
     </div>
   </div>
 </template>
+
