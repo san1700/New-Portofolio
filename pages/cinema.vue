@@ -486,19 +486,22 @@ onMounted(() => {
           @click="openModal(project)"
           style="cursor: pointer;"
         >
+          <!-- Top Row Tags -->
+          <div class="project-card-tags">
+            <span class="project-tag-pill">{{ getProjectTags(project).tag1 }}</span>
+            <span v-if="getProjectTags(project).tag2" class="project-tag-pill">{{ getProjectTags(project).tag2 }}</span>
+          </div>
+
+          <!-- Split Body: Left Info, Right Inset Media -->
           <div class="project-card-inner">
             <div class="project-card-content">
-              <div class="project-card-tags">
-                <span class="project-tag-pill">{{ getProjectTags(project).tag1 }}</span>
-                <span v-if="getProjectTags(project).tag2" class="project-tag-pill">{{ getProjectTags(project).tag2 }}</span>
-              </div>
               <h3 class="project-title">
                 <span>{{ project.title }}</span>
                 <span class="project-title-arrow" aria-hidden="true">↗</span>
               </h3>
               <p class="project-short-desc text-muted">{{ project.description }}</p>
             </div>
-            <div class="project-card-media">
+            <div class="project-card-media" v-if="project.image">
               <img :src="project.image" :alt="project.title" class="project-image" loading="lazy" onerror="this.style.opacity='0';">
             </div>
           </div>

@@ -361,6 +361,7 @@
 :root[data-theme="light"] .testimonial-card,
 :root[data-theme="light"] .gear-card,
 :root[data-theme="light"] .portal-card,
+:root[data-theme="light"] .portal-card-sekeco,
 :root[data-theme="light"] .track-hub-card,
 :root[data-theme="light"] .subpage-visual-card {
   background: #ffffff;
@@ -371,6 +372,7 @@
 :root[data-theme="light"] .service-card-sekeco:hover,
 :root[data-theme="light"] .project-card:hover,
 :root[data-theme="light"] .portal-card:hover,
+:root[data-theme="light"] .portal-card-sekeco:hover,
 :root[data-theme="light"] .testimonial-card:hover {
   border-color: rgba(79, 70, 229, 0.25);
   box-shadow: 0 16px 40px -4px rgba(15, 23, 42, 0.08);
@@ -2899,7 +2901,9 @@ ol {
   align-items: center;
   gap: 8px;
   flex-wrap: wrap;
-  margin-bottom: 12px;
+  margin-bottom: 14px;
+  position: relative;
+  z-index: 3;
 }
 
 .project-tag-pill {
@@ -5271,6 +5275,310 @@ html.modal-open {
   gap: 24px;
   max-width: 1140px;
   margin-inline: auto;
+}
+
+/* =========================================
+   PORTAL CARDS (SEKECO MINIMALIST MODERN STYLE)
+   ========================================= */
+.portal-card-sekeco {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 24px 26px;
+  background: var(--surface);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--border-default);
+  border-radius: 20px;
+  overflow: hidden;
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+  transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.28s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.28s cubic-bezier(0.16, 1, 0.3, 1),
+              background 0.28s ease;
+  user-select: none;
+}
+
+.portal-card-sekeco:hover {
+  transform: translateY(-4px);
+  background: var(--surface-hover);
+  box-shadow: 0 18px 40px -8px rgba(0, 0, 0, 0.55);
+}
+
+.portal-card-sekeco.portal-cinema:hover {
+  border-color: rgba(99, 102, 241, 0.4);
+}
+
+.portal-card-sekeco.portal-design:hover {
+  border-color: rgba(16, 185, 129, 0.4);
+}
+
+/* Ambient Corner Glow */
+.portal-card-glow {
+  position: absolute;
+  top: -40px;
+  right: -40px;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  pointer-events: none;
+  opacity: 0.12;
+  transition: opacity 0.4s ease, transform 0.4s ease;
+  z-index: 1;
+}
+
+.cinema-glow {
+  background: radial-gradient(circle, #3b82f6 0%, transparent 70%);
+}
+
+.design-glow {
+  background: radial-gradient(circle, #10b981 0%, transparent 70%);
+}
+
+.portal-card-sekeco:hover .portal-card-glow {
+  opacity: 0.28;
+  transform: scale(1.15);
+}
+
+/* Top Row: Pill Badges */
+.portal-card-tags {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 14px;
+  position: relative;
+  z-index: 3;
+}
+
+.portal-tag-pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 11px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 99px;
+  font-family: var(--font-primary);
+  font-size: 0.74rem;
+  font-weight: 500;
+  color: var(--foreground-muted);
+  letter-spacing: 0.01em;
+  transition: all 0.2s ease;
+}
+
+.portal-tag-pill.track-pill-cinema {
+  background: rgba(59, 130, 246, 0.12);
+  border-color: rgba(59, 130, 246, 0.3);
+  color: #93c5fd;
+  font-weight: 600;
+}
+
+.portal-tag-pill.track-pill-design {
+  background: rgba(16, 185, 129, 0.12);
+  border-color: rgba(16, 185, 129, 0.3);
+  color: #6ee7b7;
+  font-weight: 600;
+}
+
+.portal-card-sekeco:hover .portal-tag-pill:not(.track-pill-cinema):not(.track-pill-design) {
+  border-color: rgba(255, 255, 255, 0.16);
+  color: var(--foreground);
+}
+
+/* Card Body: Split 2-Column (Left Info, Right Inset Media) */
+.portal-card-body {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 22px;
+  height: 100%;
+  position: relative;
+  z-index: 3;
+}
+
+.portal-card-info {
+  flex: 1 1 auto;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.portal-card-title {
+  font-family: var(--font-primary);
+  font-size: 1.25rem;
+  font-weight: 600;
+  line-height: 1.35;
+  color: var(--foreground);
+  letter-spacing: -0.015em;
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  transition: color 0.2s ease;
+}
+
+.portal-card-sekeco:hover .portal-card-title {
+  color: #ffffff;
+}
+
+.portal-title-arrow {
+  font-size: 1.05rem;
+  color: var(--foreground-muted);
+  opacity: 0.5;
+  flex-shrink: 0;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+              color 0.25s ease,
+              opacity 0.25s ease;
+}
+
+.portal-card-sekeco:hover .portal-title-arrow {
+  color: var(--accent-bright);
+  opacity: 1;
+  transform: translate(3px, -3px);
+}
+
+.portal-card-desc {
+  font-family: var(--font-primary);
+  font-size: 0.86rem;
+  line-height: 1.55;
+  color: var(--foreground-muted);
+  margin: 0 0 12px 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.portal-card-tools {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.02em;
+  color: var(--foreground-muted);
+  opacity: 0.65;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Inset Framed Thumbnail Preview */
+.portal-card-thumb {
+  flex: 0 0 190px;
+  width: 190px;
+  height: 135px;
+  border-radius: 12px;
+  overflow: hidden;
+  background: rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  position: relative;
+  align-self: center;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);
+  flex-shrink: 0;
+}
+
+.portal-thumb-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.portal-card-sekeco:hover .portal-thumb-img {
+  transform: scale(1.06);
+}
+
+.portal-thumb-badge {
+  position: absolute;
+  bottom: 8px;
+  left: 8px;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 3px 8px;
+  background: rgba(8, 10, 15, 0.8);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 6px;
+  font-family: var(--font-mono);
+  font-size: 0.66rem;
+  color: #e2e8f0;
+  letter-spacing: 0.02em;
+  pointer-events: none;
+}
+
+.portal-thumb-badge .rec-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #ef4444;
+  box-shadow: 0 0 6px rgba(239, 68, 68, 0.8);
+  animation: pulseRec 1.6s infinite;
+}
+
+/* Responsive adjustments for portal cards */
+@media (max-width: 992px) {
+  .portal-card-body {
+    gap: 16px;
+  }
+  .portal-card-thumb {
+    flex: 0 0 165px;
+    width: 165px;
+    height: 120px;
+  }
+}
+
+@media (max-width: 768px) {
+  .portal-card-sekeco {
+    padding: 20px;
+    border-radius: 16px;
+  }
+  .portal-card-body {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 16px;
+  }
+  .portal-card-thumb {
+    flex: none;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16/9;
+  }
+}
+
+/* Light Mode Overrides for Portal Card */
+:root[data-theme="light"] .portal-card-sekeco {
+  background: #ffffff;
+  border-color: rgba(15, 23, 42, 0.08);
+  box-shadow: 0 6px 24px -2px rgba(15, 23, 42, 0.05);
+}
+
+:root[data-theme="light"] .portal-card-sekeco:hover {
+  border-color: rgba(79, 70, 229, 0.25);
+  box-shadow: 0 16px 40px -4px rgba(15, 23, 42, 0.08);
+}
+
+:root[data-theme="light"] .portal-card-sekeco .portal-card-title {
+  color: #0f172a;
+}
+
+:root[data-theme="light"] .portal-card-sekeco:hover .portal-card-title {
+  color: #4f46e5;
+}
+
+:root[data-theme="light"] .portal-tag-pill {
+  background: rgba(15, 23, 42, 0.04);
+  border-color: rgba(15, 23, 42, 0.08);
+  color: #64748b;
+}
+
+:root[data-theme="light"] .portal-card-thumb {
+  background: #f1f5f9;
+  border-color: rgba(15, 23, 42, 0.08);
 }
 
 .portal-card {

@@ -415,95 +415,94 @@ onUnmounted(() => {
         </p>
       </div>
 
-      <div class="portal-cards-grid grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 mt-xl">
-        <!-- Card 1: Cinema & Visual Media -->
-        <div class="portal-card portal-cinema rounded-card bg-card reveal reveal-delay-1">
+      <div class="portal-cards-grid grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 mt-xl">
+        <!-- Card 1: Cinema & Visual Media (Sekeco Minimalist Style) -->
+        <NuxtLink 
+          to="/cinema" 
+          class="portal-card-sekeco spotlight-card portal-cinema reveal reveal-delay-1 group"
+          title="Buka Cinema Track &amp; Portofolio Video"
+        >
           <div class="portal-card-glow cinema-glow"></div>
-          <div class="portal-card-top flex items-center justify-between">
-            <span class="portal-tag">TRACK 01 // AUDIO-VISUAL</span>
-            <span class="portal-badge cinema-badge">4K · Aerial · Pacing</span>
+          
+          <!-- Top Row: Tags -->
+          <div class="portal-card-tags">
+            <span class="portal-tag-pill track-pill-cinema">Track 01</span>
+            <span class="portal-tag-pill">Audio-Visual &amp; Motion</span>
+            <span class="portal-tag-pill">4K Drone</span>
           </div>
-          <div class="portal-card-media mt-md cursor-pointer group" @click="openModal(2)" title="Tonton Video: Elevating Your Perspective (SANS DRONE)">
-            <img src="/images/project-sans-drone.webp" alt="Elevating Your Perspective - SANS DRONE" class="portal-preview-img" loading="lazy">
-            <div class="portal-media-overlay">
-              <div class="portal-media-top flex items-center justify-between">
-                <span class="playback-indicator"><span class="rec-dot"></span> REC · 4K UHD</span>
-                <span class="portal-badge-yt font-mono font-xs">YouTube 16:9</span>
-              </div>
-              <div class="portal-media-center">
-                <div class="portal-play-btn" aria-label="Play Video">
-                  <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M8 5v14l11-7z" />
-                  </svg>
-                </div>
-              </div>
-              <div class="portal-media-bottom">
-                <span class="portal-footage-title font-mono font-xs">Elevating Your Perspective</span>
-                <span class="portal-footage-client font-xs text-muted">SANS DRONE · Sewa Drone Jogja</span>
-              </div>
-            </div>
-          </div>
-          <h3 class="portal-title mt-md">Cinema &amp; Visual Media</h3>
-          <p class="portal-desc text-muted mt-xs">
-            Spesialisasi visual udara drone sinematik 4K, videografi komersial, editing ritmis dinamis (Reels/TikTok), serta color grading filmis terkalibrasi.
-          </p>
-          <div class="portal-pills flex flex-wrap gap-xs mt-md">
-            <span class="tech-badge">Drone Pilot</span>
-            <span class="tech-badge">Videographer</span>
-            <span class="tech-badge">Video Editor</span>
-            <span class="tech-badge">Colorist</span>
-            <NuxtLink to="/cinema#color-grading" class="tech-badge" style="border-color: rgba(0,240,255,0.4); color: #00F0FF; text-decoration: none;" title="Buka Interactive Color Grading Studio">Grading Studio ↗</NuxtLink>
-          </div>
-          <div class="portal-card-footer mt-lg flex items-center justify-between">
-            <span class="portal-meta font-mono font-xs text-muted">DaVinci Resolve · CapCut Pro · DJI Drone · Sony 4K</span>
-            <NuxtLink to="/cinema" class="btn btn-primary rounded-pill portal-btn">
-              <span>Enter Cinema Track</span>
-              <span class="btn-arrow">↗</span>
-            </NuxtLink>
-          </div>
-        </div>
 
-        <!-- Card 2: Graphic & Digital Design -->
-        <div class="portal-card portal-design rounded-card bg-card reveal reveal-delay-2">
-          <div class="portal-card-glow design-glow"></div>
-          <div class="portal-card-top flex items-center justify-between">
-            <span class="portal-tag">TRACK 02 // COMMUNICATION &amp; PRODUCT</span>
-            <span class="portal-badge design-badge">Figma · Vector · System</span>
-          </div>
-          <div class="portal-card-media mt-md cursor-pointer group" @click="openModal(111)" title="Lihat Projek: Desain Poster &amp; Event IMABA">
-            <img src="/images/mockup-maslahah.webp" alt="Graphic &amp; UI/UX Design" class="portal-preview-img" loading="lazy">
-            <div class="portal-media-overlay">
-              <div class="portal-media-top flex items-center justify-between">
-                <span class="playback-indicator" style="background: rgba(16, 185, 129, 0.2); color: #6EE7B7; border-color: rgba(16, 185, 129, 0.4);">
-                  <span class="rec-dot" style="background: #10B981;"></span> DESIGN SYSTEM
-                </span>
-                <span class="portal-badge-yt font-mono font-xs" style="border-color: rgba(16, 185, 129, 0.3);">UI/UX &amp; Brand</span>
+          <!-- Main Body: Split 2-Column (Info Left + Inset Preview Right) -->
+          <div class="portal-card-body">
+            <div class="portal-card-info">
+              <h3 class="portal-card-title">
+                <span>Cinema &amp; Visual Media</span>
+                <span class="portal-title-arrow" aria-hidden="true">↗</span>
+              </h3>
+              <p class="portal-card-desc text-muted">
+                Spesialisasi visual udara drone sinematik 4K, videografi komersial, editing ritmis dinamis (Reels/TikTok), serta color grading filmis terkalibrasi.
+              </p>
+              <div class="portal-card-tools font-mono text-muted">
+                DaVinci Resolve · CapCut Pro · DJI Drone · Sony 4K
               </div>
-              <div class="portal-media-center"></div>
-              <div class="portal-media-bottom">
-                <span class="portal-footage-title font-mono font-xs">Maslahah Ecosystem UI/UX</span>
-                <span class="portal-footage-client font-xs text-muted">Fintech Dashboard &amp; Mobile App</span>
+            </div>
+
+            <div class="portal-card-thumb">
+              <img 
+                src="/images/project-sans-drone.webp" 
+                alt="Cinema &amp; Visual Media - SANS DRONE" 
+                class="portal-thumb-img" 
+                loading="lazy"
+              >
+              <div class="portal-thumb-badge font-mono">
+                <span class="rec-dot"></span> 4K UHD
               </div>
             </div>
           </div>
-          <h3 class="portal-title mt-md">Graphic &amp; UI/UX Design</h3>
-          <p class="portal-desc text-muted mt-xs">
-            Fokus pada perancangan antarmuka digital (UI/UX) web &amp; mobile, brand identity eksklusif, rangkaian carousel media sosial berslide edukatif, dan poster tipografi modern.
-          </p>
-          <div class="portal-pills flex flex-wrap gap-xs mt-md">
-            <span class="tech-badge">UI/UX Design</span>
-            <span class="tech-badge">Brand Identity</span>
-            <span class="tech-badge">Social Carousel</span>
-            <span class="tech-badge">Poster Design</span>
+        </NuxtLink>
+
+        <!-- Card 2: Graphic & Digital Design (Sekeco Minimalist Style) -->
+        <NuxtLink 
+          to="/design" 
+          class="portal-card-sekeco spotlight-card portal-design reveal reveal-delay-2 group"
+          title="Buka Design Track &amp; Portofolio UI/UX"
+        >
+          <div class="portal-card-glow design-glow"></div>
+          
+          <!-- Top Row: Tags -->
+          <div class="portal-card-tags">
+            <span class="portal-tag-pill track-pill-design">Track 02</span>
+            <span class="portal-tag-pill">UI/UX &amp; Web</span>
+            <span class="portal-tag-pill">Brand Identity</span>
           </div>
-          <div class="portal-card-footer mt-lg flex items-center justify-between">
-            <span class="portal-meta font-mono font-xs text-muted">Figma · Photoshop · CorelDraw · Canva</span>
-            <NuxtLink to="/design" class="btn btn-secondary rounded-pill portal-btn">
-              <span>Enter Design Track</span>
-              <span class="btn-arrow">↗</span>
-            </NuxtLink>
+
+          <!-- Main Body: Split 2-Column (Info Left + Inset Preview Right) -->
+          <div class="portal-card-body">
+            <div class="portal-card-info">
+              <h3 class="portal-card-title">
+                <span>Graphic &amp; UI/UX Design</span>
+                <span class="portal-title-arrow" aria-hidden="true">↗</span>
+              </h3>
+              <p class="portal-card-desc text-muted">
+                Perancangan antarmuka digital (UI/UX) web &amp; mobile, identitas visual merek eksklusif, rangkaian carousel edukatif, dan poster tipografi modern.
+              </p>
+              <div class="portal-card-tools font-mono text-muted">
+                Figma · Photoshop · CorelDraw · Canva
+              </div>
+            </div>
+
+            <div class="portal-card-thumb">
+              <img 
+                src="/images/mockup-maslahah.webp" 
+                alt="Graphic &amp; UI/UX Design - Maslahah Ecosystem" 
+                class="portal-thumb-img" 
+                loading="lazy"
+              >
+              <div class="portal-thumb-badge font-mono">
+                UI/UX &amp; Brand
+              </div>
+            </div>
           </div>
-        </div>
+        </NuxtLink>
       </div>
     </section>
 
@@ -755,19 +754,22 @@ onUnmounted(() => {
           @click="openModal(project)"
           style="cursor: pointer;"
         >
+          <!-- Top Row Tags -->
+          <div class="project-card-tags">
+            <span class="project-tag-pill">{{ getProjectTags(project).tag1 }}</span>
+            <span v-if="getProjectTags(project).tag2" class="project-tag-pill">{{ getProjectTags(project).tag2 }}</span>
+          </div>
+
+          <!-- Split Body: Left Info, Right Inset Media -->
           <div class="project-card-inner">
             <div class="project-card-content">
-              <div class="project-card-tags">
-                <span class="project-tag-pill">{{ getProjectTags(project).tag1 }}</span>
-                <span v-if="getProjectTags(project).tag2" class="project-tag-pill">{{ getProjectTags(project).tag2 }}</span>
-              </div>
               <h3 class="project-title">
                 <span>{{ project.title }}</span>
                 <span class="project-title-arrow" aria-hidden="true">↗</span>
               </h3>
               <p class="project-short-desc text-muted">{{ project.description }}</p>
             </div>
-            <div class="project-card-media">
+            <div class="project-card-media" v-if="project.image">
               <img :src="project.image" :alt="project.title" class="project-image" loading="lazy" onerror="this.style.opacity='0';">
             </div>
           </div>
