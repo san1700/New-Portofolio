@@ -354,7 +354,7 @@ onUnmounted(() => {
         </div>
       </div>
 
-      <div class="about-grid grid grid-cols-2 gap-xl items-center">
+      <div class="about-grid grid grid-cols-1 lg:grid-cols-2 gap-xl items-center">
         <!-- Sisi Kiri: Profil Card Glassmorphism -->
         <div class="about-visual reveal">
           <div class="about-card rounded-card">
@@ -744,7 +744,7 @@ onUnmounted(() => {
       </div>
 
       <!-- Projects Grid -->
-      <div class="grid grid-cols-2 gap-lg projects-grid" id="projects-container">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-lg projects-grid" id="projects-container">
         <div 
           v-for="(project, i) in filteredProjects" 
           :key="project.id"

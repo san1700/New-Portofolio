@@ -272,7 +272,7 @@ onMounted(() => {
         </div>
       </div>
 
-      <div class="grid grid-cols-4 gap-md mt-lg arsenal-grid">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-md mt-lg arsenal-grid">
         <div class="arsenal-card rounded-card bg-card reveal">
           <img src="/images/logo-premiere.webp" alt="Adobe Premiere Pro" class="arsenal-logo" loading="lazy">
           <h3 class="arsenal-title">Adobe Premiere Pro</h3>
@@ -476,7 +476,7 @@ onMounted(() => {
       </div>
 
       <!-- Grid -->
-      <div class="grid grid-cols-2 gap-lg projects-grid" id="projects-container">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-lg projects-grid" id="projects-container">
         <div 
           v-for="(project, i) in filteredProjects" 
           :key="project.id"
@@ -608,7 +608,7 @@ onMounted(() => {
          ========================================= -->
     <section id="contact" class="container contact-section">
       <div class="contact-card rounded-card bg-card">
-        <div class="contact-grid grid grid-cols-2 gap-xl">
+        <div class="contact-grid grid grid-cols-1 lg:grid-cols-2 gap-xl">
           <div class="contact-info">
             <div class="section-eyebrow mb-xs">
               <span class="eyebrow-text">GET IN TOUCH // CINEMA &amp; MEDIA</span>
