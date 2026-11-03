@@ -1094,7 +1094,15 @@ ol {
   will-change: opacity, transform;
 }
 
-.reveal.active {
+.reveal.active,
+.reveal.visible {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+}
+
+/* Ensure Hero section is visible immediately without delay */
+.hero .reveal,
+.hero-subpage .reveal {
   opacity: 1;
   transform: translateY(0);
 }

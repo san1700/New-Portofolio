@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, onMounted, onUnmounted, nextTick } from 'vue'
+import { ref, onMounted, onUnmounted, nextTick, watch } from 'vue'
 import { useRoute } from 'vue-router'
 import Lenis from 'lenis'
 import { useProjectModal } from '~/composables/useProjectModal'
@@ -44,24 +44,43 @@ const handleGlobalClick = (e: MouseEvent) => {
 let revealObserver: IntersectionObserver | null = null
 
 const setupRevealObserver = () => {
+  if (typeof window === 'undefined') return
   if (revealObserver) {
     revealObserver.disconnect()
   }
+
+  // 1. Activate any elements in the initial viewport immediately
+  const viewH = window.innerHeight || 800
+  document.querySelectorAll('.reveal:not(.active)').forEach((el) => {
+    const rect = el.getBoundingClientRect()
+    if (rect.top < viewH + 150) {
+      el.classList.add('active', 'visible')
+    }
+  })
+
+  // 2. Observer for remaining elements as user scrolls
   revealObserver = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
-          entry.target.classList.add('visible')
+          entry.target.classList.add('active', 'visible')
+          revealObserver?.unobserve(entry.target)
         }
       })
     },
-    { threshold: 0.1, rootMargin: '0px 0px -40px 0px' }
+    { threshold: 0.05, rootMargin: '60px 0px 60px 0px' }
   )
 
-  document.querySelectorAll('.reveal, .animate-on-scroll').forEach((el) => {
+  document.querySelectorAll('.reveal:not(.active), .animate-on-scroll').forEach((el) => {
     revealObserver?.observe(el)
   })
 }
+
+watch(() => route.path, () => {
+  nextTick(() => {
+    setupRevealObserver()
+  })
+})
 
 onMounted(() => {
   // 1. Prevent theme flash & apply theme
@@ -104,6 +123,9 @@ onMounted(() => {
   nextTick(() => {
     setupRevealObserver()
   })
+  setTimeout(() => {
+    setupRevealObserver()
+  }, 100)
 })
 
 onUnmounted(() => {

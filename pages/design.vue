@@ -105,6 +105,12 @@ const handleContactSubmit = (e: Event) => {
 onMounted(() => {
   nextTick(() => {
     updatePillPosition()
+    document.querySelectorAll('.reveal').forEach((el) => {
+      const rect = el.getBoundingClientRect()
+      if (rect.top < window.innerHeight + 150) {
+        el.classList.add('active', 'visible')
+      }
+    })
   })
   window.addEventListener('resize', () => updatePillPosition(), { passive: true })
 })
