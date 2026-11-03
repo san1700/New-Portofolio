@@ -415,19 +415,21 @@ onUnmounted(() => {
         </p>
       </div>
 
-      <div class="portal-grid-2col mt-lg">
+      <div class="portal-cards-grid grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 mt-xl">
         <!-- Card 1: Cinema & Visual Media -->
         <div class="portal-card portal-cinema rounded-card bg-card reveal reveal-delay-1">
           <div class="portal-card-glow cinema-glow"></div>
           <div class="portal-card-top flex items-center justify-between">
-            <span class="portal-tag">TRACK 01 // AUDIO-VISUAL &amp; MOTION</span>
+            <span class="portal-tag">TRACK 01 // AUDIO-VISUAL</span>
             <span class="portal-badge cinema-badge">4K · Aerial · Pacing</span>
           </div>
-          <div class="portal-card-media mt-md">
-            <div class="portal-video-preview-wrapper" @click="openShowreelModal" style="cursor: pointer;">
-              <video class="portal-preview-video" autoplay muted loop playsinline poster="/images/project-persidangan-semu.webp">
-                <source src="/videos/project-persidangan-semu.mp4" type="video/mp4">
-              </video>
+          <div class="portal-card-media mt-md cursor-pointer group" @click="openModal(2)" title="Tonton Video: Elevating Your Perspective (SANS DRONE)">
+            <img src="/images/project-sans-drone.webp" alt="Elevating Your Perspective - SANS DRONE" class="portal-preview-img" loading="lazy">
+            <div class="portal-media-overlay">
+              <div class="portal-media-top flex items-center justify-between">
+                <span class="playback-indicator"><span class="rec-dot"></span> REC · 4K UHD</span>
+                <span class="portal-badge-yt font-mono font-xs">YouTube 16:9</span>
+              </div>
               <div class="portal-media-center">
                 <div class="portal-play-btn" aria-label="Play Video">
                   <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
@@ -443,8 +445,7 @@ onUnmounted(() => {
           </div>
           <h3 class="portal-title mt-md">Cinema &amp; Visual Media</h3>
           <p class="portal-desc text-muted mt-xs">
-            Spesialisasi visual udara drone sinematik 4K, videografi komersial, editing ritmis dinamis
-            (Reels/TikTok), serta color grading filmis terkalibrasi.
+            Spesialisasi visual udara drone sinematik 4K, videografi komersial, editing ritmis dinamis (Reels/TikTok), serta color grading filmis terkalibrasi.
           </p>
           <div class="portal-pills flex flex-wrap gap-xs mt-md">
             <span class="tech-badge">Drone Pilot</span>
@@ -469,13 +470,25 @@ onUnmounted(() => {
             <span class="portal-tag">TRACK 02 // COMMUNICATION &amp; PRODUCT</span>
             <span class="portal-badge design-badge">Figma · Vector · System</span>
           </div>
-          <div class="portal-card-media mt-md">
+          <div class="portal-card-media mt-md cursor-pointer group" @click="openModal(111)" title="Lihat Projek: Desain Poster &amp; Event IMABA">
             <img src="/images/mockup-maslahah.webp" alt="Graphic &amp; UI/UX Design" class="portal-preview-img" loading="lazy">
+            <div class="portal-media-overlay">
+              <div class="portal-media-top flex items-center justify-between">
+                <span class="playback-indicator" style="background: rgba(16, 185, 129, 0.2); color: #6EE7B7; border-color: rgba(16, 185, 129, 0.4);">
+                  <span class="rec-dot" style="background: #10B981;"></span> DESIGN SYSTEM
+                </span>
+                <span class="portal-badge-yt font-mono font-xs" style="border-color: rgba(16, 185, 129, 0.3);">UI/UX &amp; Brand</span>
+              </div>
+              <div class="portal-media-center"></div>
+              <div class="portal-media-bottom">
+                <span class="portal-footage-title font-mono font-xs">Maslahah Ecosystem UI/UX</span>
+                <span class="portal-footage-client font-xs text-muted">Fintech Dashboard &amp; Mobile App</span>
+              </div>
+            </div>
           </div>
           <h3 class="portal-title mt-md">Graphic &amp; UI/UX Design</h3>
           <p class="portal-desc text-muted mt-xs">
-            Fokus pada perancangan antarmuka digital (UI/UX) web &amp; mobile, brand identity eksklusif,
-            rangkaian carousel media sosial berslide edukatif, dan poster tipografi modern.
+            Fokus pada perancangan antarmuka digital (UI/UX) web &amp; mobile, brand identity eksklusif, rangkaian carousel media sosial berslide edukatif, dan poster tipografi modern.
           </p>
           <div class="portal-pills flex flex-wrap gap-xs mt-md">
             <span class="tech-badge">UI/UX Design</span>
