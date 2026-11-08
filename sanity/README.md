@@ -45,3 +45,4 @@ Di dashboard studio visual, Anda dapat:
 - Mengatur urutan prioritas tampil.
 
 *Catatan: Jika Sanity belum di-setting atau internet terputus, website secara otomatis menggunakan data cadangan lokal sehingga website tidak akan pernah rusak/kosong.*
+
