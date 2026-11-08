@@ -7,6 +7,7 @@ import {
   testimonialsDataDesign, 
   type Project 
 } from '~/data/portfolio'
+import { useProjects } from '~/composables/useProjects'
 import { useProjectModal } from '~/composables/useProjectModal'
 
 useSeoMeta({
@@ -18,6 +19,7 @@ useSeoMeta({
 })
 
 const { openModal } = useProjectModal()
+const { designProjects: allDesignProjects, loadProjects } = useProjects()
 
 // --- Work Filters & Sliding Pill ---
 const activeFilter = ref('All')
@@ -30,13 +32,13 @@ const filterConfigs = [
 ]
 
 const getFilterCount = (cfg: { filter: string; key: string }) => {
-  if (cfg.filter === 'All') return designProjects.length
-  return designProjects.filter((p: Project) => p.category === cfg.filter).length
+  if (cfg.filter === 'All') return allDesignProjects.value.length
+  return allDesignProjects.value.filter((p: Project) => p.category === cfg.filter).length
 }
 
 const filteredProjects = computed(() => {
-  if (activeFilter.value === 'All') return designProjects
-  return designProjects.filter((p: Project) => p.category === activeFilter.value)
+  if (activeFilter.value === 'All') return allDesignProjects.value
+  return allDesignProjects.value.filter((p: Project) => p.category === activeFilter.value)
 })
 
 const pillStyle = ref({
@@ -102,7 +104,8 @@ const handleContactSubmit = (e: Event) => {
   window.open(`https://wa.me/6281807882493?text=${text}`, '_blank')
 }
 
-onMounted(() => {
+onMounted(async () => {
+  await loadProjects()
   nextTick(() => {
     updatePillPosition()
     document.querySelectorAll('.reveal').forEach((el) => {

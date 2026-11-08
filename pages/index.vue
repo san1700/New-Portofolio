@@ -7,6 +7,7 @@ import {
   testimonialsData, 
   type Project 
 } from '~/data/portfolio'
+import { useProjects } from '~/composables/useProjects'
 import { useProjectModal } from '~/composables/useProjectModal'
 
 useSeoMeta({
@@ -23,6 +24,7 @@ useSeoMeta({
 })
 
 const { openModal, openShowreelModal } = useProjectModal()
+const { projects: allProjects, loadProjects } = useProjects()
 
 // --- Hero 3D Tilt Physics ---
 const heroCenterRef = ref<HTMLElement | null>(null)
@@ -101,16 +103,16 @@ const filterConfigs = [
 ]
 
 const getFilterCount = (cfg: { filter: string; key: string }) => {
-  if (cfg.filter === 'All') return projectsData.length
-  return projectsData.filter((p: Project) => {
+  if (cfg.filter === 'All') return allProjects.value.length
+  return allProjects.value.filter((p: Project) => {
     if (cfg.key === 'subCategory') return p.subCategory === cfg.filter
     return p.category === cfg.filter
   }).length
 }
 
 const filteredProjects = computed(() => {
-  if (activeFilter.value === 'All') return projectsData
-  return projectsData.filter((p: Project) => {
+  if (activeFilter.value === 'All') return allProjects.value
+  return allProjects.value.filter((p: Project) => {
     if (activeKey.value === 'subCategory') return p.subCategory === activeFilter.value
     return p.category === activeFilter.value || p.subCategory === activeFilter.value
   })
@@ -167,7 +169,8 @@ const prevTestimonial = () => {
   currentTestiIdx.value = (currentTestiIdx.value - 1 + testimonialsData.length) % testimonialsData.length
 }
 
-onMounted(() => {
+onMounted(async () => {
+  await loadProjects()
   initPortrait3DTilt()
   nextTick(() => {
     updatePillPosition()

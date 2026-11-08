@@ -7,6 +7,7 @@ import {
   testimonialsDataCinema, 
   type Project 
 } from '~/data/portfolio'
+import { useProjects } from '~/composables/useProjects'
 import { useProjectModal } from '~/composables/useProjectModal'
 
 useSeoMeta({
@@ -18,6 +19,7 @@ useSeoMeta({
 })
 
 const { openModal } = useProjectModal()
+const { cinemaProjects: allCinemaProjects, loadProjects } = useProjects()
 
 // --- Work Filters & Sliding Pill ---
 const activeFilter = ref('All')
@@ -29,13 +31,13 @@ const filterConfigs = [
 ]
 
 const getFilterCount = (cfg: { filter: string; key: string }) => {
-  if (cfg.filter === 'All') return cinemaProjects.length
-  return cinemaProjects.filter((p: Project) => p.subCategory === cfg.filter).length
+  if (cfg.filter === 'All') return allCinemaProjects.value.length
+  return allCinemaProjects.value.filter((p: Project) => p.subCategory === cfg.filter).length
 }
 
 const filteredProjects = computed(() => {
-  if (activeFilter.value === 'All') return cinemaProjects
-  return cinemaProjects.filter((p: Project) => p.subCategory === activeFilter.value)
+  if (activeFilter.value === 'All') return allCinemaProjects.value
+  return allCinemaProjects.value.filter((p: Project) => p.subCategory === activeFilter.value)
 })
 
 const pillStyle = ref({
@@ -161,7 +163,8 @@ const handleContactSubmit = (e: Event) => {
   window.open(`https://wa.me/6281807882493?text=${text}`, '_blank')
 }
 
-onMounted(() => {
+onMounted(async () => {
+  await loadProjects()
   window.addEventListener('mousemove', (e) => {
     if (!isDragging) return
     handlePointerMove(e.clientX)

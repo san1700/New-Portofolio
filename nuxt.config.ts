@@ -8,8 +8,16 @@ export default defineNuxtConfig({
   },
 
   modules: [
-    '@nuxtjs/tailwindcss'
+    '@nuxtjs/tailwindcss',
+    '@nuxtjs/sanity'
   ],
+
+  sanity: {
+    projectId: process.env.NUXT_SANITY_PROJECT_ID || 'demo-project',
+    dataset: process.env.NUXT_SANITY_DATASET || 'production',
+    apiVersion: '2024-03-01',
+    useCdn: true
+  },
 
   css: [
     '~/assets/css/style.css',
